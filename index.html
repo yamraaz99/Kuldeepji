@@ -55,6 +55,29 @@ button{border-radius:3pt;}
     <script type="text/javascript" language="javascript" src="http://c.amazon-adsystem.com/aax2/assoc.js"></script>
 </head>
 <body>
+    <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyAXCNMm9MvlrzZMlc-NkmQkctj3ZobEXl8",
+    authDomain: "mywebsite-71982.firebaseapp.com",
+    projectId: "mywebsite-71982",
+    storageBucket: "mywebsite-71982.appspot.com",
+    messagingSenderId: "45087836687",
+    appId: "1:45087836687:web:8cc0543ad25b148bd7717a",
+    measurementId: "G-KBWWR2NW1N"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 <table border="0" width="100%" cellspacing="0" bgcolor="#673de6">
 <tr><td>
 <table border="0" align="center" width="85%" cellpadding="15">
