@@ -3,16 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iframe Preview</title>
+  <title>Vision Assist AI - Project Showcase</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #333;
+      text-align: center;
+    }
+    header {
+      background: #6200ea;
+      color: white;
+      padding: 1rem 0;
+    }
+    h1 {
+      margin: 0;
+    }
+    p {
+      margin: 1rem auto;
+      font-size: 1.1rem;
+      max-width: 800px;
+    }
+    .iframe-container {
+      margin: 2rem auto;
+      width: 90%;
+      max-width: 1000px;
+      border: 2px solid #6200ea;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    iframe {
+      width: 100%;
+      height: 569px;
+      border: none;
+    }
+  </style>
 </head>
 <body>
-  <h1>Embed Example</h1>
-  <iframe
-    style="width: 100%;"
-    height="569"
-    src="https://www.create.xyz/app/1c6025ee-67fb-4794-8e50-5b84c0cb5e4a"
-    title="Vision Assist AI"
-    frameBorder="0">
-  </iframe>
+  <header>
+    <h1>Vision Assist AI</h1>
+  </header>
+  <p>
+    Our goal is to create a seamless, AI-powered experience that assists individuals in understanding their environment 
+    through audio guidance. The app integrates AI and a simple interface for real-time image analysis and 
+    audio feedback in regional languages. This is just the beginning of an inclusive tech journey.
+  </p>
+  <div class="iframe-container">
+    <iframe 
+      src="https://www.create.xyz/app/1c6025ee-67fb-4794-8e50-5b84c0cb5e4a" 
+      title="Vision Assist AI">
+    </iframe>
+  </div>
 </body>
 </html>
