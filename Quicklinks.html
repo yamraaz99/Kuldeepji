@@ -1,79 +1,299 @@
 <html>
   <head>
-    <title>My Quick Links</title>
+    <title>Productivity Tools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-      body {
-        background-color: #b3e6ff;
+      :root {
+        --primary: #4F46E5;
+        --secondary: #6366F1;
+        --accent: #EC4899;
+        --surface: #FFFFFF;
+        --background: #F8FAFC;
+        --text-primary: #1E293B;
+        --text-secondary: #64748B;
       }
 
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+      }
+
+      body {
+        background: var(--background);
+        color: var(--text-primary);
+        line-height: 1.5;
+      }
+
+      /* Enhanced Container System */
       .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 50px;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+      }
+
+      /* Visual Hierarchy Improvements */
+      .header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding: 2rem 0;
+        background: var(--surface);
+        border-radius: 16px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
       }
 
       h1 {
-        color: #333333;
-        font-size: 36px;
-        margin-bottom: 50px;
-        text-shadow: 2px 2px #ff69b4;
+        font-size: 2.25rem;
+        font-weight: 700;
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0.75rem;
       }
 
-      a {
-        text-decoration: none;
-        color: #333333;
-        margin: 20px;
-        font-size: 20px;
-        background-color: #ffffff;
-        padding: 10px 20px;
-        border-radius: 5px;
-        box-shadow: 2px 2px 5px #cccccc;
-        transition: all 0.2s ease-in-out;
+      .subheader {
+        color: var(--text-secondary);
+        font-size: 1.125rem;
+        max-width: 600px;
+        margin: 0 auto;
       }
 
-      a:hover {
-        transform: translateY(-3px);
-        box-shadow: 4px 4px 5px #cccccc;
-        background-color: #ff69b4;
-        color: #ffffff;
-        text-shadow: 2px 2px #333333;
+      /* Enhanced Card System */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.75rem;
+        margin: 2rem 0;
       }
 
-      img {
-        height: 50px;
-        width: 50px;
-        margin: 20px;
+      .card {
+        background: var(--surface);
+        border-radius: 14px;
+        padding: 1.75rem;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        border: 1px solid #E2E8F0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(var(--primary), var(--secondary));
+        opacity: 0;
+        transition: opacity 0.2s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.1);
+      }
+
+      .card:hover::before {
+        opacity: 1;
+      }
+
+      .card-content {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+      }
+
+      .icon-wrapper {
+        width: 56px;
+        height: 56px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+      }
+
+      .card-text {
+        flex: 1;
+      }
+
+      .card-title {
+        font-weight: 600;
+        font-size: 1.125rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .card-description {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        line-height: 1.5;
+      }
+
+      /* Enhanced Social Section */
+      .social-section {
+        margin-top: 4rem;
+        text-align: center;
+        padding: 2rem 0;
+        border-top: 1px solid #E2E8F0;
+      }
+
+      .social-title {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 1.5rem;
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 1.25rem;
+      }
+
+      .social-link {
+        width: 44px;
+        height: 44px;
+        background: var(--surface);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        color: var(--text-primary);
+      }
+
+      .social-link:hover {
+        transform: translateY(-2px);
+        color: var(--primary);
+        box-shadow: 0 4px 6px rgba(99, 102, 241, 0.1);
+      }
+
+      /* Responsive Enhancements */
+      @media (max-width: 768px) {
+        .container {
+          padding: 1.5rem 1rem;
+        }
+
+        h1 {
+          font-size: 1.75rem;
+        }
+
+        .subheader {
+          font-size: 1rem;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+          gap: 1.25rem;
+        }
+
+        .card {
+          padding: 1.5rem;
+        }
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <h1>Quick Links</h1>
-      <a href="Timerjee.html">Jee2025 Timer</a>
-      <!--<a href="Books.html">Our Books</a>
-      <a href="https://www.amazon.in/Kuldeep-singh/e/B0BR219VTQ/ref=aufs_dp_mata_mbl">Amazon Author Page</a>
-      <!--<a href="Books.html">Our Books</a>
-      <a href="sample-papers.html">Sample Papers</a>
-      <a href="Deals.html">Study Offers</a>-->
-      <a href="Blogs.html">Our Blogs</a>
-      <a href="https://bit.ly/m/Kuldeep">My Bitly Profile</a>
-      <a href="Page1.html">All about IITs</a>
-      <a href="https://amazing-deals.mini.store/products/b4a1ac37-662b-48a1-87a3-1f69cbbbff7c">My Books</a>
-      <a href="https://designelite.blinkstore.in/">Design Elite</a>
-      <a href="WatchCollection.html" style="background-color:#008CBA;border-radius:8px;color:white;padding:12px 24px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;font-weight:bold;">Our Watches</a>
-      <a href="Kerry.html">Kerry AI</a>
-      <a href="https://send.vis.ee/download/70b3730603c3078a/#afwQl25tQdW9Lp4NIl1rHw">Bank Management</a>
-      
-      <a href="https://www.youtube.com/@kuldeepiit">
-        <img src="youtube.png" alt="Join me on YouTube">YouTube</a>
-      <a href="https://instagram.com/kuldeep_iit?igshid=ZDdkNTZiNTM=">
-        <img src="instagram.png" alt="Instagram">Instagram</a>
+      <header class="header">
+        <h1>Productivity Tools</h1>
+        <p class="subheader">Premium tools for creators, students, and professionals</p>
+      </header>
+
+      <div class="grid">
+        <a href="Timerjee.html" class="card">
+          <div class="card-content">
+            <div class="icon-wrapper">
+              <i class="fas fa-hourglass"></i>
+            </div>
+            <div class="card-text">
+              <div class="card-title">JEE 2025 Countdown</div>
+              <div class="card-description">Smart preparation tracker with milestone alerts</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="Blogs.html" class="card">
+          <div class="card-content">
+            <div class="icon-wrapper">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <div class="card-text">
+              <div class="card-title">Our Blogs</div>
+              <div class="card-description">Curated learning techniques & success roadmaps</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="Page1.html" class="card">
+          <div class="card-content">
+            <div class="icon-wrapper">
+              <i class="fas fa-map-signs"></i>
+            </div>
+            <div class="card-text">
+              <div class="card-title">IIT Navigation</div>
+              <div class="card-description">Complete admission guide & institution insights</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://amazing-deals.mini.store/products/b4a1ac37-662b-48a1-87a3-1f69cbbbff7c" class="card">
+          <div class="card-content">
+            <div class="icon-wrapper">
+              <i class="fas fa-brain"></i>
+            </div>
+            <div class="card-text">
+              <div class="card-title">Prompt Ebook</div>
+              <div class="card-description">Premium study materials & practice resources</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="WatchCollection.html" class="card">
+          <div class="card-content">
+            <div class="icon-wrapper">
+              <i class="fas fa-gem"></i>
+            </div>
+            <div class="card-text">
+              <div class="card-title">Luxury Collection</div>
+              <div class="card-description">Exclusive designer timepieces & accessories</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="Kerry.html" class="card">
+          <div class="card-content">
+            <div class="icon-wrapper">
+              <i class="fas fa-robot"></i>
+            </div>
+            <div class="card-text">
+              <div class="card-title">Kerry AI</div>
+              <div class="card-description">Smart study companion with progress tracking</div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="social-section">
+        <h3 class="social-title">Connect with Us</h3>
+        <div class="social-links">
+          <a href="https://www.youtube.com/@kuldeepiit" class="social-link">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="https://instagram.com/kuldeep_iit" class="social-link">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://bit.ly/m/Kuldeep" class="social-link">
+            <i class="fas fa-link"></i>
+          </a>
+        </div>
+      </div>
     </div>
   </body>
 </html>
-
-
-
-
-
