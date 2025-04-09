@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuldeep Store - Digital Resources for Students</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #FFD600;
+            --secondary-color: #4A1A1A;
+            --light-color: #FFFFFF;
+            --gray-color: #F5F5F5;
+            --dark-gray: #333333;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .primary-bg {
+            background-color: var(--primary-color);
+        }
+        
+        .secondary-bg {
+            background-color: var(--secondary-color);
+        }
+        
+        .primary-text {
+            color: var(--primary-color);
+        }
+        
+        .secondary-text {
+            color: var(--secondary-color);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-primary:hover {
+            background-color: #e6c100;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: var(--light-color);
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #5e2121;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            bottom: -10px;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .page-section {
+            padding: 3rem 0;
+            display: none;
+        }
+        
+        .active-section {
+            display: block;
+        }
+        
+        .testimonial-card {
+            background-color: var(--gray-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            position: relative;
+        }
+        
+        .testimonial-card:before {
+            content: '\201C';
+            font-size: 4rem;
+            color: var(--primary-color);
+            position: absolute;
+            top: -1rem;
+            left: 1rem;
+            opacity: 0.3;
+        }
+        
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+        
+        .product-tag {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .highlight-item {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .highlight-item i {
+            color: var(--primary-color);
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 1rem;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--secondary-color);
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background-color: var(--primary-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover:after, .nav-link.active:after {
+            width: 70%;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            height: 0;
+            overflow: hidden;
+            transition: height 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            height: 300px;
+        }
+        
+        /* Form Styles */
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 214, 0, 0.2);
+        }
+        
+        .trust-badge {
+            background-color: var(--secondary-color);
+            color: var(--light-color);
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .footer-link {
+            color: #ddd;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: var(--primary-color);
+        }
+        
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+        }
+        
+        /* FAQ Accordion */
+        .faq-item {
+            border-bottom: 1px solid #eee;
+            padding: 1rem 0;
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            margin-top: 0.5rem;
+        }
+        
+        .faq-answer.active {
+            max-height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <header class="sticky top-0 bg-white shadow-md z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="#" class="text-2xl font-bold secondary-text" onclick="showSection('home')">
+                        <span class="primary-text">Kuldeep</span> Store
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-4">
+                    <a href="#" class="nav-link active" onclick="showSection('home')">Home</a>
+                    <a href="#" class="nav-link" onclick="showSection('store')">Store</a>
+                    <a href="#" class="nav-link" onclick="showSection('about')">About</a>
+                    <a href="#" class="nav-link" onclick="showSection('contact')">Contact</a>
+                    <a href="#" class="nav-link" onclick="showSection('faqs')">FAQs</a>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-500 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="mobile-menu md:hidden">
+                <div class="flex flex-col px-4 pt-2 pb-4 space-y-2">
+                    <a href="#" class="nav-link" onclick="showSection('home')">Home</a>
+                    <a href="#" class="nav-link" onclick="showSection('store')">Store</a>
+                    <a href="#" class="nav-link" onclick="showSection('about')">About</a>
+                    <a href="#" class="nav-link" onclick="showSection('contact')">Contact</a>
+                    <a href="#" class="nav-link" onclick="showSection('faqs')">FAQs</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HOME SECTION -->
+        <section id="home" class="page-section active-section">
+            <!-- Hero Section -->
+            <div class="bg-gradient-to-b from-yellow-50 to-white py-16">
+                <div class="container mx-auto px-4">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 mb-8 md:mb-0">
+                            <h1 class="text-4xl md:text-5xl font-bold mb-4 secondary-text">
+                                Smarter Resources.<br>
+                                <span class="primary-text">Sharper Students.</span>
+                            </h1>
+                            <p class="text-lg mb-6 text-gray-700">
+                                High-quality digital content designed to help students excel in their academic journey. Trusted resources created by Kuldeep Singh.
+                            </p>
+                            <div class="flex flex-wrap gap-4">
+                                <button class="btn-primary" onclick="showSection('store')">
+                                    Explore Digital Products
+                                </button>
+                                <button class="btn-secondary" onclick="showSection('about')">
+                                    About Creator
+                                </button>
+                            </div>
+                            <div class="mt-8">
+                                <div class="trust-badge">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>Trusted by 1000+ CBSE Students</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2 flex justify-center">
+                            <div class="relative">
+                                <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden bg-gray-200 shadow-lg">
+                                    <div class="h-full w-full flex items-center justify-center text-gray-400">
+                                        <i class="fas fa-user text-5xl"></i>
+                                    </div>
+                                </div>
+                                <div class="absolute -bottom-4 -right-4 bg-white p-3 rounded-lg shadow-md">
+                                    <div class="primary-bg p-2 rounded-lg">
+                                        <i class="fas fa-graduation-cap text-2xl secondary-text"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Products -->
+            <div class="py-16 bg-gray-50">
+                <div class="container mx-auto px-4">
+                    <h2 class="section-title text-center mx-auto">Featured Resources</h2>
+                    <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+                        Discover our collection of premium digital resources designed to help students achieve academic excellence.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Product 1 -->
+                        <div class="card">
+                            <div class="relative">
+                                <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                    <i class="fas fa-book text-4xl text-gray-400"></i>
+                                </div>
+                                <div class="absolute top-4 left-4">
+                                    <span class="product-tag">Bestseller</span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2 secondary-text">CBSE Mathematics Mastery Guide</h3>
+                                <p class="text-gray-600 mb-4">Complete guide to ace CBSE Mathematics with practice problems and solved examples.</p>
+                                <div class="flex justify-between items-center mb-4">
+                                    <div class="product-price">₹499</div>
+                                    <div class="text-sm text-gray-500">1000+ Downloads</div>
+                                </div>
+                                <button class="btn-primary w-full" onclick="showProductDetail(1)">View Details</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 2 -->
+                        <div class="card">
+                            <div class="relative">
+                                <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                    <i class="fas fa-microscope text-4xl text-gray-400"></i>
+                                </div>
+                                <div class="absolute top-4 left-4">
+                                    <span class="product-tag">New</span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2 secondary-text">Science Simplified: CBSE Guide</h3>
+                                <p class="text-gray-600 mb-4">Comprehensive science guide with illustrated concepts and practical experiments.</p>
+                                <div class="flex justify-between items-center mb-4">
+                                    <div class="product-price">₹599</div>
+                                    <div class="text-sm text-gray-500">500+ Downloads</div>
+                                </div>
+                                <button class="btn-primary w-full" onclick="showProductDetail(2)">View Details</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 3 -->
+                        <div class="card">
+                            <div class="relative">
+                                <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                    <i class="fas fa-language text-4xl text-gray-400"></i>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2 secondary-text">English Literature Companion</h3>
+                                <p class="text-gray-600 mb-4">Perfect guide for English literature with chapter summaries and analysis.</p>
+                                <div class="flex justify-between items-center mb-4">
+                                    <div class="product-price">₹399</div>
+                                    <div class="text-sm text-gray-500">750+ Downloads</div>
+                                </div>
+                                <button class="btn-primary w-full" onclick="showProductDetail(3)">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-10">
+                        <button class="btn-secondary" onclick="showSection('store')">
+                            View All Products
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonials -->
+            <div class="py-16">
+                <div class="container mx-auto px-4">
+                    <h2 class="section-title text-center mx-auto">Student Testimonials</h2>
+                    <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+                        Hear what our students have to say about our digital resources.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="testimonial-card">
+                            <p class="mb-4">The Mathematics guide helped me score 95% in my board exams. The practice problems were extremely helpful!</p>
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center mr-3">
+                                    <i class="fas fa-user text-gray-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Ankit Sharma</h4>
+                                    <p class="text-sm text-gray-500">Class 12 Student</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-card">
+                            <p class="mb-4">Science Simplified made complex concepts so easy to understand. The illustrations are excellent!</p>
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center mr-3">
+                                    <i class="fas fa-user text-gray-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Priya Patel</h4>
+                                    <p class="text-sm text-gray-500">Class 10 Student</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-card">
+                            <p class="mb-4">As a parent, I found these guides to be extremely helpful for my daughter's exam preparations. Worth every rupee!</p>
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center mr-3">
+                                    <i class="fas fa-user text-gray-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Rajesh Gupta</h4>
+                                    <p class="text-sm text-gray-500">Parent</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Call to Action -->
+            <div class="py-16 primary-bg">
+                <div class="container mx-auto px-4 text-center">
+                    <h2 class="text-3xl font-bold mb-6 secondary-text">Ready to Excel in Your Studies?</h2>
+                    <p class="text-lg mb-8 max-w-3xl mx-auto secondary-text">
+                        Join thousands of students who have improved their academic performance with our digital resources.
+                    </p>
+                    <button class="btn-secondary" onclick="showSection('store')">
+                        Explore Digital Products
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- STORE SECTION -->
+        <section id="store" class="page-section">
+            <div class="py-12 bg-gray-50">
+                <div class="container mx-auto px-4">
+                    <h1 class="section-title text-center mx-auto">Digital Resource Library</h1>
+                    <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+                        Browse our collection of premium eBooks and digital resources designed to help students achieve academic excellence.
+                    </p>
+                    
+                    <!-- Categories Nav -->
+                    <div class="flex flex-wrap justify-center gap-4 mb-10">
+                        <button class="px-4 py-2 rounded-full bg-white shadow-sm border border-gray-200 hover:bg-gray-100 active">All Resources</button>
+                        <button class="px-4 py-2 rounded-full bg-white shadow-sm border border-gray-200 hover:bg-gray-100">Mathematics</button>
+                        <button class="px-4 py-2 rounded-full bg-white shadow-sm border border-gray-200 hover:bg-gray-100">Science</button>
+                        <button class="px-4 py-2 rounded-full bg-white shadow-sm border border-gray-200 hover:bg-gray-100">English</button>
+                        <button class="px-4 py-2 rounded-full bg-white shadow-sm border border-gray-200 hover:bg-gray-100">Exam Prep</button>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        <!-- Product 1 -->
+                        <div class="card">
+                            <div class="relative">
+                                <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                    <i class="fas fa-book text-4xl text-gray-400"></i>
+                                </div>
+                                <div class="absolute top-4 left-4">
+                                    <span class="product-tag">Bestseller</span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2 secondary-text">CBSE Mathematics Mastery Guide</h3>
+                                <p class="text-gray-600 mb-4">Complete guide to ace CBSE Mathematics with practice problems and solved examples.</p>
+                                <div class="flex justify-between items-center mb-4">
+                                    <div class="product-price">₹499</div>
+                                    <div class="text-sm text-gray-500">1000+ Downloads</div>
+                                </div>
+                                <button class="btn-primary w-full" onclick="showProductDetail(1)">View Details</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 2 -->
+                        <div class="card">
+                            <div class="relative">
+                                <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                    <i class="fas fa-microscope text-4xl text-gray-400"></i>
+                                </div>
+                                <div class="absolute top-4 left-4">
+                                    <span class="product-tag">New</span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2 secondary-text">Science Simplified: CBSE Guide</h3>
+                                <p class="text-gray-600 mb-4">Comprehensive science guide with illustrated concepts and practical experiments.</p>
+                                <div class="flex justify-between items-center mb-4">
+                                    <div class="product-price">₹599</div>
+                                    <div class="text-sm text-gray-500">500+ Downloads</div>
+                                </div>
+                                <button class="btn-primary w-full" onclick="showProductDetail(2)">View Details</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 3 -->
+                        <div class="card">
+                            <div class="relative">
+                                <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                    <i class="fas fa-language text-4xl text-gray-400"></i>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2 secondary-text">English Literature Companion</h3>
+                                <p class="text-gray-600 mb-4">Perfect guide for English literature with chapter summaries and analysis.</p>
+                                <div class="flex justify-between items-center mb-4">
+                                    <div class="product-price">₹399</div>
+                                    <div class="text-sm text-gray-500">750+ Downloads</div>
+                                </div>
+                                <button class="btn-primary w-full" onclick="showProductDetail(3)">View Details</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 4 -->
+                        <div class="card">
+                            <div class="relative">
+                                <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                    <i class="fas fa-atom text-4xl text-gray-400"></i>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2 secondary-text">Physics Problem Solver</h3>
+                                <p class="text-gray-600 mb-4">Step-by-step solutions to complex physics problems for Class 11-12 students.</p>
+                                <div class="flex justify-between items-center mb-4">
+                                    <div class="product-price">₹449</div>
+                                    <div class="text-sm text-gray-500">650+ Downloads</div>
+                                </div>
+                                <button class="btn-primary w-full" onclick="showProductDetail(4)">View Details</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 5 -->
+                        <div class="card">
+                            <div class="relative">
+                                <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                    <i class="fas fa-flask text-4xl text-gray-400"></i>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2 secondary-text">Chemistry Formula Handbook</h3>
+                                <p class="text-gray-600 mb-4">Comprehensive collection of chemistry formulas and reaction mechanisms.</p>
+                                <div class="flex justify-between items-center mb-4">
+                                    <div class="product-price">₹349</div>
+                                    <div class="text-sm text-gray-500">800+ Downloads</div>
+                                </div>
+                                <button class="btn-primary w-full" onclick="showProductDetail(5)">View Details</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 6 -->
+                        <div class="card">
+                            <div class="relative">
+                                <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                    <i class="fas fa-calculator text-4xl text-gray-400"></i>
+                                </div>
+                                <div class="absolute top-4 left-4">
+                                    <span class="product-tag">Popular</span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2 secondary-text">Calculus Made Easy</h3>
+                                <p class="text-gray-600 mb-4">Visual approach to calculus with examples and step-by-step solutions.</p>
+                                <div class="flex justify-between items-center mb-4">
+                                    <div class="product-price">₹549</div>
+                                    <div class="text-sm text-gray-500">950+ Downloads</div>
+                                </div>
+                                <button class="btn-primary w-full" onclick="showProductDetail(6)">View Details</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 7 -->
+                        <div class="card">
+                            <div class="relative">
+                                <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                    <i class="fas fa-dna text-4xl text-gray-400"></i>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2 secondary-text">Biology Visual Guide</h3>
+                                <p class="text-gray-600 mb-4">Illustrated guide to biology concepts with detailed diagrams and explanations.</p>
+                                <div class="flex justify-between items-center mb-4">
+                                    <div class="product-price">₹499</div>
+                                    <div class="text-sm text-gray-500">700+ Downloads</div>
+                                </div>
+                                <button class="btn-primary w-full" onclick="showProductDetail(7)">View Details</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 8 -->
+                        <div class="card">
+                            <div class="relative">
+                                <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                    <i class="fas fa-pencil-alt text-4xl text-gray-400"></i>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2 secondary-text">Essay Writing Masterclass</h3>
+                                <p class="text-gray-600 mb-4">Learn the art of writing perfect essays with examples and templates.</p>
+                                <div class="flex justify-between items-center mb-4">
+                                    <div class="product-price">₹299</div>
+                                    <div class="text-sm text-gray-500">850+ Downloads</div>
+                                </div>
+                                <button class="btn-primary w-full" onclick="showProductDetail(8)">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product Detail Modals (Hidden by default) -->
+            <div id="product-detail-1" class="product-detail hidden">
+                <div class="py-12">
+                    <div class="container mx-auto px-4">
+                        <div class="mb-6">
+                            <a href="#" class="text-gray-600 hover:text-secondary-color inline-flex items-center gap-2" onclick="hideProductDetail()">
+                                <i class="fas fa-arrow-left"></i> Back to Store
+                            </a>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                            <div class="flex flex-col md:flex-row">
+                                <div class="md:w-2/5">
+                                    <div class="h-64 md:h-full bg-gray-200 flex items-center justify-center">
+                                        <i class="fas fa-book text-5xl text-gray-400"></i>
+                                    </div>
+                                </div>
+                                <div class="md:w-3/5 p-8">
+                                    <div class="flex justify-between items-start">
+                                        <h1 class="text-3xl font-bold mb-4 secondary-text">CBSE Mathematics Mastery Guide</h1>
+                                        <span class="product-tag">Bestseller</span>
+                                    </div>
+                                    
+                                    <div class="product-price mb-6">₹499</div>
+                                    
+                                    <div class="mb-6">
+                                        <h3 class="text-lg font-semibold mb-3">Description</h3>
+                                        <p class="text-gray-700 mb-4">
+                                            The CBSE Mathematics Mastery Guide is a comprehensive resource designed to help students excel in their CBSE mathematics examinations. This guide covers all important topics from the CBSE mathematics curriculum for Classes 9-12.
+                                        </p>
+                                        <p class="text-gray-700">
+                                            With step-by-step solutions, practice problems, and exam tips, this guide is perfect for students aiming to score high marks in their mathematics exams.
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="mb-6">
+                                        <h3 class="text-lg font-semibold mb-3">Highlights</h3>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                            <div class="highlight-item">
+                                                <i class="fas fa-check-circle"></i>
+                                                <span>500+ solved examples</span>
+                                            </div>
+                                            <div class="highlight-item">
+                                                <i class="fas fa-check-circle"></i>
+                                                <span>1000+ practice problems</span>
+                                            </div>
+                                            <div class="highlight-item">
+                                                <i class="fas fa-check-circle"></i>
+                                                <span>Chapter-wise explanations</span>
+                                            </div>
+                                            <div class="highlight-item">
+                                                <i class="fas fa-check-circle"></i>
+                                                <span>Exam tips and tricks</span>
+                                            </div>
+                                            <div class="highlight-item">
+                                                <i class="fas fa-check-circle"></i>
+                                                <span>Previous year questions</span>
+                                            </div>
+                                            <div class="highlight-item">
+                                                <i class="fas fa-check-circle"></i>
+                                                <span>Instant digital download</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex flex-col md:flex-row gap-4">
+                                        <button class="btn-primary flex-1 flex items-center justify-center gap-2">
+                                            <i class="fas fa-shopping-cart"></i>
+                                            Buy Now
+                                        </button>
+                                        <button class="btn-secondary flex-1 flex items-center justify-center gap-2">
+                                            <i class="fas fa-bookmark"></i>
+                                            Save for Later
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="page-section">
+            <div class="py-12">
+                <div class="container mx-auto px-4">
+                    <h1 class="section-title text-center mx-auto">About the Creator</h1>
+                    
+                    <div class="flex flex-col md:flex-row items-center gap-10 mb-16">
+                        <div class="md:w-1/3 flex justify-center">
+                            <div class="w-64 h-64 rounded-full overflow-hidden bg-gray-200 shadow-lg">
+                                <div class="h-full w-full flex items-center justify-center text-gray-400">
+                                    <i class="fas fa-user text-5xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="md:w-2/3">
+                            <h2 class="text-2xl font-bold mb-4 secondary-text">Kuldeep Singh</h2>
+                            <p class="text-gray-700 mb-4">
+                                Kuldeep Singh is a passionate educator with over 10 years of experience in teaching mathematics and science subjects to CBSE students. With a strong background in education and a deep understanding of the CBSE curriculum, Kuldeep has dedicated his career to helping students achieve academic excellence.
+                            </p>
+                            <p class="text-gray-700 mb-4">
+                                After identifying common challenges faced by students in grasping complex concepts, Kuldeep embarked on a mission to create high-quality digital resources that simplify learning and make education accessible to all.
+                            </p>
+                            <p class="text-gray-700 mb-6">
+                                His digital resources are now used by thousands of students across India, helping them improve their grades and develop a deeper understanding of their subjects.
+                            </p>
+                            
+                            <div class="flex gap-4">
+                                <a href="#" class="social-icon">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="social-icon">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-icon">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-xl p-8 mb-16">
+                        <h2 class="text-2xl font-bold mb-6 secondary-text">Our Mission</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="bg-white p-6 rounded-lg shadow">
+                                <div class="w-12 h-12 primary-bg rounded-full flex items-center justify-center mb-4">
+                                    <i class="fas fa-lightbulb text-xl secondary-text"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-3 secondary-text">Simplify Learning</h3>
+                                <p class="text-gray-700">
+                                    We break down complex concepts into easy-to-understand modules that make learning enjoyable and effective.
+                                </p>
+                            </div>
+                            
+                            <div class="bg-white p-6 rounded-lg shadow">
+                                <div class="w-12 h-12 primary-bg rounded-full flex items-center justify-center mb-4">
+                                    <i class="fas fa-lock text-xl secondary-text"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-3 secondary-text">Quality Content</h3>
+                                <p class="text-gray-700">
+                                    We are committed to creating high-quality, accurate, and up-to-date educational resources that align with the CBSE curriculum.
+                                </p>
+                            </div>
+                            
+                            <div class="bg-white p-6 rounded-lg shadow">
+                                <div class="w-12 h-12 primary-bg rounded-full flex items-center justify-center mb-4">
+                                    <i class="fas fa-rocket text-xl secondary-text"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-3 secondary-text">Empower Students</h3>
+                                <p class="text-gray-700">
+                                    We aim to empower students with the knowledge and skills they need to excel in their academic journey and beyond.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <h2 class="text-2xl font-bold mb-6 secondary-text">Ready to Transform Your Learning Experience?</h2>
+                        <p class="text-gray-700 mb-8 max-w-3xl mx-auto">
+                            Join thousands of students who have improved their academic performance with our digital resources.
+                        </p>
+                        <button class="btn-primary" onclick="showSection('store')">
+                            Explore Our Products
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="page-section">
+            <div class="py-12">
+                <div class="container mx-auto px-4">
+                    <h1 class="section-title text-center mx-auto">Contact Us</h1>
+                    <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+                        Have questions about our products or need assistance? We're here to help. Fill out the form below, and we'll get back to you as soon as possible.
+                    </p>
+                    
+                    <div class="flex flex-col md:flex-row gap-10">
+                        <div class="md:w-1/2">
+                            <form class="bg-white p-8 rounded-xl shadow-lg">
+                                <div class="mb-6">
+                                    <label for="name" class="block text-gray-700 font-medium mb-2">Your Name</label>
+                                    <input type="text" id="name" class="form-input" placeholder="Enter your full name">
+                                </div>
+                                
+                                <div class="mb-6">
+                                    <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+                                    <input type="email" id="email" class="form-input" placeholder="Enter your email address">
+                                </div>
+                                
+                                <div class="mb-6">
+                                    <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+                                    <input type="text" id="subject" class="form-input" placeholder="What's this about?">
+                                </div>
+                                
+                                <div class="mb-6">
+                                    <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                                    <textarea id="message" rows="5" class="form-input resize-none" placeholder="Type your message here..."></textarea>
+                                </div>
+                                
+                                <button type="submit" class="btn-primary w-full">Send Message</button>
+                            </form>
+                        </div>
+                        
+                        <div class="md:w-1/2">
+                            <div class="bg-gray-50 p-8 rounded-xl h-full">
+                                <h2 class="text-2xl font-bold mb-6 secondary-text">Get in Touch</h2>
+                                
+                                <div class="mb-8">
+                                    <h3 class="text-lg font-semibold mb-3">Contact Information</h3>
+                                    <div class="flex items-start mb-4">
+                                        <i class="fas fa-envelope text-primary-color mt-1 mr-3"></i>
+                                        <div>
+                                            <p class="font-medium">Email</p>
+                                            <p class="text-gray-600">support@kuldeepstore.com</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-start mb-4">
+                                        <i class="fas fa-phone-alt text-primary-color mt-1 mr-3"></i>
+                                        <div>
+                                            <p class="font-medium">Phone</p>
+                                            <p class="text-gray-600">+91 98765 43210</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-start">
+                                        <i class="fas fa-map-marker-alt text-primary-color mt-1 mr-3"></i>
+                                        <div>
+                                            <p class="font-medium">Location</p>
+                                            <p class="text-gray-600">New Delhi, India</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-8">
+                                    <h3 class="text-lg font-semibold mb-3">Business Hours</h3>
+                                    <p class="text-gray-600 mb-2">Monday - Friday: 9:00 AM - 6:00 PM</p>
+                                    <p class="text-gray-600">Saturday: 10:00 AM - 4:00 PM</p>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="text-lg font-semibold mb-3">Connect With Us</h3>
+                                    <div class="flex gap-4">
+                                        <a href="#" class="social-icon">
+                                            <i class="fab fa-facebook-f"></i>
+                                        </a>
+                                        <a href="#" class="social-icon">
+                                            <i class="fab fa-twitter"></i>
+                                        </a>
+                                        <a href="#" class="social-icon">
+                                            <i class="fab fa-instagram"></i>
+                                        </a>
+                                        <a href="#" class="social-icon">
+                                            <i class="fab fa-youtube"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQS SECTION -->
+        <section id="faqs" class="page-section">
+            <div class="py-12">
+                <div class="container mx-auto px-4">
+                    <h1 class="section-title text-center mx-auto">Frequently Asked Questions</h1>
+                    <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+                        Find answers to common questions about our products, ordering process, and more.
+                    </p>
+                    
+                    <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="faq-item p-6">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                <span>How do I download my eBook after purchase?</span>
+                                <i class="fas fa-chevron-down text-gray-400"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p class="text-gray-700 pt-4">
+                                    After completing your purchase, you'll receive an email with a download link to access your eBook. This link will also be available in your account dashboard under "My Purchases." Simply click the link to download your eBook in PDF format.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item p-6">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                <span>What payment methods do you accept?</span>
+                                <i class="fas fa-chevron-down text-gray-400"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p class="text-gray-700 pt-4">
+                                    We accept various payment methods including credit/debit cards, UPI, net banking, and digital wallets like Google Pay and Paytm. All payments are securely processed through our payment gateway.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item p-6">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                <span>Can I access my eBooks on multiple devices?</span>
+                                <i class="fas fa-chevron-down text-gray-400"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p class="text-gray-700 pt-4">
+                                    Yes, you can access your purchased eBooks on multiple devices. Our eBooks are provided in PDF format, which can be opened on computers, tablets, smartphones, and e-readers that support PDF files.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item p-6">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                <span>What is your refund policy?</span>
+                                <i class="fas fa-chevron-down text-gray-400"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p class="text-gray-700 pt-4">
+                                    We offer a 7-day money-back guarantee for all our digital products. If you're not satisfied with your purchase, please contact our support team within 7 days of purchase, and we'll process your refund. Please note that refunds are not available for products that have been downloaded more than once.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item p-6">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                <span>Are your eBooks aligned with the latest CBSE curriculum?</span>
+                                <i class="fas fa-chevron-down text-gray-400"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p class="text-gray-700 pt-4">
+                                    Yes, all our educational resources are regularly updated to align with the latest CBSE curriculum. We ensure that our content is up-to-date with the most recent changes in syllabus, exam patterns, and marking schemes.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item p-6">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                <span>Do you offer any discounts for bulk purchases?</span>
+                                <i class="fas fa-chevron-down text-gray-400"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p class="text-gray-700 pt-4">
+                                    Yes, we offer special discounts for bulk purchases such as for schools, coaching centers, or study groups. Please contact our support team with your requirements, and we'll provide you with a customized quote.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item p-6">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                <span>Can I print the eBooks for personal use?</span>
+                                <i class="fas fa-chevron-down text-gray-400"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p class="text-gray-700 pt-4">
+                                    Yes, you can print our eBooks for personal, non-commercial use. However, please note that sharing, redistributing, or selling printed copies is not permitted as per our terms of use.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item p-6">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                <span>How frequently do you add new products?</span>
+                                <i class="fas fa-chevron-down text-gray-400"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p class="text-gray-700 pt-4">
+                                    We regularly update our product catalog with new resources. We typically add new products at the beginning of each academic term and before major examination periods. Subscribe to our newsletter to stay updated on new releases.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-12">
+                        <p class="text-gray-700 mb-6">
+                            Didn't find what you're looking for? Feel free to contact us for further assistance.
+                        </p>
+                        <button class="btn-secondary" onclick="showSection('contact')">
+                            Contact Support
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRIVACY POLICY SECTION -->
+        <section id="privacy-policy" class="page-section">
+            <div class="py-12">
+                <div class="container mx-auto px-4 max-w-4xl">
+                    <h1 class="section-title">Privacy Policy</h1>
+                    
+                    <div class="bg-white rounded-xl shadow-lg p-8">
+                        <p class="mb-6">Last Updated: June 1, 2023</p>
+                        
+                        <div class="mb-8">
+                            <h2 class="text-xl font-bold mb-4 secondary-text">1. Introduction</h2>
+                            <p class="text-gray-700 mb-4">
+                                Welcome to Kuldeep Store. We respect your privacy and are committed to protecting your personal data. This privacy policy will inform you about how we look after your personal data when you visit our website and tell you about your privacy rights and how the law protects you.
+                            </p>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <h2 class="text-xl font-bold mb-4 secondary-text">2. Data We Collect</h2>
+                            <p class="text-gray-700 mb-4">
+                                We may collect, use, store and transfer different kinds of personal data about you which we have grouped together as follows:
+                            </p>
+                            <ul class="list-disc pl-6 mb-4 text-gray-700 space-y-2">
+                                <li>Identity Data: includes first name, last name, username or similar identifier.</li>
+                                <li>Contact Data: includes email address and telephone numbers.</li>
+                                <li>Transaction Data: includes details about payments to and from you and other details of products you have purchased from us.</li>
+                                <li>Technical Data: includes internet protocol (IP) address, browser type and version, time zone setting and location, browser plug-in types and versions, operating system and platform.</li>
+                                <li>Usage Data: includes information about how you use our website and products.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <h2 class="text-xl font-bold mb-4 secondary-text">3. How We Use Your Data</h2>
+                            <p class="text-gray-700 mb-4">
+                                We will only use your personal data when the law allows us to. Most commonly, we will use your personal data in the following circumstances:
+                            </p>
+                            <ul class="list-disc pl-6 mb-4 text-gray-700 space-y-2">
+                                <li>To register you as a new customer.</li>
+                                <li>To process and deliver your order.</li>
+                                <li>To manage our relationship with you.</li>
+                                <li>To improve our website, products/services, marketing or customer relationships.</li>
+                                <li>To recommend products that may be of interest to you.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <h2 class="text-xl font-bold mb-4 secondary-text">4. Data Security</h2>
+                            <p class="text-gray-700 mb-4">
+                                We have put in place appropriate security measures to prevent your personal data from being accidentally lost, used or accessed in an unauthorized way, altered or disclosed. We limit access to your personal data to those employees, agents, contractors and other third parties who have a business need to know.
+                            </p>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <h2 class="text-xl font-bold mb-4 secondary-text">5. Data Retention</h2>
+                            <p class="text-gray-700 mb-4">
+                                We will only retain your personal data for as long as necessary to fulfill the purposes we collected it for, including for the purposes of satisfying any legal, accounting, or reporting requirements.
+                            </p>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <h2 class="text-xl font-bold mb-4 secondary-text">6. Your Legal Rights</h2>
+                            <p class="text-gray-700 mb-4">
+                                Under certain circumstances, you have rights under data protection laws in relation to your personal data, including the right to:
+                            </p>
+                            <ul class="list-disc pl-6 mb-4 text-gray-700 space-y-2">
+                                <li>Request access to your personal data.</li>
+                                <li>Request correction of your personal data.</li>
+                                <li>Request erasure of your personal data.</li>
+                                <li>Object to processing of your personal data.</li>
+                                <li>Request restriction of processing your personal data.</li>
+                                <li>Request transfer of your personal data.</li>
+                                <li>Right to withdraw consent.</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h2 class="text-xl font-bold mb-4 secondary-text">7. Contact Us</h2>
+                            <p class="text-gray-700 mb-4">
+                                If you have any questions about this privacy policy or our privacy practices, please contact us at:
+                            </p>
+                            <p class="text-gray-700">
+                                Email: privacy@kuldeepstore.com<br>
+                                Phone: +91 98765 43210
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TERMS AND CONDITIONS SECTION -->
+        <section id="terms" class="page-section">
+            <div class="py-12">
+                <div class="container mx-auto px-4 max-w-4xl">
+                    <h1 class="section-title">Terms & Conditions</h1>
+                    
+                    <div class="bg-white rounded-xl shadow-lg p-8">
+                        <p class="mb-6">Last Updated: June 1, 2023</p>
+                        
+                        <div class="mb-8">
+                            <h2 class="text-xl font-bold mb-4 secondary-text">1. Introduction</h2>
+                            <p class="text-gray-700 mb-4">
+                                These terms and conditions govern your use of the Kuldeep Store website and the purchase of digital products from our store. By accessing our website and purchasing our products, you agree to be bound by these terms and conditions.
+                            </p>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <h2 class="text-xl font-bold mb-4 secondary-text">2. Intellectual Property</h2>
+                            <p class="text-gray-700 mb-4">
+                                All content on this website, including text, graphics, logos, images, and software, is the property of Kuldeep Store and is protected by copyright and other intellectual property laws.
+                            </p>
+                            <p class="text-gray-700 mb-4">
+                                When you purchase our digital products, you are granted a non-exclusive, non-transferable license to use the product for personal, non-commercial purposes only. You may not reproduce, distribute, modify, create derivative works, publicly display, or exploit our products in any way without our explicit permission.
+                            </p>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <h2 class="text-xl font-bold mb-4 secondary-text">3. Product Purchase and Delivery</h2>
+                            <p class="text-gray-700 mb-4">
+                                Upon completion of purchase, you will receive access to download your digital product. The delivery method will be via email and/or through your account dashboard on our website.
+                            </p>
+                            <p class="text-gray-700 mb-4">
+                                It is your responsibility to ensure that you provide accurate contact information for delivery and that you have the necessary software to access and use our digital products.
+                            </p>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <h2 class="text-xl font-bold mb-4 secondary-text">4. Refund Policy</h2>
+                            <p class="text-gray-700 mb-4">
+                                We offer a 7-day money-back guarantee for all our digital products. If you're not satisfied with your purchase, please contact our support team within 7 days of purchase, and we'll process your refund.
+                            </p>
+                            <p class="text-gray-700 mb-4">
+                                Refunds are not available for products that have been downloaded more than once or if there is evidence of misuse.
+                            </p>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <h2 class="text-xl font-bold mb-4 secondary-text">5. User Conduct</h2>
+                            <p class="text-gray-700 mb-4">
+                                You agree to use our website and products in a manner that is lawful and in accordance with these terms and conditions. You agree not to:
+                            </p>
+                            <ul class="list-disc pl-6 mb-4 text-gray-700 space-y-2">
+                                <li>Use our products or website for any illegal purpose.</li>
+                                <li>Share your account credentials with others.</li>
+                                <li>Distribute, share, or resell our digital products.</li>
+                                <li>Attempt to circumvent any technological measures implemented to protect our products.</li>
+                                <li>Use our website in any manner that could disable, overburden, damage, or impair the site.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <h2 class="text-xl font-bold mb-4 secondary-text">6. Limitation of Liability</h2>
+                            <p class="text-gray-700 mb-4">
+                                In no event shall Kuldeep Store, its officers, directors, employees, or agents, be liable to you for any direct, indirect, incidental, special, punitive, or consequential damages whatsoever resulting from any errors, mistakes, or inaccuracies in our products.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h2 class="text-xl font-bold mb-4 secondary-text">7. Changes to Terms</h2>
+                            <p class="text-gray-700 mb-4">
+                                We reserve the right to modify these terms and conditions at any time. We will provide notice of significant changes by updating the "Last Updated" date at the top of this page.
+                            </p>
+                            <p class="text-gray-700 mb-4">
+                                Your continued use of our website after any changes indicates your acceptance of the new terms.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-10">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between mb-10">
+                <div class="mb-8 md:mb-0">
+                    <h3 class="text-2xl font-bold text-white mb-4">
+                        <span class="primary-text">Kuldeep</span> Store
+                    </h3>
+                    <p class="text-gray-300 mb-4 max-w-md">
+                        High-quality digital resources designed to help students excel in their academic journey. Trusted by thousands of CBSE students across India.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Quick Links</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="footer-link" onclick="showSection('home')">Home</a></li>
+                            <li><a href="#" class="footer-link" onclick="showSection('store')">Store</a></li>
+                            <li><a href="#" class="footer-link" onclick="showSection('about')">About</a></li>
+                            <li><a href="#" class="footer-link" onclick="showSection('contact')">Contact</a></li>
+                            <li><a href="#" class="footer-link" onclick="showSection('faqs')">FAQs</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Legal</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="footer-link" onclick="showSection('privacy-policy')">Privacy Policy</a></li>
+                            <li><a href="#" class="footer-link" onclick="showSection('terms')">Terms & Conditions</a></li>
+                            <li><a href="#" class="footer-link" onclick="showSection('terms')">Refund Policy</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Contact</h4>
+                        <ul class="space-y-2">
+                            <li class="footer-link">support@kuldeepstore.com</li>
+                            <li class="footer-link">+91 98765 43210</li>
+                            <li class="footer-link">New Delhi, India</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-6 text-center">
+                <p class="text-gray-400">
+                    &copy; 2023 Kuldeep Store. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // Section Navigation
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.remove('active-section');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active-section');
+            
+            // Update active nav link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('onclick').includes(sectionId)) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Close mobile menu if open
+            mobileMenu.classList.remove('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Product Detail View
+        function showProductDetail(productId) {
+            // Hide store listings
+            const storeContent = document.querySelector('#store > div');
+            storeContent.style.display = 'none';
+            
+            // Show product detail
+            const productDetail = document.getElementById(`product-detail-${productId}`);
+            productDetail.classList.remove('hidden');
+        }
+        
+        function hideProductDetail() {
+            // Show store listings
+            const storeContent = document.querySelector('#store > div');
+            storeContent.style.display = 'block';
+            
+            // Hide all product details
+            const productDetails = document.querySelectorAll('.product-detail');
+            productDetails.forEach(detail => {
+                detail.classList.add('hidden');
+            });
+        }
+        
+        // FAQ Accordion
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            answer.classList.toggle('active');
+            
+            if (answer.classList.contains('active')) {
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            } else {
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            }
+        }
+    </script>
+</body>
+</html>
