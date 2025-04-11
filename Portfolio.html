@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuldeep Singh - AI Developer Portfolio</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #8b5cf6;
+            --dark-color: #1e1b4b;
+            --light-color: #f3f4f6;
+            --accent-color: #10b981;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: rgb(17, 24, 39);
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #1e1b4b 0%, #3730a3 50%, #4f46e5 100%);
+        }
+        .card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.4);
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+            transform: translateY(-2px);
+        }
+        .skill-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            transition: all 0.3s ease;
+        }
+        .skill-card:hover {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.4);
+        }
+        .tech-icon {
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        .tech-icon:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        .project-img {
+            transition: all 0.5s ease;
+        }
+        .card:hover .project-img {
+            transform: scale(1.05);
+        }
+        .neural-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            z-index: -1;
+            background-image: 
+                radial-gradient(circle, rgba(99, 102, 241, 0.15) 2px, transparent 2px),
+                radial-gradient(circle, rgba(139, 92, 246, 0.1) 2px, transparent 2px);
+            background-size: 50px 50px, 100px 100px;
+            background-position: 0 0, 25px 25px;
+        }
+        .progress-bar {
+            height: 6px;
+            border-radius: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        .timeline-line {
+            position: absolute;
+            left: 11px;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Neural Network Background -->
+    <div class="neural-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="bg-gray-900 bg-opacity-90 py-4 sticky top-0 z-50 backdrop-filter backdrop-blur-lg">
+        <div class="container mx-auto px-6 flex flex-wrap justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-robot text-indigo-500 text-2xl"></i>
+                <span class="text-xl font-bold text-white">Kuldeep<span class="text-indigo-500"> Singh</span></span>
+            </div>
+            <ul class="hidden md:flex space-x-8">
+                <li><a href="#about" class="text-gray-300 hover:text-indigo-400 transition">About</a></li>
+                <li><a href="#skills" class="text-gray-300 hover:text-indigo-400 transition">Skills</a></li>
+                <li><a href="#projects" class="text-gray-300 hover:text-indigo-400 transition">Projects</a></li>
+                <li><a href="#contact" class="text-gray-300 hover:text-indigo-400 transition">Contact</a></li>
+            </ul>
+            <div class="md:hidden">
+                <button class="text-white focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient py-20">
+        <div class="container mx-auto px-6 flex flex-col-reverse md:flex-row items-center">
+            <div class="md:w-1/2 text-center md:text-left">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+                    <span>Hi, I'm </span>
+                    <span class="gradient-text">Kuldeep Singh</span>
+                </h1>
+                <h2 class="text-xl md:text-2xl text-gray-300 mb-6">AI Developer & Enthusiast</h2>
+                <p class="text-gray-300 mb-8 text-lg">Building intelligent solutions and exploring the frontiers of artificial intelligence to create meaningful applications.</p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4">
+                    <a href="#projects" class="btn-primary px-8 py-3 rounded-full text-white font-medium shadow-lg">
+                        View Projects
+                    </a>
+                    <a href="#contact" class="bg-transparent border border-indigo-500 px-8 py-3 rounded-full text-white font-medium hover:bg-indigo-900 transition">
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 mb-10 md:mb-0 flex justify-center">
+                <div class="relative">
+                    <div class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 blur-xl opacity-30 absolute transform -translate-x-1/2 -translate-y-1/2"></div>
+                    <div class="relative z-10 bg-gray-800 p-2 rounded-full border-4 border-indigo-500">
+                        <div class="w-48 h-48 md:w-64 md:h-64 rounded-full bg-gray-700 flex items-center justify-center overflow-hidden">
+                            <i class="fas fa-user-circle text-9xl text-gray-600"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
+                <div class="w-24 h-1 bg-indigo-500 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">Passionate AI developer with a focus on creating practical applications that leverage cutting-edge AI technologies.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="card p-8 rounded-xl">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-indigo-900 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-user-graduate text-indigo-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold">Background</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        I'm an AI enthusiast and developer with a passion for building innovative applications. My journey in AI began with a fascination for how technology can emulate human intelligence and solve complex problems.
+                    </p>
+                    <p class="text-gray-300">
+                        With a strong foundation in programming and a keen interest in machine learning, I've developed several AI applications that showcase the practical applications of artificial intelligence in everyday life.
+                    </p>
+                </div>
+
+                <div class="card p-8 rounded-xl">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-indigo-900 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-rocket text-indigo-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold">My Journey</h3>
+                    </div>
+                    
+                    <div class="relative pl-8">
+                        <div class="timeline-line"></div>
+                        
+                        <div class="mb-6 relative">
+                            <div class="absolute left-[-25px] w-6 h-6 rounded-full bg-indigo-900 border-2 border-indigo-500 z-10"></div>
+                            <h4 class="text-lg font-medium text-indigo-400">Started Learning AI</h4>
+                            <p class="text-gray-400">Began my journey learning the fundamentals of AI and machine learning</p>
+                        </div>
+                        
+                        <div class="mb-6 relative">
+                            <div class="absolute left-[-25px] w-6 h-6 rounded-full bg-indigo-900 border-2 border-indigo-500 z-10"></div>
+                            <h4 class="text-lg font-medium text-indigo-400">First AI Project</h4>
+                            <p class="text-gray-400">Developed my first AI application using Google's API</p>
+                        </div>
+                        
+                        <div class="mb-6 relative">
+                            <div class="absolute left-[-25px] w-6 h-6 rounded-full bg-indigo-900 border-2 border-indigo-500 z-10"></div>
+                            <h4 class="text-lg font-medium text-indigo-400">Multiple AI Applications</h4>
+                            <p class="text-gray-400">Created a suite of AI-powered tools and applications</p>
+                        </div>
+                        
+                        <div class="relative">
+                            <div class="absolute left-[-25px] w-6 h-6 rounded-full bg-indigo-900 border-2 border-indigo-500 z-10"></div>
+                            <h4 class="text-lg font-medium text-indigo-400">Google AI Bootcamp</h4>
+                            <p class="text-gray-400">Preparing to showcase my skills at the Google AI event bootcamp</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Skills & Technologies</h2>
+                <div class="w-24 h-1 bg-indigo-500 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">My technical toolkit and areas of expertise in AI development.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="skill-card p-6 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-indigo-900 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-brain text-indigo-400"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">AI & Machine Learning</h3>
+                    </div>
+                    <div class="mb-2 flex justify-between">
+                        <span class="text-gray-400">Google AI (Gemini)</span>
+                        <span class="text-gray-400">90%</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-4">
+                        <div class="progress-bar rounded-full" style="width: 90%"></div>
+                    </div>
+                    
+                    <div class="mb-2 flex justify-between">
+                        <span class="text-gray-400">Natural Language Processing</span>
+                        <span class="text-gray-400">85%</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-4">
+                        <div class="progress-bar rounded-full" style="width: 85%"></div>
+                    </div>
+                    
+                    <div class="mb-2 flex justify-between">
+                        <span class="text-gray-400">Chatbot Development</span>
+                        <span class="text-gray-400">95%</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-4">
+                        <div class="progress-bar rounded-full" style="width: 95%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card p-6 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-indigo-900 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-code text-indigo-400"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">Development</h3>
+                    </div>
+                    <div class="mb-2 flex justify-between">
+                        <span class="text-gray-400">Frontend (HTML, CSS, JS)</span>
+                        <span class="text-gray-400">90%</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-4">
+                        <div class="progress-bar rounded-full" style="width: 90%"></div>
+                    </div>
+                    
+                    <div class="mb-2 flex justify-between">
+                        <span class="text-gray-400">Web Applications</span>
+                        <span class="text-gray-400">85%</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-4">
+                        <div class="progress-bar rounded-full" style="width: 85%"></div>
+                    </div>
+                    
+                    <div class="mb-2 flex justify-between">
+                        <span class="text-gray-400">API Integration</span>
+                        <span class="text-gray-400">95%</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-4">
+                        <div class="progress-bar rounded-full" style="width: 95%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card p-6 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-indigo-900 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-tools text-indigo-400"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">Tools & Technologies</h3>
+                    </div>
+                    <div class="mb-2 flex justify-between">
+                        <span class="text-gray-400">Google Cloud Platform</span>
+                        <span class="text-gray-400">80%</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-4">
+                        <div class="progress-bar rounded-full" style="width: 80%"></div>
+                    </div>
+                    
+                    <div class="mb-2 flex justify-between">
+                        <span class="text-gray-400">Netlify Deployment</span>
+                        <span class="text-gray-400">95%</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-4">
+                        <div class="progress-bar rounded-full" style="width: 95%"></div>
+                    </div>
+                    
+                    <div class="mb-2 flex justify-between">
+                        <span class="text-gray-400">Version Control (Git)</span>
+                        <span class="text-gray-400">85%</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-4">
+                        <div class="progress-bar rounded-full" style="width: 85%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16">
+                <h3 class="text-2xl font-semibold mb-6 text-center">Technologies I Work With</h3>
+                <div class="flex flex-wrap justify-center gap-8">
+                    <div class="tech-icon p-4 bg-gray-800 rounded-lg">
+                        <i class="fab fa-python text-4xl text-blue-400"></i>
+                        <p class="text-sm mt-2 text-center text-gray-400">Python</p>
+                    </div>
+                    <div class="tech-icon p-4 bg-gray-800 rounded-lg">
+                        <i class="fab fa-js text-4xl text-yellow-400"></i>
+                        <p class="text-sm mt-2 text-center text-gray-400">JavaScript</p>
+                    </div>
+                    <div class="tech-icon p-4 bg-gray-800 rounded-lg">
+                        <i class="fab fa-html5 text-4xl text-orange-500"></i>
+                        <p class="text-sm mt-2 text-center text-gray-400">HTML5</p>
+                    </div>
+                    <div class="tech-icon p-4 bg-gray-800 rounded-lg">
+                        <i class="fab fa-css3-alt text-4xl text-blue-500"></i>
+                        <p class="text-sm mt-2 text-center text-gray-400">CSS3</p>
+                    </div>
+                    <div class="tech-icon p-4 bg-gray-800 rounded-lg">
+                        <i class="fab fa-react text-4xl text-blue-400"></i>
+                        <p class="text-sm mt-2 text-center text-gray-400">React</p>
+                    </div>
+                    <div class="tech-icon p-4 bg-gray-800 rounded-lg">
+                        <i class="fas fa-cloud text-4xl text-indigo-400"></i>
+                        <p class="text-sm mt-2 text-center text-gray-400">Cloud</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">AI Projects</h2>
+                <div class="w-24 h-1 bg-indigo-500 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">Explore my portfolio of AI-powered applications and tools.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Encodex Project -->
+                <div class="card rounded-xl overflow-hidden">
+                    <div class="h-52 overflow-hidden">
+                        <div class="w-full h-full bg-gradient-to-br from-purple-900 via-indigo-800 to-blue-900 flex items-center justify-center">
+                            <h3 class="text-4xl font-bold text-white">Encodex</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Encodex</h3>
+                        <p class="text-gray-400 mb-4">A secure message encoder and decoder with multiple encryption methods including Simple Cipher, Caesar Cipher, Base64, and Emoji Code.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-indigo-900 text-indigo-300 px-2 py-1 rounded-md text-xs">Encryption</span>
+                            <span class="bg-indigo-900 text-indigo-300 px-2 py-1 rounded-md text-xs">Security</span>
+                            <span class="bg-indigo-900 text-indigo-300 px-2 py-1 rounded-md text-xs">Web App</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <a href="https://encodex.netlify.app/" target="_blank" class="text-indigo-400 hover:text-indigo-300 flex items-center">
+                                <span>Live Demo</span>
+                                <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                            <a href="#" class="text-indigo-400 hover:text-indigo-300 flex items-center">
+                                <span>Details</span>
+                                <i class="fas fa-chevron-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vaani AI Project -->
+                <div class="card rounded-xl overflow-hidden">
+                    <div class="h-52 overflow-hidden">
+                        <div class="w-full h-full bg-gradient-to-br from-pink-900 via-purple-800 to-indigo-900 flex items-center justify-center">
+                            <h3 class="text-4xl font-bold text-white">Vaani AI</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Vaani AI</h3>
+                        <p class="text-gray-400 mb-4">A romantic AI companion chatbot powered by Google's Gemini API, providing engaging, playful, and sweet conversations.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-indigo-900 text-indigo-300 px-2 py-1 rounded-md text-xs">Chatbot</span>
+                            <span class="bg-indigo-900 text-indigo-300 px-2 py-1 rounded-md text-xs">Google Gemini</span>
+                            <span class="bg-indigo-900 text-indigo-300 px-2 py-1 rounded-md text-xs">NLP</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <a href="https://vaaniai.netlify.app" target="_blank" class="text-indigo-400 hover:text-indigo-300 flex items-center">
+                                <span>Live Demo</span>
+                                <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                            <a href="#" class="text-indigo-400 hover:text-indigo-300 flex items-center">
+                                <span>Details</span>
+                                <i class="fas fa-chevron-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VisionMate AI Project -->
+                <div class="card rounded-xl overflow-hidden">
+                    <div class="h-52 overflow-hidden">
+                        <div class="w-full h-full bg-gradient-to-br from-blue-900 via-teal-800 to-green-900 flex items-center justify-center">
+                            <h3 class="text-4xl font-bold text-white">VisionMate AI</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">VisionMate AI</h3>
+                        <p class="text-gray-400 mb-4">Real-time environmental audio analysis tool that uses AI to process and interpret sounds from your surroundings.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-indigo-900 text-indigo-300 px-2 py-1 rounded-md text-xs">Audio Analysis</span>
+                            <span class="bg-indigo-900 text-indigo-300 px-2 py-1 rounded-md text-xs">AI</span>
+                            <span class="bg-indigo-900 text-indigo-300 px-2 py-1 rounded-md text-xs">Real-time</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <a href="https://kuldeepji.netlify.app/visionmate" target="_blank" class="text-indigo-400 hover:text-indigo-300 flex items-center">
+                                <span>Live Demo</span>
+                                <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                            <a href="#" class="text-indigo-400 hover:text-indigo-300 flex items-center">
+                                <span>Details</span>
+                                <i class="fas fa-chevron-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI News Writer Project -->
+                <div class="card rounded-xl overflow-hidden">
+                    <div class="h-52 overflow-hidden">
+                        <div class="w-full h-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 flex items-center justify-center">
+                            <h3 class="text-4xl font-bold text-white">AI News Writer</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">AI News Writer</h3>
+                        <p class="text-gray-400 mb-4">Automated news content generation using Google's Gemini API. Creates professional news articles on various topics.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-indigo-900 text-indigo-300 px-2 py-1 rounded-md text-xs">Content Generation</span>
+                            <span class="bg-indigo-900 text-indigo-300 px-2 py-1 rounded-md text-xs">Google Gemini</span>
+                            <span class="bg-indigo-900 text-indigo-300 px-2 py-1 rounded-md text-xs">NLP</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <a href="https://www.linkedin.com/in/kuldeep-singh-61654a26b/" target="_blank" class="text-indigo-400 hover:text-indigo-300 flex items-center">
+                                <span>LinkedIn Post</span>
+                                <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                            <a href="#" class="text-indigo-400 hover:text-indigo-300 flex items-center">
+                                <span>Details</span>
+                                <i class="fas fa-chevron-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- QR Studio Project -->
+                <div class="card rounded-xl overflow-hidden">
+                    <div class="h-52 overflow-hidden">
+                        <div class="w-full h-full bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 flex items-center justify-center">
+                            <h3 class="text-4xl font-bold text-white">QR Studio</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">QR Studio</h3>
+                        <p class="text-gray-400 mb-4">Dynamic QR code generation tool with built-in analytics to track scanning metrics and user engagement.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-indigo-900 text-indigo-300 px-2 py-1 rounded-md text-xs">QR Code</span>
+                            <span class="bg-indigo-900 text-indigo-300 px-2 py-1 rounded-md text-xs">Analytics</span>
+                            <span class="bg-indigo-900 text-indigo-300 px-2 py-1 rounded-md text-xs">Web App</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <a href="https://kuldeepji.netlify.app" target="_blank" class="text-indigo-400 hover:text-indigo-300 flex items-center">
+                                <span>Live Demo</span>
+                                <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                            <a href="https://kuldeepji.netlify.app/qrcodemaker" class="text-indigo-400 hover:text-indigo-300 flex items-center">
+                                <span>Details</span>
+                                <i class="fas fa-chevron-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kerry AI -->
+                <div class="card rounded-xl overflow-hidden">
+                    <div class="h-52 overflow-hidden">
+                        <div class="w-full h-full bg-gradient-to-br from-indigo-900 via-blue-800 to-cyan-900 flex items-center justify-center">
+                            <h3 class="text-4xl font-bold text-white">JEE Countdown</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">JEE 2025 Countdown</h3>
+                        <p class="text-gray-400 mb-4">Smart Smart AI Assistant .</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-indigo-900 text-indigo-300 px-2 py-1 rounded-md text-xs">Education</span>
+                            <span class="bg-indigo-900 text-indigo-300 px-2 py-1 rounded-md text-xs">Productivity</span>
+                            <span class="bg-indigo-900 text-indigo-300 px-2 py-1 rounded-md text-xs">Tool</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <a href="https://kuldeepji.netlify.app/Kerry.html" target="_blank" class="text-indigo-400 hover:text-indigo-300 flex items-center">
+                                <span>Live Demo</span>
+                                <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                            <a href="#" class="text-indigo-400 hover:text-indigo-300 flex items-center">
+                                <span>Details</span>
+                                <i class="fas fa-chevron-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Me Section -->
+    <section class="py-20 bg-gradient-to-b from-gray-800 to-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Why Choose Me For Google AI Bootcamp</h2>
+                <div class="w-24 h-1 bg-indigo-500 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">What makes me a strong candidate for the Google AI event bootcamp.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card p-8 rounded-xl">
+                    <div class="w-16 h-16 bg-indigo-900 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-robot text-indigo-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Practical AI Experience</h3>
+                    <p class="text-gray-400">Demonstrated experience building real-world AI applications that solve actual problems and enhance user experiences.</p>
+                </div>
+
+                <div class="card p-8 rounded-xl">
+                    <div class="w-16 h-16 bg-indigo-900 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-code text-indigo-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Full-Stack Development</h3>
+                    <p class="text-gray-400">Ability to develop complete end-to-end solutions from frontend interfaces to backend AI integrations.</p>
+                </div>
+
+                <div class="card p-8 rounded-xl">
+                    <div class="w-16 h-16 bg-indigo-900 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-lightbulb text-indigo-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Innovative Thinking</h3>
+                    <p class="text-gray-400">Creative approach to problem-solving and applying AI technologies in novel and useful ways.</p>
+                </div>
+
+                <div class="card p-8 rounded-xl">
+                    <div class="w-16 h-16 bg-indigo-900 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fab fa-google text-indigo-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Google API Experience</h3>
+                    <p class="text-gray-400">Proficient with Google's AI tools and APIs, particularly Gemini, with demonstrated projects utilizing these technologies.</p>
+                </div>
+
+                <div class="card p-8 rounded-xl">
+                    <div class="w-16 h-16 bg-indigo-900 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-users text-indigo-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">User-Centered Design</h3>
+                    <p class="text-gray-400">Focus on creating AI applications that are intuitive, accessible, and provide genuine value to users.</p>
+                </div>
+
+                <div class="card p-8 rounded-xl">
+                    <div class="w-16 h-16 bg-indigo-900 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-book-open text-indigo-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Continuous Learning</h3>
+                    <p class="text-gray-400">Committed to ongoing education in AI and emerging technologies to stay at the forefront of the field.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
+                <div class="w-24 h-1 bg-indigo-500 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">Interested in collaborating or have questions about my projects? Let's connect!</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                <div class="lg:col-span-2">
+                    <div class="card p-8 rounded-xl">
+                        <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="w-10 h-10 bg-indigo-900 rounded-lg flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-envelope text-indigo-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-medium mb-1">Email</h4>
+                                <a href="mailto:contact@kuldeepsingh.com" class="text-gray-400 hover:text-indigo-400 transition">contact@kuldeepsingh.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="w-10 h-10 bg-indigo-900 rounded-lg flex items-center justify-center mr-4 mt-1">
+                                <i class="fab fa-linkedin text-indigo-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-medium mb-1">LinkedIn</h4>
+                                <a href="https://www.linkedin.com/in/kuldeep-singh-61654a26b/" target="_blank" class="text-gray-400 hover:text-indigo-400 transition">Kuldeep Singh</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="w-10 h-10 bg-indigo-900 rounded-lg flex items-center justify-center mr-4 mt-1">
+                                <i class="fab fa-github text-indigo-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-medium mb-1">GitHub</h4>
+                                <a href="#" target="_blank" class="text-gray-400 hover:text-indigo-400 transition">@kuldeep-ai</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-indigo-900 rounded-lg flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-globe text-indigo-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-medium mb-1">Website</h4>
+                                <a href="https://kuldeepji.netlify.app" target="_blank" class="text-gray-400 hover:text-indigo-400 transition">kuldeepji.netlify.app</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-3">
+                    <div class="card p-8 rounded-xl">
+                        <h3 class="text-2xl font-semibold mb-6">Send Me a Message</h3>
+                        
+                        <form>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label for="name" class="block text-gray-400 mb-2">Name</label>
+                                    <input type="text" id="name" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-gray-300 focus:outline-none focus:border-indigo-500">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-gray-400 mb-2">Email</label>
+                                    <input type="email" id="email" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-gray-300 focus:outline-none focus:border-indigo-500">
+                                </div>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="subject" class="block text-gray-400 mb-2">Subject</label>
+                                <input type="text" id="subject" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-gray-300 focus:outline-none focus:border-indigo-500">
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-400 mb-2">Message</label>
+                                <textarea id="message" rows="5" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-gray-300 focus:outline-none focus:border-indigo-500"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary px-8 py-3 rounded-lg text-white font-medium shadow-lg w-full">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-robot text-indigo-500 text-2xl"></i>
+                        <span class="text-xl font-bold text-white">Kuldeep <span class="text-indigo-500">Singh</span></span>
+                    </div>
+                    <p class="text-gray-500 mt-2">AI Developer & Enthusiast</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="https://www.linkedin.com/in/kuldeep-singh-61654a26b/" target="_blank" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="far fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2023 Kuldeep Singh. All rights reserved.</p>
+                
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#" class="text-gray-500 hover:text-gray-300 text-sm">Privacy Policy</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-300 text-sm">Terms of Service</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-300 text-sm">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple scroll animation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('button');
+        const mobileMenu = document.querySelector('ul');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    </script>
+</body>
+</html>
