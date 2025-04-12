@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Rise of Nationalism in Europe - Interactive Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Light background */
+            color: #334155; /* Slate gray text */
+        }
+
+        /* Color Psychology Classes & General Styling */
+        .content-card { background-color: white; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: box-shadow 0.3s ease; }
+        .content-card:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+
+        .fact-date { background-color: #e0f2fe; color: #0c4a6e; border-left: 4px solid #38bdf8; padding: 0.75rem; border-radius: 4px; margin-bottom: 0.5rem;} /* Soft Blue for Facts/Dates */
+        .revolution-event { background-color: #fffbeb; color: #b45309; border-left: 4px solid #f59e0b; padding: 0.75rem; border-radius: 4px; margin-bottom: 0.5rem;} /* Mustard Yellow for Revolutions */
+        .ideology-concept { background-color: #f0fdf4; color: #15803d; border-left: 4px solid #4ade80; padding: 0.75rem; border-radius: 4px; margin-bottom: 0.5rem;} /* Soft Green for Ideology/Concepts */
+        .key-term { background-color: #fdf2f8; color: #be185d; border-left: 4px solid #f472b6; padding: 0.75rem; border-radius: 4px; margin-bottom: 0.5rem;} /* Pinkish for Key Terms */
+        .nation-building { background-color: #fee2e2; color: #b91c1c; border-left: 4px solid #ef4444; padding: 0.75rem; border-radius: 4px; margin-bottom: 0.5rem;} /* Soft Red for Nation Building */
+
+        /* Timeline Styling */
+        .timeline-item { position: relative; padding-left: 2.5rem; padding-bottom: 1.5rem; border-left: 2px solid #cbd5e1; }
+        .timeline-item:last-child { border-left: none; padding-bottom: 0; }
+        .timeline-icon { position: absolute; left: -0.75rem; top: 0; width: 1.5rem; height: 1.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; }
+        .icon-fact { background-color: #38bdf8; }
+        .icon-revolution { background-color: #f59e0b; }
+        .icon-person { background-color: #8b5cf6; }
+        .icon-nation { background-color: #ef4444; }
+        .icon-concept { background-color: #4ade80; }
+
+        /* Character Modal Styling */
+        .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); padding-top: 60px; }
+        .modal-content { background-color: #ffffff; margin: 5% auto; padding: 25px; border: 1px solid #888; width: 80%; max-width: 600px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; }
+        .close-button { color: #aaa; position: absolute; top: 10px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; }
+        .close-button:hover, .close-button:focus { color: black; text-decoration: none; }
+
+        /* Map Explorer Styling */
+        .map-container { position: relative; width: 100%; max-width: 700px; margin: auto; background-color: #dbeafe; padding: 20px; border-radius: 8px; border: 1px solid #bfdbfe; }
+        .map-region { background-color: #93c5fd; border: 1px solid #60a5fa; padding: 10px 15px; margin: 5px; border-radius: 6px; cursor: pointer; transition: background-color 0.3s ease; text-align: center; font-weight: 600; color: #1e3a8a; }
+        .map-region:hover { background-color: #60a5fa; }
+        .map-info-panel { margin-top: 15px; padding: 15px; background-color: #eff6ff; border-radius: 6px; border: 1px solid #dbeafe; min-height: 50px; }
+
+        /* Headings */
+        h1, h2, h3, h4 { font-weight: 700; color: #1e3a8a; margin-bottom: 0.75rem; }
+        h1 { font-size: 2.25rem; line-height: 2.5rem; margin-bottom: 1.5rem; text-align: center; }
+        h2 { font-size: 1.875rem; line-height: 2.25rem; border-bottom: 2px solid #93c5fd; padding-bottom: 0.5rem; margin-top: 2rem; }
+        h3 { font-size: 1.25rem; line-height: 1.75rem; color: #1d4ed8; }
+        h4 { font-size: 1.1rem; line-height: 1.5rem; color: #1e40af; margin-bottom: 0.5rem; } /* For sub-sections */
+
+        /* Clickable character names */
+        .character-link { color: #7c3aed; font-weight: 600; cursor: pointer; text-decoration: underline; text-decoration-color: #a78bfa; }
+        .character-link:hover { color: #5b21b6; }
+
+        /* Image styling */
+        img.chapter-image { max-width: 100%; height: auto; border-radius: 8px; margin: 1rem auto; display: block; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .character-img { width: 100px; height: 100px; border-radius: 50%; margin: 1rem auto; display: block; object-fit: cover; border: 2px solid #ddd; }
+
+        /* Definition lists */
+        dl dt { font-weight: 600; color: #1e3a8a; margin-top: 0.5rem; }
+        dl dd { margin-left: 1rem; margin-bottom: 0.5rem; }
+
+    </style>
+</head>
+<body class="bg-gray-100 p-4 md:p-8">
+
+    <div class="container mx-auto max-w-5xl bg-white rounded-lg shadow-xl p-6 md:p-10">
+
+        <h1>The Rise of Nationalism in Europe: An Interactive Journey</h1>
+
+        <section id="introduction" class="content-card">
+            <h2>1. Sorrieu's Vision & The Nation-State</h2>
+            <p class="mb-4">The chapter begins with Frédéric Sorrieu's 1848 prints envisioning a world of ‘democratic and social Republics’. His first print shows the peoples of Europe and America marching past the Statue of Liberty, symbolising the fraternity among nations.</p>
+            <img src="https://placehold.co/600x400/a3a3a3/ffffff?text=Sorrieu%27s+Print+(Placeholder)" alt="Placeholder for Sorrieu's Print" class="chapter-image" onerror="this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found'">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <div class="key-term">
+                    <h4 class="font-semibold">Absolutist</h4>
+                    <p>Rule with no restraints on power, often monarchical, centralised, militarised and repressive.</p>
+                </div>
+                <div class="key-term">
+                    <h4 class="font-semibold">Utopian</h4>
+                    <p>A vision of society so ideal it's unlikely to exist in reality.</p>
+                </div>
+                 <div class="key-term">
+                    <h4 class="font-semibold">Nation-State</h4>
+                    <p>A state where the majority of citizens (not just rulers) share a common identity, history, or descent, often within a clearly defined territory under a central power.</p>
+                </div>
+                 <div class="key-term">
+                    <h4 class="font-semibold">Plebiscite</h4>
+                    <p>A direct vote by all people of a region to accept or reject a proposal.</p>
+                </div>
+            </div>
+            <p class="mt-4 fact-date">Key Idea: Modern nationalism emerged in the 19th century, leading to the rise of nation-states replacing multi-national empires. This common identity was forged through struggles.</p>
+             <div class="ideology-concept mt-4">
+                <h4>Ernst Renan's 'What is a Nation?' (1882)</h4>
+                <p>Renan argued a nation is not just common language, race, religion, or territory. It's a "large-scale solidarity" based on a shared past of sacrifice, a common will in the present, and shared future goals. Its existence is a "daily plebiscite". Nations guarantee liberty.</p>
+             </div>
+        </section>
+
+        <section id="french-revolution" class="content-card">
+            <h2>2. The French Revolution and the Idea of the Nation</h2>
+            <p class="revolution-event">The 1789 French Revolution was the first clear expression of nationalism. It transferred sovereignty from the monarch to French citizens.</p>
+            <h4 class="mt-4">Creating Collective Identity:</h4>
+            <ul class="list-disc list-inside space-y-1 ideology-concept">
+                <li>Ideas of <em>la patrie</em> (fatherland) & <em>le citoyen</em> (citizen) emphasized a united community with equal rights.</li>
+                <li>New French tricolour flag replaced the royal standard.</li>
+                <li>Estates General renamed National Assembly (elected by active citizens).</li>
+                <li>New hymns, oaths, martyrs commemorated in the nation's name.</li>
+                <li>Centralised administration with uniform laws.</li>
+                <li>Internal customs duties abolished; uniform weights & measures adopted.</li>
+                <li>Regional dialects discouraged; Parisian French became the common language.</li>
+                <li>Declared mission: Liberate other European peoples from despotism (help them become nations).</li>
+            </ul>
+             <img src="https://placehold.co/600x300/fcd34d/92400e?text=French+Revolution+Scene+(Placeholder)" alt="Placeholder for French Revolution" class="chapter-image" onerror="this.src='https://placehold.co/600x300/cccccc/333333?text=Image+Not+Found'">
+            <h4 class="mt-4">Napoleon and Reforms:</h4>
+            <p class="fact-date">Though Napoleon destroyed democracy, his administrative reforms spread revolutionary principles:</p>
+            <div class="key-term">
+                <h4 class="font-semibold">Napoleonic Code (Civil Code of 1804)</h4>
+                <p>Abolished birth privileges, established equality before law, secured property rights. Exported to regions under French control (Dutch Republic, Switzerland, Italy, Germany). Abolished feudal system, freed peasants from serfdom, removed guild restrictions.</p>
+            </div>
+            <p class="mt-2">Initial welcome in places like Holland, Switzerland, Brussels, Milan turned to hostility due to increased taxation, censorship, forced conscription.</p>
+        </section>
+
+         <section id="making-nationalism" class="content-card">
+            <h2>3. The Making of Nationalism in Europe</h2>
+            <h4 class="mt-4">Europe Before Nation-States (Mid-18th C):</h4>
+            <p class="fact-date">No nation-states as we know them. Germany, Italy, Switzerland were divided into kingdoms, duchies, cantons. Eastern/Central Europe had autocratic monarchies with diverse peoples lacking collective identity.</p>
+            <div class="ideology-concept">
+                <h4 class="font-semibold">The Habsburg Empire (Example)</h4>
+                <p>A patchwork ruling Austria-Hungary: Included Alpine regions (Tyrol, Austria, Sudetenland), Bohemia (German-speaking aristocracy), Lombardy & Venetia (Italian-speaking). Hungary had Magyar speakers and others. Galicia had Polish aristocracy. Also included Bohemians, Slovaks, Slovenes, Croats, Roumans. Only common tie was allegiance to the emperor.</p>
+            </div>
+
+            <h4 class="mt-4">Social Structures:</h4>
+            <ul class="list-disc list-inside space-y-1 fact-date">
+                <li><strong>Aristocracy:</strong> Landed, dominant class. Spoke French in high society, connected by marriage. Numerically small.</li>
+                <li><strong>Peasantry:</strong> Majority population. West: tenants/small owners. East/Central: serfs on vast estates.</li>
+                <li><strong>New Middle Class:</strong> Emerged with industrialisation (West/Central Europe). Included industrialists, businessmen, professionals. Educated, liberal middle class drove ideas of national unity after abolishing aristocratic privileges.</li>
+            </ul>
+
+            <h4 class="mt-4">Liberal Nationalism:</h4>
+             <div class="ideology-concept">
+                <h4 class="font-semibold">What it Stood For:</h4>
+                <ul class="list-disc list-inside ml-4">
+                    <li>Individual freedom, equality before law.</li>
+                    <li>Government by consent (representative parliament).</li>
+                    <li>End of autocracy & clerical privileges, constitution.</li>
+                    <li>Inviolability of private property.</li>
+                    <li>Economic Sphere: Freedom of markets, abolition of state restrictions on movement of goods/capital.</li>
+                 </ul>
+                 <h4 class="font-semibold mt-2">Limitations:</h4>
+                 <ul class="list-disc list-inside ml-4">
+                    <li>Suffrage (right to vote) often limited to property-owning men initially. Women and non-propertied men excluded.</li>
+                 </ul>
+            </div>
+             <div class="key-term mt-2">
+                 <h4 class="font-semibold">Zollverein (Customs Union) - 1834</h4>
+                 <p>Initiated by Prussia, joined by most German states. Abolished tariff barriers, reduced currencies (from over 30 to 2). Aimed to bind Germans economically, stimulate mobility (railways), and foster national sentiment.</p>
+            </div>
+
+            <h4 class="mt-4">A New Conservatism after 1815:</h4>
+             <div class="ideology-concept">
+                <h4 class="font-semibold">Congress of Vienna (1815)</h4>
+                <p>Hosted by Austrian Chancellor <span class="character-link" data-charid="metternich">Metternich</span>. Aimed to restore monarchies overthrown by Napoleon (e.g., Bourbons in France), create a new conservative order, prevent French expansion. Resulted in territorial changes (Netherlands, Prussia, Austria, Russia gain territory). German confederation left untouched.</p>
+                <h4 class="font-semibold mt-2">Conservative Regimes:</h4>
+                <p>Autocratic, intolerant of criticism/dissent, imposed censorship to control ideas of liberty/freedom associated with French Revolution.</p>
+            </div>
+
+            <h4 class="mt-4">The Revolutionaries:</h4>
+            <p class="revolution-event">Fear of repression drove liberal-nationalists underground. Secret societies formed (e.g., Carbonari in Italy). Aimed to oppose monarchy, fight for liberty/freedom, and create nation-states.</p>
+            <p class="fact-date">Key Figure: <span class="character-link" data-charid="mazzini">Giuseppe Mazzini</span> (Italian). Founded Young Italy & Young Europe. Believed in unified republics. Seen as a threat by conservatives like Metternich.</p>
+         </section>
+
+        <section id="age-of-revolutions" class="content-card">
+            <h2>4. The Age of Revolutions: 1830-1848</h2>
+            <p class="revolution-event">Liberalism and nationalism became associated with revolution against conservative regimes.</p>
+
+            <h4 class="mt-4">Uprisings and Independence:</h4>
+            <ul class="list-disc list-inside space-y-1 revolution-event">
+                <li><strong>July 1830 (France):</strong> Bourbon kings overthrown, constitutional monarchy under Louis Philippe installed. Sparked uprising in Brussels -> Belgian independence from Netherlands.</li>
+                <li><strong>Greek War of Independence (1821-1832):</strong> Against Ottoman Empire. Supported by West Europeans (inspired by ancient Greek culture). Poet <span class="character-link" data-charid="byron">Lord Byron</span> fought. Greece recognized as independent (Treaty of Constantinople, 1832).</li>
+            </ul>
+
+            <h4 class="mt-4">Romantic Imagination and National Feeling:</h4>
+            <div class="ideology-concept">
+                <p>Culture (art, poetry, music, stories) played a key role in shaping nationalism.</p>
+                <h4 class="font-semibold mt-2">Romanticism:</h4>
+                 <ul class="list-disc list-inside ml-4">
+                    <li>Cultural movement emphasizing emotion, intuition, mystical feelings (over reason/science).</li>
+                    <li>Focused on shared collective heritage, common cultural past (basis of nation).</li>
+                    <li>Johann Gottfried Herder (German): True culture found among common people (<em>das volk</em>). Promoted folk songs, poetry, dances (<em>volksgeist</em> - true spirit of nation).</li>
+                    <li>Grimm Brothers (German): Collected folktales seen as pure German spirit, opposed French domination.</li>
+                    <li>Poland: National feelings kept alive through music (Karol Kurpinski - polonaise, mazurka) and language (used as resistance against Russian occupation).</li>
+                 </ul>
+             </div>
+
+            <h4 class="mt-4">Hunger, Hardship and Popular Revolt:</h4>
+            <p class="fact-date">1830s: Great economic hardship. Population increase > jobs. Rural migration to slums. Competition from cheap English machine goods (esp. textiles). Peasants struggled with feudal dues.</p>
+            <p class="revolution-event">1848: Food shortages, unemployment led to Paris uprising; Louis Philippe fled; Republic proclaimed; suffrage for adult males; right to work guaranteed.</p>
+            <p class="revolution-event">1845: Silesian weavers revolted against contractors cutting payments (described by Wilhelm Wolff).</p>
+
+            <h4 class="mt-4">1848: The Revolution of the Liberals:</h4>
+            <p class="ideology-concept">Educated middle classes led parallel revolutions demanding constitutionalism with national unification (Germany, Italy, Poland, Austro-Hungarian Empire).</p>
+             <div class="key-term">
+                <h4 class="font-semibold">Frankfurt Parliament (Germany, May 1848)</h4>
+                <p>831 elected representatives drafted constitution for German nation headed by monarchy subject to parliament. Offered crown to Friedrich Wilhelm IV (King of Prussia), who rejected it. Parliament lost support (opposed worker demands) and was forcibly disbanded.</p>
+            </div>
+             <div class="ideology-concept mt-2">
+                <h4 class="font-semibold">The Feminist Issue:</h4>
+                <p>Women participated actively (associations, newspapers, demonstrations) but were denied suffrage. Admitted only as observers in Frankfurt Parliament. Debates arose (e.g., Carl Welcker vs. <span class="character-link" data-charid="louise_otto">Louise Otto-Peters</span>) on women's political rights.</p>
+            </div>
+            <p class="fact-date mt-2">Outcome: Liberal movements suppressed, but monarchs realised concessions needed. Serfdom/bonded labour abolished in Habsburg dominions & Russia. Hungarians granted more autonomy (1867).</p>
+        </section>
+
+        <section id="unification" class="content-card">
+             <h2>5. The Making of Germany and Italy & Britain</h2>
+             <p class="fact-date">After 1848, nationalism often mobilised by conservatives for state power.</p>
+
+             <div class="nation-building">
+                <h4 class="font-semibold">Germany Unified (1866-1871)</h4>
+                <p>Liberal 1848 attempt failed. Prussia under Chief Minister <span class="character-link" data-charid="bismarck">Otto von Bismarck</span> took leadership. Used Prussian army/bureaucracy ('iron and blood'). Three wars (vs Denmark, Austria, France) led to victory. Prussian King <span class="character-link" data-charid="william1">William I</span> proclaimed German Emperor at Versailles (Jan 1871). Showed dominance of Prussian state power.</p>
+             </div>
+
+             <div class="nation-building mt-2">
+                <h4 class="font-semibold">Italy Unified (1859-1870)</h4>
+                <p>Long history of fragmentation. Only Sardinia-Piedmont ruled by Italian house. North under Austria, Centre under Pope, South under Spain. <span class="character-link" data-charid="mazzini">Mazzini</span>'s earlier republican efforts failed. Sardinia-Piedmont under King <span class="character-link" data-charid="victor_emmanuel">Victor Emmanuel II</span> led unification via war. Chief Minister <span class="character-link" data-charid="cavour">Cavour</span> (pragmatic diplomat) allied with France to defeat Austria (1859). <span class="character-link" data-charid="garibaldi">Giuseppe Garibaldi</span> led volunteer army ('Red Shirts') conquering South (1860). Victor Emmanuel II proclaimed King of United Italy (1861). Rome added 1870. Many peasants unaware ('La Talia' = Victor Emmanuel's wife?).</p>
+             </div>
+
+             <div class="nation-building mt-2">
+                 <h4 class="font-semibold">The Strange Case of Britain</h4>
+                 <p>Nation-state not result of sudden revolution, but long process. No 'British nation' before 18th C. Primary identities ethnic (English, Welsh, Scot, Irish). English nation grew in wealth/power, extended influence. English Parliament (seized power 1688) forged nation-state. Act of Union (1707) with Scotland created 'United Kingdom of Great Britain'; English dominance, Scottish culture suppressed. Ireland (Catholic majority vs Protestants helped by English) forcibly incorporated in 1801 after failed revolt (Wolfe Tone). New 'British nation' forged via dominant English culture (flag, anthem, language).</p>
+             </div>
+        </section>
+
+        <section id="visualising" class="content-card">
+            <h2>6. Visualising the Nation: Allegories</h2>
+            <p class="mb-4 ideology-concept">How to give a nation a face? Artists in 18th/19th C personified nations as female figures (allegories) - not real women, but giving abstract idea concrete form.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                <div class="ideology-concept p-4 rounded-md">
+                    <h3 class="text-lg font-semibold mb-2">Marianne (France)</h3>
+                    <img src="https://placehold.co/300x200/86efac/14532d?text=Marianne+(Placeholder)" alt="Placeholder for Marianne" class="chapter-image mb-2" onerror="this.src='https://placehold.co/300x200/cccccc/333333?text=Image+Not+Found'">
+                    <p>Popular Christian name symbolising people's nation. Used symbols of Liberty (red cap, broken chain) & Republic (tricolour, cockade). Statues erected, images on coins/stamps.</p>
+                </div>
+                <div class="ideology-concept p-4 rounded-md">
+                    <h3 class="text-lg font-semibold mb-2">Germania (German Nation)</h3>
+                     <img src="https://placehold.co/300x200/86efac/14532d?text=Germania+(Placeholder)" alt="Placeholder for Germania" class="chapter-image mb-2" onerror="this.src='https://placehold.co/300x200/cccccc/333333?text=Image+Not+Found'">
+                     <p>Wears crown of oak leaves (German oak = heroism). Other symbols:</p>
+                     <dl class="text-sm">
+                        <dt>Broken chains:</dt><dd>Being freed</dd>
+                        <dt>Breastplate with eagle:</dt><dd>German empire strength</dd>
+                        <dt>Sword:</dt><dd>Readiness to fight</dd>
+                        <dt>Olive branch around sword:</dt><dd>Willingness for peace</dd>
+                        <dt>Black, red, gold tricolour:</dt><dd>Flag of liberal-nationalists (1848)</dd>
+                        <dt>Rays of rising sun:</dt><dd>Beginning of new era</dd>
+                     </dl>
+                </div>
+            </div>
+        </section>
+
+        <section id="map-explorer" class="content-card">
+            <h2>7. Region Explorer (Clickable)</h2>
+            <p class="mb-4">Click on a region below to see a brief overview of its situation or key events related to nationalism in the 19th century (based on Chapter 1).</p>
+            <div class="map-container">
+                <div class="flex flex-wrap justify-center">
+                    <div class="map-region" data-regionid="france">France</div>
+                    <div class="map-region" data-regionid="german">German States / Prussia</div>
+                    <div class="map-region" data-regionid="austrian">Austrian Empire (Habsburg)</div>
+                    <div class="map-region" data-regionid="italian">Italian States</div>
+                    <div class="map-region" data-regionid="britain">Great Britain</div>
+                    <div class="map-region" data-regionid="ottoman">Ottoman Empire (Balkans)</div>
+                    <div class="map-region" data-regionid="russia">Russian Empire</div>
+                </div>
+                <div id="map-info-panel" class="map-info-panel">
+                    Select a region to learn more.
+                </div>
+            </div>
+             <p class="mt-4 text-sm text-gray-600">Note: This is a simplified representation. A fully interactive map would show changing borders and specific event locations.</p>
+        </section>
+
+        <section id="characters" class="content-card">
+            <h2>8. Key Figures (Clickable)</h2>
+            <p>Click on a name to learn more about their role and ideology:</p>
+            <ul class="list-disc list-inside mt-4 space-y-2">
+                <li><span class="character-link" data-charid="sorrieu">Frédéric Sorrieu</span></li>
+                <li><span class="character-link" data-charid="renan">Ernst Renan</span></li>
+                <li><span class="character-link" data-charid="napoleon">Napoleon Bonaparte</span></li>
+                <li><span class="character-link" data-charid="metternich">Duke Metternich</span></li>
+                <li><span class="character-link" data-charid="mazzini">Giuseppe Mazzini</span></li>
+                <li><span class="character-link" data-charid="louis_philippe">Louis Philippe</span></li>
+                <li><span class="character-link" data-charid="byron">Lord Byron</span></li>
+                <li><span class="character-link" data-charid="herder">Johann Gottfried Herder</span></li>
+                <li><span class="character-link" data-charid="grimm">Grimm Brothers</span></li>
+                <li><span class="character-link" data-charid="kurpinski">Karol Kurpinski</span></li>
+                <li><span class="character-link" data-charid="wolff">Wilhelm Wolff</span></li>
+                <li><span class="character-link" data-charid="friedrich_wilhelm">Friedrich Wilhelm IV</span></li>
+                <li><span class="character-link" data-charid="welcker">Carl Welcker</span></li>
+                <li><span class="character-link" data-charid="louise_otto">Louise Otto-Peters</span></li>
+                <li><span class="character-link" data-charid="bismarck">Otto von Bismarck</span></li>
+                <li><span class="character-link" data-charid="william1">Kaiser William I</span></li>
+                <li><span class="character-link" data-charid="victor_emmanuel">King Victor Emmanuel II</span></li>
+                <li><span class="character-link" data-charid="cavour">Count Cavour</span></li>
+                <li><span class="character-link" data-charid="garibaldi">Giuseppe Garibaldi</span></li>
+                <li><span class="character-link" data-charid="wolfe_tone">Wolfe Tone</span></li>
+            </ul>
+        </section>
+
+        <section id="conclusion" class="content-card revolution-event">
+            <h2>9. Nationalism and Imperialism</h2>
+            <p>By the last quarter of the 19th century, nationalism often became a narrow creed with limited ends, intolerant and ready for war. Major European powers manipulated nationalist aspirations in regions like the Balkans to further their own imperialist aims.</p>
+            <h4 class="mt-4">The Balkans: Powder Keg of Europe</h4>
+            <p>Region of geographic/ethnic variation (Romania, Bulgaria, Albania, Greece, Macedonia, Croatia, Bosnia-Herzegovina, Slovenia, Serbia, Montenegro - inhabitants broadly Slavs). Large part under Ottoman Empire control. Spread of romantic nationalism + Ottoman disintegration = explosive region. Balkan peoples claimed independence based on past history, struggled to define identity. Fiercely jealous of each other. Became scene of big power rivalry (Russia, Germany, England, Austro-Hungary) competing for control. Led to series of wars and finally WWI (1914).</p>
+             <img src="https://placehold.co/600x300/fcd34d/92400e?text=Balkan+Tensions+Map+(Placeholder)" alt="Placeholder for Balkan Map" class="chapter-image" onerror="this.src='https://placehold.co/600x300/cccccc/333333?text=Image+Not+Found'">
+            <p class="mt-4 fact-date">Key Idea: Nationalism aligned with imperialism led Europe to disaster. However, anti-imperial movements in colonised countries also developed, inspired by nationalism and the desire for independent nation-states.</p>
+        </section>
+
+         <section id="timeline-detailed" class="content-card">
+            <h2>10. Detailed Timeline</h2>
+            <div class="relative mt-6">
+                <div class="timeline-item">
+                    <div class="timeline-icon icon-revolution">R</div>
+                    <h3 class="font-semibold text-lg mb-1">1789: French Revolution</h3>
+                    <p class="fact-date p-2 rounded">Start of modern nationalism expression.</p>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-icon icon-person">P</div>
+                    <h3 class="font-semibold text-lg mb-1">1797: Napoleon invades Italy</h3>
+                    <p class="revolution-event p-2 rounded">Napoleonic wars begin.</p>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-icon icon-nation">N</div>
+                    <h3 class="font-semibold text-lg mb-1">1804: Napoleonic Code</h3>
+                    <p class="ideology-concept p-2 rounded">Spreads administrative reforms.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon icon-nation">N</div>
+                    <h3 class="font-semibold text-lg mb-1">1814-1815: Fall of Napoleon & Vienna Congress</h3>
+                    <p class="ideology-concept p-2 rounded">Conservative order restored.</p>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-icon icon-revolution">R</div>
+                    <h3 class="font-semibold text-lg mb-1">1821: Greek struggle for independence begins</h3>
+                    <p class="nation-building p-2 rounded">Against Ottoman rule.</p>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-icon icon-revolution">R</div>
+                    <h3 class="font-semibold text-lg mb-1">1830: July Revolution in France</h3>
+                    <p class="revolution-event p-2 rounded">Sparks other uprisings (Belgium).</p>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-icon icon-nation">N</div>
+                    <h3 class="font-semibold text-lg mb-1">1832: Greece gains independence</h3>
+                    <p class="nation-building p-2 rounded">Treaty of Constantinople.</p>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-icon icon-concept">C</div>
+                    <h3 class="font-semibold text-lg mb-1">1834: Zollverein (Customs Union) formed</h3>
+                    <p class="ideology-concept p-2 rounded">Economic unification step in German states.</p>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-icon icon-revolution">R</div>
+                    <h3 class="font-semibold text-lg mb-1">1848: Revolutions in Europe</h3>
+                    <p class="revolution-event p-2 rounded">Widespread liberal, nationalist, and worker uprisings.</p>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-icon icon-nation">N</div>
+                    <h3 class="font-semibold text-lg mb-1">1859-1870: Unification of Italy</h3>
+                    <p class="nation-building p-2 rounded">Led by Sardinia-Piedmont.</p>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-icon icon-nation">N</div>
+                    <h3 class="font-semibold text-lg mb-1">1866-1871: Unification of Germany</h3>
+                    <p class="nation-building p-2 rounded">Led by Prussia under Bismarck.</p>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-icon icon-revolution">R</div>
+                    <h3 class="font-semibold text-lg mb-1">1905 onwards: Slav nationalism gathers force</h3>
+                    <p class="revolution-event p-2 rounded">In Habsburg and Ottoman Empires.</p>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-icon icon-revolution">R</div>
+                    <h3 class="font-semibold text-lg mb-1">1914: First World War begins</h3>
+                    <p class="revolution-event p-2 rounded">Culmination of nationalist tensions and imperialism.</p>
+                </div>
+            </div>
+        </section>
+
+
+    </div> <div id="sorrieu-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" data-closeid="sorrieu">&times;</span>
+            <h3>Frédéric Sorrieu</h3>
+            <p class="ideology-concept p-2 rounded">French artist (1848) known for his series of prints depicting a utopian vision of a world made up of 'democratic and social Republics', with nations marching together past Liberty.</p>
+            <img src="https://placehold.co/100x100/a5b4fc/1e1b4b?text=Sorrieu" alt="Sorrieu Placeholder" class="character-img" onerror="this.src='https://placehold.co/100x100/cccccc/333333?text=X'">
+        </div>
+    </div>
+
+    <div id="renan-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" data-closeid="renan">&times;</span>
+            <h3>Ernst Renan</h3>
+            <p class="ideology-concept p-2 rounded">French philosopher (1882 lecture 'What is a Nation?'). Argued a nation is a "spiritual principle" based on shared history, sacrifice, present consent ('daily plebiscite'), and common goals, not just race, language, or territory. Saw nations as guarantees of liberty.</p>
+             <img src="https://placehold.co/100x100/a5b4fc/1e1b4b?text=Renan" alt="Renan Placeholder" class="character-img" onerror="this.src='https://placehold.co/100x100/cccccc/333333?text=X'">
+        </div>
+    </div>
+
+     <div id="napoleon-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" data-closeid="napoleon">&times;</span>
+            <h3>Napoleon Bonaparte</h3>
+            <p class="fact-date p-2 rounded mb-2">French general and emperor (ruled early 19th C).</p>
+            <p class="ideology-concept p-2 rounded">Destroyed democracy in France but spread revolutionary administrative ideas (Napoleonic Code, 1804) across Europe, promoting efficiency, equality before law, property rights, and abolishing feudalism.</p>
+             <img src="https://placehold.co/100x100/a5b4fc/1e1b4b?text=Napoleon" alt="Napoleon Placeholder" class="character-img" onerror="this.src='https://placehold.co/100x100/cccccc/333333?text=X'">
+        </div>
+    </div>
+
+     <div id="metternich-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" data-closeid="metternich">&times;</span>
+            <h3>Duke Metternich</h3>
+            <p class="fact-date p-2 rounded mb-2">Austrian Chancellor (early-mid 19th C).</p>
+            <p class="ideology-concept p-2 rounded">Leading conservative figure. Hosted Congress of Vienna (1815) to restore monarchy after Napoleon. Feared revolution and nationalism. Described Mazzini as 'most dangerous enemy'.</p>
+             <img src="https://placehold.co/100x100/a5b4fc/1e1b4b?text=Metternich" alt="Metternich Placeholder" class="character-img" onerror="this.src='https://placehold.co/100x100/cccccc/333333?text=X'">
+        </div>
+    </div>
+
+    <div id="mazzini-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" data-closeid="mazzini">&times;</span>
+            <h3>Giuseppe Mazzini</h3>
+             <p class="fact-date p-2 rounded mb-2">Italian revolutionary (1807-1872).</p>
+            <p class="ideology-concept p-2 rounded">Founded 'Young Italy' & 'Young Europe'. Believed nations were natural units. Advocated for a unified Italian Republic. Opposed monarchy, inspired revolutionaries.</p>
+             <img src="https://placehold.co/100x100/a5b4fc/1e1b4b?text=Mazzini" alt="Mazzini Placeholder" class="character-img" onerror="this.src='https://placehold.co/100x100/cccccc/333333?text=X'">
+        </div>
+    </div>
+
+     <div id="bismarck-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" data-closeid="bismarck">&times;</span>
+            <h3>Otto von Bismarck</h3>
+            <p class="fact-date p-2 rounded mb-2">Chief Minister of Prussia (mid-late 19th C).</p>
+            <p class="ideology-concept p-2 rounded">Architect of German unification via 'Realpolitik' and 'iron and blood' (military force), not liberalism. Used conservative nationalism for Prussian dominance.</p>
+             <img src="https://placehold.co/100x100/a5b4fc/1e1b4b?text=Bismarck" alt="Bismarck Placeholder" class="character-img" onerror="this.src='https://placehold.co/100x100/cccccc/333333?text=X'">
+        </div>
+    </div>
+
+     <div id="cavour-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" data-closeid="cavour">&times;</span>
+            <h3>Count Camillo de Cavour</h3>
+             <p class="fact-date p-2 rounded mb-2">Chief Minister of Sardinia-Piedmont (mid-19th C).</p>
+            <p class="ideology-concept p-2 rounded">Pragmatic statesman key to Italian unification. Used diplomacy (alliance with France) and war to unify North/Central Italy under Victor Emmanuel II.</p>
+             <img src="https://placehold.co/100x100/a5b4fc/1e1b4b?text=Cavour" alt="Cavour Placeholder" class="character-img" onerror="this.src='https://placehold.co/100x100/cccccc/333333?text=X'">
+        </div>
+    </div>
+
+     <div id="garibaldi-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" data-closeid="garibaldi">&times;</span>
+            <h3>Giuseppe Garibaldi</h3>
+             <p class="fact-date p-2 rounded mb-2">Italian nationalist & military leader (1807-1882).</p>
+            <p class="revolution-event p-2 rounded">Led 'Red Shirts' in 1860, conquering Southern Italy. Embodied popular, romantic nationalism.</p>
+             <img src="https://placehold.co/100x100/a5b4fc/1e1b4b?text=Garibaldi" alt="Garibaldi Placeholder" class="character-img" onerror="this.src='https://placehold.co/100x100/cccccc/333333?text=X'">
+        </div>
+    </div>
+
+     <div id="louise_otto-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" data-closeid="louise_otto">&times;</span>
+            <h3>Louise Otto-Peters</h3>
+             <p class="fact-date p-2 rounded mb-2">German feminist writer & activist (1819-1895).</p>
+            <p class="ideology-concept p-2 rounded">Argued for women's rights during 1848 revolutions. Stated liberty was indivisible and must include women.</p>
+             <img src="https://placehold.co/100x100/a5b4fc/1e1b4b?text=Louise+Otto" alt="Louise Otto Placeholder" class="character-img" onerror="this.src='https://placehold.co/100x100/cccccc/333333?text=X'">
+        </div>
+    </div>
+
+    <script>
+        // Wait for the HTML document to be fully loaded before attaching event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Modal Handling ---
+            const characterLinks = document.querySelectorAll('.character-link');
+            const closeButtons = document.querySelectorAll('.close-button');
+            const modals = document.querySelectorAll('.modal');
+
+            // Add click listener to each character link
+            characterLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    const characterId = link.getAttribute('data-charid'); // Get ID from data attribute
+                    const modal = document.getElementById(characterId + '-modal');
+                    if (modal) {
+                        modal.style.display = 'block';
+                    } else {
+                        console.error('Modal not found for ID:', characterId); // Debugging
+                    }
+                });
+            });
+
+            // Add click listener to each close button
+            closeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                     const closeId = button.getAttribute('data-closeid'); // Get ID from data attribute
+                     const modal = document.getElementById(closeId + '-modal');
+                     if (modal) {
+                        modal.style.display = 'none';
+                     }
+                });
+            });
+
+            // Add click listener to close modal when clicking outside the content
+             window.addEventListener('click', (event) => {
+                modals.forEach(modal => {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                });
+            });
+
+
+            // --- Map Region Handling ---
+            const mapRegions = document.querySelectorAll('.map-region');
+            const infoPanel = document.getElementById('map-info-panel');
+
+            mapRegions.forEach(region => {
+                region.addEventListener('click', () => {
+                    const regionId = region.getAttribute('data-regionid'); // Get ID from data attribute
+                    let infoText = '';
+
+                    // Content based on Chapter 1
+                    switch (regionId) {
+                        case 'france':
+                            infoText = '<h4 class="font-semibold mb-1 text-blue-700">France:</h4> Birthplace of modern nationalism (1789 Revolution). Spread revolutionary ideas under Napoleon. Experienced further revolution in 1830 and 1848. Key figures: Sorrieu, Napoleon, Louis Philippe. Allegory: Marianne.';
+                            break;
+                        case 'german':
+                            infoText = '<h4 class="font-semibold mb-1 text-blue-700">German States / Prussia:</h4> Initially fragmented. Liberal attempts at unification (Frankfurt Parliament 1848) failed. Prussia, under Bismarck, unified Germany through wars (1866-1871). Key figures: Bismarck, Wilhelm I, Grimm Brothers, Louise Otto-Peters. Allegory: Germania.';
+                            break;
+                        case 'austrian':
+                            infoText = '<h4 class="font-semibold mb-1 text-blue-700">Austrian Empire (Habsburg):</h4> A multi-ethnic empire (Germans, Magyars, Slavs, Italians etc.). Ruled North Italy. Faced nationalist challenges. Key figure: Metternich (conservative leader). Lost influence after defeats by Prussia and Sardinia-Piedmont.';
+                            break;
+                        case 'italian':
+                            infoText = '<h4 class="font-semibold mb-1 text-blue-700">Italian States:</h4> Politically fragmented (Austrian North, Papal centre, Bourbon South). Unified between 1859-1870 under Sardinia-Piedmont. Key figures: Mazzini, Cavour, Garibaldi, Victor Emmanuel II.';
+                            break;
+                        case 'britain':
+                            infoText = '<h4 class="font-semibold mb-1 text-blue-700">Great Britain:</h4> Nation-state formed gradually, not through revolution. English dominance grew. Act of Union (1707) with Scotland. Ireland forcibly incorporated (1801). Developed distinct \'British\' identity.';
+                            break;
+                        case 'ottoman':
+                            infoText = '<h4 class="font-semibold mb-1 text-blue-700">Ottoman Empire (Balkans):</h4> Ruled over diverse Balkan peoples (Slavs, Greeks, Romanians etc.). Decline in 19th C led to rising nationalism and independence movements (e.g., Greece). Became area of intense conflict and big power rivalry.';
+                            break;
+                         case 'russia':
+                            infoText = '<h4 class="font-semibold mb-1 text-blue-700">Russian Empire:</h4> An autocratic monarchy. Involved in partitioning Poland. Competed for influence in the Balkans. Faced internal pressures later.';
+                            break;
+                        default:
+                            infoText = 'Select a region to learn more.';
+                    }
+
+                    infoPanel.innerHTML = infoText; // Use innerHTML to render the heading style
+                });
+            });
+
+        }); // End DOMContentLoaded listener
+
+    </script>
+
+</body>
+</html>
