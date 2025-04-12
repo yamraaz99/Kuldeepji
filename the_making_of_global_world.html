@@ -1,0 +1,1729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Making of a Global World - Class 10 History</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1e40af;
+            --secondary-color: #3b82f6;
+            --accent-color: #93c5fd;
+            --text-color: #1f2937;
+            --background-color: #f8fafc;
+            --card-color: #ffffff;
+            --highlight-color: #dbeafe;
+            --section1-color: #fee2e2;
+            --section2-color: #ffedd5;
+            --section3-color: #d1fae5;
+            --section4-color: #dbeafe;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            line-height: 1.6;
+        }
+
+        .page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-title {
+            position: relative;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .topic-card {
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .section1 {
+            background-color: var(--section1-color);
+        }
+
+        .section2 {
+            background-color: var(--section2-color);
+        }
+
+        .section3 {
+            background-color: var(--section3-color);
+        }
+
+        .section4 {
+            background-color: var(--section4-color);
+        }
+
+        .timeline-container {
+            position: relative;
+            width: 100%;
+            margin: 40px auto;
+        }
+
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 20px;
+        }
+
+        .timeline-item.left {
+            left: 0;
+            padding-right: 50px;
+        }
+
+        .timeline-item.right {
+            left: 50%;
+            padding-left: 50px;
+        }
+
+        .timeline-content {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            position: relative;
+        }
+
+        .timeline-item.left .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -15px;
+            width: 0;
+            height: 0;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-left: 15px solid white;
+            transform: translateY(-50%);
+        }
+
+        .timeline-item.right .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -15px;
+            width: 0;
+            height: 0;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-right: 15px solid white;
+            transform: translateY(-50%);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            border: 4px solid var(--primary-color);
+            top: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item.left .timeline-dot {
+            right: -10px;
+            transform: translateY(-50%);
+        }
+
+        .timeline-item.right .timeline-dot {
+            left: -10px;
+            transform: translateY(-50%);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: var(--card-color);
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 800px;
+            animation: modalAnimation 0.4s;
+        }
+
+        @keyframes modalAnimation {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #9ca3af;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: #1f2937;
+        }
+
+        .figure-card {
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .figure-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .glossary-term {
+            position: relative;
+            cursor: help;
+            border-bottom: 1px dashed var(--primary-color);
+            display: inline-block;
+        }
+
+        .glossary-popup {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--card-color);
+            padding: 10px 15px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            z-index: 10;
+            display: none;
+        }
+
+        .glossary-term:hover .glossary-popup {
+            display: block;
+        }
+
+        .glossary-popup::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: var(--card-color) transparent transparent transparent;
+        }
+
+        .region-box {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .region-box:hover {
+            transform: scale(1.05);
+        }
+
+        .key-term {
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .image-container img {
+            transition: transform 0.5s ease;
+        }
+
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .note-box {
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            background-color: var(--highlight-color);
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+
+        .section-divider {
+            display: flex;
+            align-items: center;
+            margin: 40px 0;
+        }
+
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background-color: #e5e7eb;
+        }
+
+        .section-divider span {
+            padding: 0 20px;
+            color: #6b7280;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .detail-trigger {
+            cursor: pointer;
+            color: var(--primary-color);
+            font-weight: 500;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            text-underline-offset: 3px;
+        }
+
+        .detail-content {
+            display: none;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .citation {
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin-top: 10px;
+        }
+
+        .quote-box {
+            background-color: #f3f4f6;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .quote-box:before {
+            content: '"';
+            font-size: 5rem;
+            color: #d1d5db;
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            opacity: 0.5;
+        }
+
+        .quote-author {
+            text-align: right;
+            font-style: italic;
+            color: #6b7280;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <header class="mb-12">
+            <h1 class="text-4xl font-bold text-center mb-4 text-blue-800">The Making of a Global World</h1>
+            <h2 class="text-xl text-center text-gray-600 mb-6">Class 10 NCERT History Chapter 3</h2>
+            <div class="w-24 h-1 bg-blue-600 mx-auto mb-8"></div>
+            
+            <div class="bg-blue-50 p-6 rounded-lg">
+                <p class="text-lg">The term "globalization" refers to the increasing integration and interdependence of different economies, societies, and cultures across the world. This chapter examines how the modern global world emerged through a long history of trade, migration, and movements of capital, goods, and ideas across countries.</p>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+            <div class="topic-card section1">
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-globe-asia text-red-700 text-xl mr-3"></i>
+                        <h3 class="text-xl font-semibold text-red-800">Pre-Modern World</h3>
+                    </div>
+                    <p>Early trade routes, migrations and movements that connected different parts of the world before European colonization.</p>
+                </div>
+            </div>
+            
+            <div class="topic-card section2">
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-industry text-yellow-700 text-xl mr-3"></i>
+                        <h3 class="text-xl font-semibold text-yellow-800">The 19th Century</h3>
+                    </div>
+                    <p>The age of industrialization, colonization, and the emergence of a world economy dominated by the West.</p>
+                </div>
+            </div>
+            
+            <div class="topic-card section3">
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-balance-scale text-green-700 text-xl mr-3"></i>
+                        <h3 class="text-xl font-semibold text-green-800">Inter-War Economy</h3>
+                    </div>
+                    <p>The economic aftermath of World War I, the Great Depression, and its global impact on trade and finance.</p>
+                </div>
+            </div>
+            
+            <div class="topic-card section4">
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-handshake text-blue-700 text-xl mr-3"></i>
+                        <h3 class="text-xl font-semibold text-blue-800">Post-War Era</h3>
+                    </div>
+                    <p>Rebuilding the world economy after World War II, the Bretton Woods system, and the new international economic order.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Pre-Modern World -->
+        <section class="mb-16">
+            <div class="bg-red-50 p-1 rounded-t-lg"></div>
+            <h2 class="section-title text-3xl text-red-800">1. The Pre-Modern World</h2>
+            
+            <div class="mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="col-span-2">
+                        <p class="mb-4">The making of the global world has a long history, starting with ancient civilizations. As early as 3000 BCE, an active coastal trade linked the Indus Valley civilizations with present-day West Asia.</p>
+                        
+                        <h3 class="text-xl font-semibold mb-3 text-red-700">Silk Routes Link the World</h3>
+                        <p class="mb-4">The silk routes are a prime example of pre-modern trade and cultural links between distant parts of the world. These routes connected Asia, Europe, and northern Africa. Chinese silk cargoes traveled through these routes, as did gold and silver from Europe to Asia.</p>
+                        <p class="mb-4">These routes were used not just for trading goods but also for cultural exchanges. Chinese pottery, textiles and spices from India and Southeast Asia found their way into Europe. Buddhism came to flourish in many parts of East and Southeast Asia through these routes.</p>
+                        
+                        <div class="note-box">
+                            <p><strong>Key Insight:</strong> The silk routes are named after the Chinese silk cargoes that traveled along this route, but many other goods were also traded.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="image-container">
+                        <img src="https://cdn.jsdelivr.net/gh/lipika02/NCERTImages@master/SilkRoute.jpg" alt="Ancient Silk Routes Map" class="w-full h-auto rounded-lg shadow-lg">
+                        <p class="text-sm text-gray-600 mt-2 text-center">The Silk Routes connected distant parts of the world</p>
+                    </div>
+                </div>
+                
+                <h3 class="text-xl font-semibold mt-8 mb-3 text-red-700">Food Travels: Spaghetti and Potato</h3>
+                <p class="mb-4">Food offers fascinating examples of long-distance cultural exchange. Many of our common foods came from outside through trade or conquest:</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h4 class="font-semibold text-red-600 mb-2">Noodles traveled west from China</h4>
+                        <p>It is believed that noodles traveled from China to become the Italian 'spaghetti'. Arab traders took away pasta from Italy, adding to their own cuisine so that it traveled eastward once again.</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h4 class="font-semibold text-red-600 mb-2">Potatoes, Chillies and Tomatoes</h4>
+                        <p>Common foods such as potatoes, soya, groundnuts, maize, tomatoes, chillies, and sweet potatoes were not known to our ancestors until about five centuries ago. These came from America after Columbus discovered it in 1492.</p>
+                    </div>
+                </div>
+                
+                <h3 class="text-xl font-semibold mt-8 mb-3 text-red-700">Conquest, Disease and Trade</h3>
+                <p class="mb-4">European conquest and colonization of the Americas dramatically altered the world. The discovery of vast lands and abundant sources of minerals substantially transformed trade and lives everywhere.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <p class="mb-4">Precious metals like silver from mines in present-day Peru and Mexico enhanced European wealth and sparked global trade. Chinese merchants were so eager to secure silver that they would accept it exclusively as payment for their goods.</p>
+                        
+                        <p class="mb-4">The Portuguese and Spanish conquests in America were followed by Europeans' commercial interest. This led to the <span class="glossary-term">slave trade<span class="glossary-popup">Between the 16th and 19th centuries, millions of African slaves were shipped to America to work on plantations, following the decimation of native communities.</span></span> and the establishment of plantations in the Americas as well as in parts of Asia, producing sugarcane, cotton, and several other crops almost exclusively for export to Europe.</p>
+                    </div>
+                    
+                    <div class="bg-red-50 p-6 rounded-lg shadow">
+                        <h4 class="font-semibold text-red-700 mb-2">The Devastating Impact of Germs</h4>
+                        <p>The most powerful weapon of European colonization was not guns or warfare, but germs such as those of smallpox that they carried. The native communities had no immunity against these diseases that came with the Europeans. These diseases killed and decimated whole communities, paving the way for foreign conquest.</p>
+                        <p class="mt-3 font-semibold">By 1600, America's original inhabitants had nearly been exterminated – they were down to about 3 percent of the population they had been in 1492.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: The Nineteenth Century -->
+        <section class="mb-16">
+            <div class="bg-yellow-50 p-1 rounded-t-lg"></div>
+            <h2 class="section-title text-3xl text-yellow-800">2. The Nineteenth Century (1815-1914)</h2>
+            
+            <div class="mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="col-span-2">
+                        <p class="mb-4">The nineteenth century marked a significant period in global economic history. It saw the rise of the modern industrial economy and the establishment of a complex global network of trade, labor, and capital.</p>
+                        
+                        <h3 class="text-xl font-semibold mb-3 text-yellow-700">A World Economy Takes Shape</h3>
+                        <p class="mb-4">By the 1890s, a global agricultural economy had taken shape. Now food no longer came from a nearby village or town, but from far away places. For example, countries like Eastern Europe, Russia, America, and Australia began to export wheat, while meat came from New Zealand and Argentina. Britain began to import food products from abroad and cut food production at home.</p>
+                        
+                        <div class="detail-trigger">Why did Britain import food instead of producing it domestically?</div>
+                        <div class="detail-content">
+                            <p>This shift in Britain was made possible by the rapid and cheap transportation of food grains. The introduction of refrigerated ships also enabled distant countries to export perishable items like meat, butter, and eggs. Additionally, Britain had abolished the <span class="key-term">Corn Laws</span> in 1846, removing tariff protection for agriculture, which made it more economical to import food than to produce it domestically.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="image-container">
+                        <img src="https://cdn.jsdelivr.net/gh/lipika02/NCERTImages@master/19thCenturyTrade.jpg" alt="19th Century Global Trade" class="w-full h-auto rounded-lg shadow-lg">
+                        <p class="text-sm text-gray-600 mt-2 text-center">Growth of global agricultural trade in the 19th century</p>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-semibold mt-8 mb-3 text-yellow-700">Role of Technology</h3>
+                <p class="mb-4">Technology played a crucial role in transforming the nineteenth-century world:</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="bg-white p-5 rounded-lg shadow">
+                        <div class="flex items-center mb-3">
+                            <i class="fas fa-train text-yellow-600 text-xl mr-3"></i>
+                            <h4 class="font-semibold text-yellow-600">Railways</h4>
+                        </div>
+                        <p>The railways, introduced in the 1830s, linked the interiors of continents. By 1875, railways were crisscrossing Europe and America, opening up new lands for settlement and enabling speedy and inexpensive transfer of goods.</p>
+                    </div>
+                    
+                    <div class="bg-white p-5 rounded-lg shadow">
+                        <div class="flex items-center mb-3">
+                            <i class="fas fa-ship text-yellow-600 text-xl mr-3"></i>
+                            <h4 class="font-semibold text-yellow-600">Steamships</h4>
+                        </div>
+                        <p>Steamships reduced the journey time across the Atlantic from months to weeks. The Suez Canal, built in Egypt with French capital and engineering skills, linked Europe to Asia, reducing the distance between London and Bombay by 7,000 kilometers.</p>
+                    </div>
+                    
+                    <div class="bg-white p-5 rounded-lg shadow">
+                        <div class="flex items-center mb-3">
+                            <i class="fas fa-broadcast-tower text-yellow-600 text-xl mr-3"></i>
+                            <h4 class="font-semibold text-yellow-600">Telegraph</h4>
+                        </div>
+                        <p>The telegraph, patented in the USA in 1837, made almost instantaneous communication possible. By 1872, four cables connected Europe and North America. The cost of sending messages also reduced dramatically.</p>
+                    </div>
+                </div>
+                
+                <h3 class="text-xl font-semibold mt-8 mb-3 text-yellow-700">Late Nineteenth-century Colonialism</h3>
+                <p class="mb-4">The late nineteenth century witnessed the rise of colonialism, as European powers competed for territories in Asia and Africa:</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <p class="mb-4">In the late nineteenth century, European powers began a scramble for territorial possessions in Africa, driven by various economic and political factors. Britain and France made vast additions to their overseas territories. Belgium and Germany also became new colonial powers.</p>
+                        
+                        <p class="mb-4">By the end of the century, Britain had emerged as the world's leading economy, with its political and economic power allowing it to influence events across the globe. The British empire became the largest empire the world had ever seen, controlling colonies across Asia and Africa.</p>
+                    </div>
+                    
+                    <div class="bg-yellow-50 p-6 rounded-lg shadow">
+                        <h4 class="font-semibold text-yellow-700 mb-2">India's Role in the World Economy</h4>
+                        <p>India played a crucial role in the late-nineteenth-century world economy. Britain had a trade surplus with India, which helped offset its deficits with other regions. India also provided a large market for British manufactures and served as a source of raw materials and foodgrains. Additionally, Indian traders, laborers, and entrepreneurs became part of the global network of trade and finance.</p>
+                    </div>
+                </div>
+                
+                <h3 class="text-xl font-semibold mt-8 mb-3 text-yellow-700">Rinderpest, or the Cattle Plague</h3>
+                <p class="mb-4">The global connectedness in the nineteenth century had unforeseen consequences. One example was the spread of the <span class="glossary-term">rinderpest<span class="glossary-popup">A fast-spreading disease of cattle, also known as cattle plague. The word 'rinderpest' is German and means 'cattle-plague'.</span></span> or cattle plague.</p>
+                
+                <div class="quote-box">
+                    <p>In the 1890s, a fast-spreading disease of cattle, the rinderpest (also known as the cattle plague), arrived in Africa. It was carried by infected cattle imported from British Asia to feed the Italian soldiers invading Eritrea in East Africa. The disease spread like wildfire in Africa and killed 90% of the cattle.</p>
+                    <p class="quote-author">From "The Making of a Global World," NCERT</p>
+                </div>
+                
+                <p class="mb-4">The loss of cattle destroyed African livelihoods. Planters, mine owners, and colonial governments took advantage of the situation to push Africans into the labor market. Control over the scarce resource of cattle enabled Europeans to colonize Africa.</p>
+                
+                <h3 class="text-xl font-semibold mt-8 mb-3 text-yellow-700">Indentured Labor Migration from India</h3>
+                <p class="mb-4">In the nineteenth century, thousands of Indian and Chinese laborers went to work on plantations, in mines, and in road and railway construction projects around the world.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="col-span-2">
+                        <p class="mb-4">In India, indentured laborers were hired under contracts which promised return passage to India after they had worked for five years on plantations. Most indentured workers came from the present-day regions of eastern Uttar Pradesh, Bihar, central India, and the dry districts of Tamil Nadu.</p>
+                        
+                        <p class="mb-4">Numerous factors led to this migration. In the mid-nineteenth century, these regions experienced many social and economic changes – cottage industries declined, land rents rose, lands were cleared for mines and plantations, and increasingly peasants found it difficult to pay their revenue.</p>
+                        
+                        <p class="mb-4">Agents (or recruiters) were paid a small commission by the employers, and they used all kinds of methods to recruit laborers. Many migrants agreed to take up work hoping to escape poverty or oppression in their home villages. While some went in search of work willingly, others were forcibly recruited.</p>
+                    </div>
+                    
+                    <div class="image-container">
+                        <img src="https://cdn.jsdelivr.net/gh/lipika02/NCERTImages@master/IndenturedLabor.jpg" alt="Indentured Laborers" class="w-full h-auto rounded-lg shadow-lg">
+                        <p class="text-sm text-gray-600 mt-2 text-center">Indian indentured laborers working on plantations abroad</p>
+                    </div>
+                </div>
+                
+                <div class="note-box">
+                    <p><strong>Important Note:</strong> The living and working conditions for indentured laborers were often harsh. Many laborers were treated like slaves, and though they had the right to return, many chose to stay on, creating new Indian diaspora communities across the world, particularly in the Caribbean islands, Fiji, Mauritius, and South Africa.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: The Inter-War Economy -->
+        <section class="mb-16">
+            <div class="bg-green-50 p-1 rounded-t-lg"></div>
+            <h2 class="section-title text-3xl text-green-800">3. The Inter-War Economy</h2>
+            
+            <div class="mb-8">
+                <p class="mb-4">The First World War (1914-18) was a devastating event that fundamentally transformed the global economic and political landscape. It marked the end of an era of relative peace and prosperity that had characterized much of the nineteenth century.</p>
+                
+                <h3 class="text-xl font-semibold mb-3 text-green-700">Wartime Transformations</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6">
+                    <div class="col-span-2">
+                        <p class="mb-4">The First World War saw the use of machine guns, tanks, aircraft, chemical weapons, etc., on a massive scale. These were all increasingly products of modern large-scale industry. To fight the war, millions of soldiers had to be recruited from around the world and moved to the frontlines on large ships and trains.</p>
+                        
+                        <p class="mb-4">The war transformed the US from being an international debtor to an international creditor. The war led to the snapping of economic links between some of the world's largest economic powers which were now fighting each other to pay for them. Britain borrowed large sums of money from US banks as well as the US public.</p>
+                        
+                        <p class="mb-4">The war led to an economic boom, as industries were rapidly set up to produce war-related goods. This led to a large increase in demand, production, and employment. But the war also caused immense economic hardship, particularly for populations in Europe.</p>
+                    </div>
+                    
+                    <div class="image-container">
+                        <img src="https://cdn.jsdelivr.net/gh/lipika02/NCERTImages@master/WWI.jpg" alt="First World War Scene" class="w-full h-auto rounded-lg shadow-lg">
+                        <p class="text-sm text-gray-600 mt-2 text-center">First World War transformed global economics and politics</p>
+                    </div>
+                </div>
+                
+                <div class="bg-green-50 p-6 rounded-lg shadow mb-6">
+                    <h4 class="font-semibold text-green-700 mb-2">Impact on India</h4>
+                    <p>In India, the war years were years of great hardship:</p>
+                    <ul class="list-disc list-inside mt-2 space-y-1">
+                        <li>Defense expenditure was financed by war loans and increasing taxes</li>
+                        <li>Customs duties were raised and income tax introduced</li>
+                        <li>Prices doubled between 1913 and 1918, leading to extreme economic hardship for common people</li>
+                        <li>Villages were called upon to supply soldiers for the war, and forced recruitment in rural areas caused widespread anger</li>
+                        <li>Crop failures in 1918-19 and 1920-21, coupled with an influenza epidemic, led to famine-like conditions</li>
+                    </ul>
+                </div>
+                
+                <h3 class="text-xl font-semibold mt-8 mb-3 text-green-700">Post-war Recovery</h3>
+                <p class="mb-4">After the war, Britain faced a prolonged crisis. It took Britain decades to repay the war debt to the US. This affected the world economy in general and Britain in particular.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <p class="mb-4">Prior to the war, Britain was the world's leading economy. However, the war changed this position. While Britain was preoccupied with war, industries developed in Japan and India. After the war, Britain found it difficult to compete with Japan internationally, and with USA in the markets.</p>
+                        
+                        <p class="mb-4">The pre-war global financial system collapsed and was replaced by a new one. The US dollar replaced the British pound sterling as the leading international currency. The USA and its citizens owned more overseas assets than foreign governments and citizens owned in the US.</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h4 class="font-semibold text-green-700 mb-2">Post-war Agricultural Crisis</h4>
+                        <p>After the war, the agricultural sector experienced a deeper and more prolonged crisis:</p>
+                        <ul class="list-disc list-inside mt-2 space-y-1">
+                            <li>During the war, agricultural production expanded dramatically to meet food demand</li>
+                            <li>After the war, grain prices fell, rural incomes declined, and farmers fell deeper into debt</li>
+                            <li>Many countries tried to protect their economies through higher tariffs, but this further affected incomes from agriculture</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h3 class="text-xl font-semibold mt-8 mb-3 text-green-700">Rise of Mass Production and Consumption</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6">
+                    <div class="image-container">
+                        <img src="https://cdn.jsdelivr.net/gh/lipika02/NCERTImages@master/FordFactory.jpg" alt="Ford Assembly Line" class="w-full h-auto rounded-lg shadow-lg">
+                        <p class="text-sm text-gray-600 mt-2 text-center">Ford's assembly line production technique</p>
+                    </div>
+                    
+                    <div class="col-span-2">
+                        <p class="mb-4">The US economy resumed its expansion in the 1920s, based on mass production techniques and mass consumption patterns:</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div class="bg-white p-4 rounded-lg shadow">
+                                <h5 class="font-semibold text-green-600 mb-2">Mass Production</h5>
+                                <p>Henry Ford's assembly-line production method revolutionized manufacturing. By moving the car on a conveyor belt, each worker performed a single task repeatedly. This increased efficiency and reduced labor costs, enabling the affordable Model T Ford.</p>
+                            </div>
+                            
+                            <div class="bg-white p-4 rounded-lg shadow">
+                                <h5 class="font-semibold text-green-600 mb-2">Mass Consumption</h5>
+                                <p>Higher wages enabled workers to afford consumer goods, creating a cycle of higher productivity, incomes, and consumption. Advertisements, department stores, mail-order marketing, and installment credit made mass consumption possible.</p>
+                            </div>
+                        </div>
+                        
+                        <p class="mb-4">This economic boom in the US in the 1920s created the basis of prosperity in the West for the next two decades. But this prosperity was built on fragile foundations.</p>
+                    </div>
+                </div>
+                
+                <h3 class="text-xl font-semibold mt-8 mb-3 text-green-700">The Great Depression</h3>
+                <p class="mb-4">The Great Depression began around 1929 and lasted till the mid-1930s. During this period, most parts of the world experienced catastrophic declines in production, employment, incomes, and trade.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <p class="mb-4">The depression was caused by several factors:</p>
+                        <ul class="list-disc list-inside mb-4 space-y-2">
+                            <li>Agricultural overproduction remained a problem, leading to a fall in agricultural prices and rural incomes</li>
+                            <li>Many US banks had lent large amounts to European countries during and after the war, and as these countries struggled to repay, the banks were on the verge of collapse</li>
+                            <li>The withdrawal of US loans affected the economies of the borrowing countries</li>
+                            <li>In the USA itself, as unemployment soared, purchasing power declined, leading to a fall in demand and further unemployment</li>
+                        </ul>
+                        <p>The US attempt to protect its economy through high tariffs (the infamous Smoot-Hawley tariff of 1930) worsened the situation. Other industrial countries also raised their tariffs in retaliation. This led to a drastic decline in world trade.</p>
+                    </div>
+                    
+                    <div class="bg-green-50 p-6 rounded-lg shadow">
+                        <h4 class="font-semibold text-green-700 mb-2">India and the Great Depression</h4>
+                        <p>The depression immediately affected Indian trade. India's exports and imports nearly halved between 1928 and 1934. Agriculture prices fell sharply, but the colonial government refused to reduce revenue demands. Peasants and farmers suffered more than urban dwellers. Though agricultural prices fell sharply, the prices of manufactured goods didn't decline as much, so the countryside suffered a greater decline in purchasing power.</p>
+                        <p class="mt-3">Interestingly, British industries were hit badly by the Depression. But British imports into India declined less sharply than imports from other countries. This was because of Britain's colonial relationship with India, which allowed them to safeguard their economic interests at the expense of the colony.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Rebuilding a World Economy -->
+        <section class="mb-16">
+            <div class="bg-blue-50 p-1 rounded-t-lg"></div>
+            <h2 class="section-title text-3xl text-blue-800">4. Rebuilding a World Economy: The Post-War Era</h2>
+            
+            <div class="mb-8">
+                <p class="mb-4">The Second World War (1939-45) caused immense destruction of lives and property. It also marked the end of European dominance in the world, with the US and the USSR emerging as the new superpowers. The post-war years saw an attempt to rebuild the global economy on a more stable basis.</p>
+                
+                <h3 class="text-xl font-semibold mb-3 text-blue-700">Post-War Settlement and the Bretton Woods Institutions</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6">
+                    <div class="col-span-2">
+                        <p class="mb-4">Economists and politicians drew two key lessons from inter-war economic experiences:</p>
+                        <ol class="list-decimal list-inside mb-4 space-y-2">
+                            <li>An industrial society needs to find ways of increasing mass purchasing power of the people—through higher wages, social security, and other schemes such as unemployment insurance</li>
+                            <li>The world economy needs a stable financial system and more cooperation among nations for economic growth</li>
+                        </ol>
+                        
+                        <p class="mb-4">To achieve these goals, the United Nations Monetary and Financial Conference was held in July 1944 at Bretton Woods in New Hampshire, USA. The Bretton Woods Conference established:</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div class="bg-white p-4 rounded-lg shadow">
+                                <h5 class="font-semibold text-blue-600 mb-2">International Monetary Fund (IMF)</h5>
+                                <p>Designed to deal with external surpluses and deficits of its member nations and preserve economic stability. It would monitor exchange rates and lend to nations with payment difficulties.</p>
+                            </div>
+                            
+                            <div class="bg-white p-4 rounded-lg shadow">
+                                <h5 class="font-semibold text-blue-600 mb-2">International Bank for Reconstruction and Development (World Bank)</h5>
+                                <p>Created to finance post-war reconstruction, with an emphasis on economic development, particularly in former colonies.</p>
+                            </div>
+                        </div>
+                        
+                        <p class="mb-4">The post-war international economic system is also often described as the <span class="key-term">Bretton Woods system</span>. The IMF and the World Bank are referred to as the Bretton Woods institutions or sometimes as the Bretton Woods twins.</p>
+                    </div>
+                    
+                    <div class="image-container">
+                        <img src="https://cdn.jsdelivr.net/gh/lipika02/NCERTImages@master/BrettonWoods.jpg" alt="Bretton Woods Conference" class="w-full h-auto rounded-lg shadow-lg">
+                        <p class="text-sm text-gray-600 mt-2 text-center">The Bretton Woods Conference established the post-war economic order</p>
+                    </div>
+                </div>
+                
+                <div class="note-box">
+                    <p><strong>Key Feature:</strong> The Bretton Woods system was based on fixed exchange rates. National currencies were pegged to the US dollar at a fixed exchange rate, and the dollar itself was anchored to gold at a fixed price of $35 per ounce of gold. This system lasted until 1971.</p>
+                </div>
+                
+                <h3 class="text-xl font-semibold mt-8 mb-3 text-blue-700">The Early Post-war Years</h3>
+                <p class="mb-4">The Bretton Woods system inaugurated an era of unprecedented growth of trade and incomes for the Western industrial nations and Japan. World trade grew annually at over 8 percent between 1950 and 1970, and incomes at nearly 5 percent.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <p class="mb-4">The economic recovery of West Europe and Japan was supported by the US through the <span class="glossary-term">Marshall Plan<span class="glossary-popup">The European Recovery Programme (popularly known as the Marshall Plan after the US Secretary of State who announced it) under which the US provided financial aid to rebuild Western European economies after the end of World War II.</span></span>. Europe and Japan were rapidly rebuilt through the recovery plan, and they became major trade partners with the US.</p>
+                        
+                        <p class="mb-4">International economic institutions like the IMF and World Bank were often dominated by developed countries like the US, who had maximum voting rights. These institutions governed the post-war economic order through various practices and rules.</p>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-6 rounded-lg shadow">
+                        <h4 class="font-semibold text-blue-700 mb-2">Decolonization and Independence</h4>
+                        <p>The post-war era also saw the independence of many Asian and African countries that had been under European colonial rule. These newly independent countries faced the challenge of economic development in a world dominated by the US and influenced by the Cold War dynamics.</p>
+                        <p class="mt-3">Many former colonies and developing countries did not benefit from the economic growth that the developed world experienced. They faced acute economic challenges like low per capita incomes, poverty, lack of industrialization, and dependence on primary exports.</p>
+                    </div>
+                </div>
+                
+                <h3 class="text-xl font-semibold mt-8 mb-3 text-blue-700">End of Bretton Woods and the Beginning of Globalization</h3>
+                <p class="mb-4">Despite the economic stability provided by the Bretton Woods system, it couldn't last forever. From the 1960s, the rising costs of the US's overseas involvements, including the Vietnam War, led to a growing deficit in the US. The US dollar, which had become the global currency, was now no longer respected.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="col-span-2">
+                        <p class="mb-4">In 1971, US President Nixon removed the gold backing from the dollar, effectively ending the Bretton Woods system. Currencies were now allowed to float against each other, leading to a period of financial instability and crisis.</p>
+                        
+                        <p class="mb-4">The 1970s also witnessed the beginning of what we recognize as 'globalization' today. The world experienced a deeper level of financial interconnectedness, with MNCs (Multinational Corporations) playing a big role. International financial flows increased rapidly as restrictions on foreign investment and trade were relaxed.</p>
+                        
+                        <p class="mb-4">The most recent phase of globalization (sometimes called 'late globalization') arrived in the late 1970s and 1980s, driven by:</p>
+                        <ul class="list-disc list-inside mb-4 space-y-2">
+                            <li>Information technology revolution</li>
+                            <li>Development of satellite communication and fiber optics</li>
+                            <li>Internet and electronic banking</li>
+                            <li>New trade agreements reducing barriers to commerce</li>
+                            <li>Rise of MNCs with global reach and production facilities</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="image-container">
+                        <img src="https://cdn.jsdelivr.net/gh/lipika02/NCERTImages@master/Globalization.jpg" alt="Globalization Illustration" class="w-full h-auto rounded-lg shadow-lg">
+                        <p class="text-sm text-gray-600 mt-2 text-center">Modern globalization connects economies across the world</p>
+                    </div>
+                </div>
+                
+                <h3 class="text-xl font-semibold mt-8 mb-3 text-blue-700">India in the Post-War Global Economy</h3>
+                <p class="mb-4">India's own position in the post-war world economy was complex. As a newly independent country in 1947, India had to decide how to engage with the international economic order.</p>
+                
+                <div class="bg-blue-50 p-6 rounded-lg shadow mb-6">
+                    <h4 class="font-semibold text-blue-700 mb-2">India's Economic Strategy</h4>
+                    <p>India adopted a mixed economic strategy after independence. While engaging with international trade and seeking foreign investment in certain sectors, it also followed a policy of self-reliance and import substitution industrialization. This approach sought to build domestic industrial capacity while limiting dependence on foreign goods and capital.</p>
+                    <p class="mt-3">India's first Prime Minister, Jawaharlal Nehru, along with statistician P.C. Mahalanobis, formulated a strategy focused on developing heavy industries, which was reflected in India's five-year plans. However, India's share in world trade declined in the decades after independence, and the country faced persistent balance of payments problems.</p>
+                </div>
+                
+                <p class="mb-4">In the 1990s, following a serious economic crisis, India began liberalizing its economy, reducing barriers to trade and investment, and integrating more closely with the global economy. This marked a shift away from the earlier policy of self-reliance towards greater participation in globalization.</p>
+                
+                <div class="quote-box">
+                    <p>The most recent phase of globalization, beginning from around the 1970s, was made possible largely due to the development of information and communication technologies (ICT) like satellite communication, the Internet, and global mobile networking. These technologies compressed time and space, facilitating almost real-time financial transactions and coordination of production across countries.</p>
+                    <p class="quote-author">From "The Making of a Global World," NCERT</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Timeline -->
+        <section class="mb-16">
+            <h2 class="section-title text-3xl text-indigo-800">Interactive Timeline: Key Events in the Making of a Global World</h2>
+            
+            <p class="mb-8">Click on each event to learn more about its significance in the global economic history.</p>
+            
+            <div class="timeline-container">
+                <!-- Timeline Item 1 -->
+                <div class="timeline-item left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content" onclick="openModal('timeline-1')">
+                        <h3 class="font-semibold text-indigo-700">1492</h3>
+                        <p>Columbus reaches America</p>
+                    </div>
+                </div>
+                
+                <!-- Timeline Item 2 -->
+                <div class="timeline-item right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content" onclick="openModal('timeline-2')">
+                        <h3 class="font-semibold text-indigo-700">1600s</h3>
+                        <p>European trading companies established in Asia</p>
+                    </div>
+                </div>
+                
+                <!-- Timeline Item 3 -->
+                <div class="timeline-item left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content" onclick="openModal('timeline-3')">
+                        <h3 class="font-semibold text-indigo-700">1815-1914</h3>
+                        <p>Emergence of global agricultural economy</p>
+                    </div>
+                </div>
+                
+                <!-- Timeline Item 4 -->
+                <div class="timeline-item right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content" onclick="openModal('timeline-4')">
+                        <h3 class="font-semibold text-indigo-700">1845-1849</h3>
+                        <p>Potato famine in Ireland</p>
+                    </div>
+                </div>
+                
+                <!-- Timeline Item 5 -->
+                <div class="timeline-item left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content" onclick="openModal('timeline-5')">
+                        <h3 class="font-semibold text-indigo-700">1846</h3>
+                        <p>Abolition of Corn Laws in Britain</p>
+                    </div>
+                </div>
+                
+                <!-- Timeline Item 6 -->
+                <div class="timeline-item right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content" onclick="openModal('timeline-6')">
+                        <h3 class="font-semibold text-indigo-700">1890s</h3>
+                        <p>Rinderpest (cattle plague) in Africa</p>
+                    </div>
+                </div>
+                
+                <!-- Timeline Item 7 -->
+                <div class="timeline-item left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content" onclick="openModal('timeline-7')">
+                        <h3 class="font-semibold text-indigo-700">1914-1918</h3>
+                        <p>First World War</p>
+                    </div>
+                </div>
+                
+                <!-- Timeline Item 8 -->
+                <div class="timeline-item right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content" onclick="openModal('timeline-8')">
+                        <h3 class="font-semibold text-indigo-700">1920s</h3>
+                        <p>Mass production and mass consumption in the US</p>
+                    </div>
+                </div>
+                
+                <!-- Timeline Item 9 -->
+                <div class="timeline-item left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content" onclick="openModal('timeline-9')">
+                        <h3 class="font-semibold text-indigo-700">1929-1930s</h3>
+                        <p>Great Depression</p>
+                    </div>
+                </div>
+                
+                <!-- Timeline Item 10 -->
+                <div class="timeline-item right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content" onclick="openModal('timeline-10')">
+                        <h3 class="font-semibold text-indigo-700">1939-1945</h3>
+                        <p>Second World War</p>
+                    </div>
+                </div>
+                
+                <!-- Timeline Item 11 -->
+                <div class="timeline-item left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content" onclick="openModal('timeline-11')">
+                        <h3 class="font-semibold text-indigo-700">1944</h3>
+                        <p>Bretton Woods Conference</p>
+                    </div>
+                </div>
+                
+                <!-- Timeline Item 12 -->
+                <div class="timeline-item right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content" onclick="openModal('timeline-12')">
+                        <h3 class="font-semibold text-indigo-700">1947</h3>
+                        <p>India gains independence</p>
+                    </div>
+                </div>
+                
+                <!-- Timeline Item 13 -->
+                <div class="timeline-item left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content" onclick="openModal('timeline-13')">
+                        <h3 class="font-semibold text-indigo-700">1971</h3>
+                        <p>End of the Bretton Woods system</p>
+                    </div>
+                </div>
+                
+                <!-- Timeline Item 14 -->
+                <div class="timeline-item right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content" onclick="openModal('timeline-14')">
+                        <h3 class="font-semibold text-indigo-700">1970s onwards</h3>
+                        <p>New phase of globalization begins</p>
+                    </div>
+                </div>
+                
+                <!-- Timeline Item 15 -->
+                <div class="timeline-item left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content" onclick="openModal('timeline-15')">
+                        <h3 class="font-semibold text-indigo-700">1991</h3>
+                        <p>India's economic liberalization</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Regions Explorer -->
+        <section class="mb-16">
+            <h2 class="section-title text-3xl text-purple-800">Key Regions Explorer</h2>
+            
+            <p class="mb-8">Click on a region to learn about its role in the making of the global world.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="region-box bg-purple-100 p-6 rounded-lg shadow-md text-center" onclick="openModal('region-1')">
+                    <i class="fas fa-globe-americas text-4xl text-purple-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-purple-800">The Americas</h3>
+                    <p class="text-purple-700 mt-2">From colonization to economic powerhouse</p>
+                </div>
+                
+                <div class="region-box bg-purple-100 p-6 rounded-lg shadow-md text-center" onclick="openModal('region-2')">
+                    <i class="fas fa-globe-europe text-4xl text-purple-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-purple-800">Europe</h3>
+                    <p class="text-purple-700 mt-2">The center of industrialization and imperialism</p>
+                </div>
+                
+                <div class="region-box bg-purple-100 p-6 rounded-lg shadow-md text-center" onclick="openModal('region-3')">
+                    <i class="fas fa-globe-asia text-4xl text-purple-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-purple-800">Asia</h3>
+                    <p class="text-purple-700 mt-2">From colonies to emerging economies</p>
+                </div>
+                
+                <div class="region-box bg-purple-100 p-6 rounded-lg shadow-md text-center" onclick="openModal('region-4')">
+                    <i class="fas fa-globe-africa text-4xl text-purple-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-purple-800">Africa</h3>
+                    <p class="text-purple-700 mt-2">Colonization, resources, and labor</p>
+                </div>
+                
+                <div class="region-box bg-purple-100 p-6 rounded-lg shadow-md text-center" onclick="openModal('region-5')">
+                    <i class="fas fa-monument text-4xl text-purple-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-purple-800">India</h3>
+                    <p class="text-purple-700 mt-2">From colony to independent nation</p>
+                </div>
+                
+                <div class="region-box bg-purple-100 p-6 rounded-lg shadow-md text-center" onclick="openModal('region-6')">
+                    <i class="fas fa-globe text-4xl text-purple-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-purple-800">Global Institutions</h3>
+                    <p class="text-purple-700 mt-2">The frameworks of the global economy</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Figures -->
+        <section class="mb-16">
+            <h2 class="section-title text-3xl text-teal-800">Key Figures in the Global Economy</h2>
+            
+            <p class="mb-8">Click on each figure to learn more about their contributions to the making of the global world.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="figure-card bg-white p-6 rounded-lg shadow-md text-center" onclick="openModal('figure-1')">
+                    <div class="w-24 h-24 mx-auto rounded-full bg-teal-100 flex items-center justify-center mb-4">
+                        <i class="fas fa-user text-3xl text-teal-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-teal-800">Henry Ford</h3>
+                    <p class="text-teal-700 mt-2">Revolutionized mass production</p>
+                </div>
+                
+                <div class="figure-card bg-white p-6 rounded-lg shadow-md text-center" onclick="openModal('figure-2')">
+                    <div class="w-24 h-24 mx-auto rounded-full bg-teal-100 flex items-center justify-center mb-4">
+                        <i class="fas fa-user text-3xl text-teal-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-teal-800">John Maynard Keynes</h3>
+                    <p class="text-teal-700 mt-2">Influential economist at Bretton Woods</p>
+                </div>
+                
+                <div class="figure-card bg-white p-6 rounded-lg shadow-md text-center" onclick="openModal('figure-3')">
+                    <div class="w-24 h-24 mx-auto rounded-full bg-teal-100 flex items-center justify-center mb-4">
+                        <i class="fas fa-user text-3xl text-teal-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-teal-800">Jawaharlal Nehru</h3>
+                    <p class="text-teal-700 mt-2">India's economic vision post-independence</p>
+                </div>
+                
+                <div class="figure-card bg-white p-6 rounded-lg shadow-md text-center" onclick="openModal('figure-4')">
+                    <div class="w-24 h-24 mx-auto rounded-full bg-teal-100 flex items-center justify-center mb-4">
+                        <i class="fas fa-user text-3xl text-teal-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-teal-800">Richard Nixon</h3>
+                    <p class="text-teal-700 mt-2">Ended the Bretton Woods system</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Glossary -->
+        <section class="mb-16">
+            <h2 class="section-title text-3xl text-amber-800">Glossary of Key Terms</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-xl font-semibold text-amber-700 mb-4">Corn Laws</h3>
+                    <p>Refer to the laws introduced in Britain to protect its agriculture by imposing heavy duty on imported grains. These were abolished in 1846, marking Britain's shift toward free trade policies.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-xl font-semibold text-amber-700 mb-4">Rinderpest</h3>
+                    <p>A fast-spreading disease of cattle, also known as cattle plague. The word 'rinderpest' is German and means 'cattle-plague'. It caused widespread devastation in Africa in the 1890s.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-xl font-semibold text-amber-700 mb-4">Indentured Labor</h3>
+                    <p>A system where laborers were hired under contracts which promised return passage after they had worked for a specified period (usually five years) on plantations. Many Indians migrated as indentured laborers in the 19th century.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-xl font-semibold text-amber-700 mb-4">Great Depression</h3>
+                    <p>A severe worldwide economic depression that began in the US in 1929 and lasted until the late 1930s. It was the longest and most severe depression experienced by the industrialized Western world.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-xl font-semibold text-amber-700 mb-4">Bretton Woods System</h3>
+                    <p>The international monetary system established after World War II, named after the location of the conference (Bretton Woods, New Hampshire) where it was designed. It established fixed exchange rates with the US dollar as the key currency.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-xl font-semibold text-amber-700 mb-4">Marshall Plan</h3>
+                    <p>The European Recovery Programme (popularly known as the Marshall Plan after the US Secretary of State who announced it) under which the US provided financial aid to rebuild Western European economies after the end of World War II.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-xl font-semibold text-amber-700 mb-4">Tariff</h3>
+                    <p>A tax or duty to be paid on particular classes of imports or exports. Tariffs are often used to protect domestic industries from foreign competition.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-xl font-semibold text-amber-700 mb-4">Globalization</h3>
+                    <p>The process of increasing interaction and integration among people, companies, and governments worldwide. It has accelerated since the late 20th century due to advances in transportation and communication technology.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Study Tips & Exam Prep -->
+        <section class="mb-16">
+            <h2 class="section-title text-3xl text-pink-800">Study Tips & Exam Preparation</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-pink-700 mb-4">Key Points to Remember</h3>
+                    
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-pink-600 mt-1 mr-3"></i>
+                            <span>The silk routes connected Asia, Europe, and northern Africa, facilitating trade and cultural exchange in the pre-modern world.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-pink-600 mt-1 mr-3"></i>
+                            <span>European colonization of the Americas led to the exchange of goods, crops, people, and diseases, profoundly transforming both the Americas and Europe.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-pink-600 mt-1 mr-3"></i>
+                            <span>The 19th century saw the formation of a global agricultural economy, facilitated by technology like railways, steamships, and telegraphs.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-pink-600 mt-1 mr-3"></i>
+                            <span>Indentured labor migration from India was a significant phenomenon in the 19th century, with laborers going to work in plantations across the world.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-pink-600 mt-1 mr-3"></i>
+                            <span>The First World War caused economic disruption, leading to changes in the global financial system with the US replacing Britain as the leading economic power.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-pink-600 mt-1 mr-3"></i>
+                            <span>The Great Depression (1929-1930s) caused worldwide economic hardship, affecting trade, production, employment, and incomes.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-pink-600 mt-1 mr-3"></i>
+                            <span>The Bretton Woods Conference (1944) established the IMF and World Bank to help stabilize the post-war global economy.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-pink-600 mt-1 mr-3"></i>
+                            <span>The period from the 1970s onwards saw a new phase of globalization, driven by technological advances and changes in economic policies.</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold text-pink-700 mb-4">Exam-Focused Questions</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-pink-50 p-4 rounded-lg">
+                            <p class="font-semibold text-pink-800">1. Explain how the Silk Routes played an important role in establishing pre-modern trade connections across continents.</p>
+                        </div>
+                        
+                        <div class="bg-pink-50 p-4 rounded-lg">
+                            <p class="font-semibold text-pink-800">2. Discuss the impact of new crops from the Americas on the world population and economy after Columbus's discovery in 1492.</p>
+                        </div>
+                        
+                        <div class="bg-pink-50 p-4 rounded-lg">
+                            <p class="font-semibold text-pink-800">3. How did technological innovations in the 19th century contribute to the growth of the global economy?</p>
+                        </div>
+                        
+                        <div class="bg-pink-50 p-4 rounded-lg">
+                            <p class="font-semibold text-pink-800">4. Explain the factors that led to indentured labor migration from India in the 19th century.</p>
+                        </div>
+                        
+                        <div class="bg-pink-50 p-4 rounded-lg">
+                            <p class="font-semibold text-pink-800">5. Analyze the economic impact of the First World War on the global economy and specifically on India.</p>
+                        </div>
+                        
+                        <div class="bg-pink-50 p-4 rounded-lg">
+                            <p class="font-semibold text-pink-800">6. What were the causes and consequences of the Great Depression on the world economy?</p>
+                        </div>
+                        
+                        <div class="bg-pink-50 p-4 rounded-lg">
+                            <p class="font-semibold text-pink-800">7. Discuss the objectives and main features of the Bretton Woods Agreement. What role did it play in shaping the post-war economic order?</p>
+                        </div>
+                        
+                        <div class="bg-pink-50 p-4 rounded-lg">
+                            <p class="font-semibold text-pink-800">8. Describe India's role in the international economy in the colonial period and how it changed after independence.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center pt-8 border-t border-gray-200">
+            <p class="text-gray-600">NCERT Class 10 History Chapter 3: The Making of a Global World</p>
+            <p class="text-gray-500 text-sm mt-2">Based on NCERT textbook content</p>
+        </footer>
+
+        <!-- Modal for Timeline Events -->
+        <div id="event-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeModal()">&times;</span>
+                <div id="modal-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        function openModal(id) {
+            document.getElementById('event-modal').style.display = 'block';
+            
+            let content = "";
+            
+            // Timeline events
+            if (id === 'timeline-1') {
+                content = `
+                    <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-2">1492: Columbus Reaches America</h3>
+                        <p class="text-blue-700 font-semibold">A Turning Point in Global History</p>
+                    </div>
+                    <p class="mb-4">Christopher Columbus's voyage in 1492, sponsored by the Spanish monarchy, led to the European "discovery" of the Americas. This event triggered one of the most significant exchanges of plants, animals, humans, diseases, and cultures in world history, often called the "Columbian Exchange."</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">Economic Impact</h4>
+                            <p>Led to the flow of precious metals like silver from America to Europe and Asia, transforming trade patterns and creating new networks of exchange.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">Biological Exchange</h4>
+                            <p>European diseases devastated native populations, while American crops like potatoes, maize, and tomatoes revolutionized world food systems.</p>
+                        </div>
+                    </div>
+                    <p>This event marks the beginning of European colonization in the Americas and the creation of new global connections that would eventually lead to the modern globalized world.</p>
+                `;
+            } else if (id === 'timeline-2') {
+                content = `
+                    <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-2">1600s: European Trading Companies in Asia</h3>
+                        <p class="text-blue-700 font-semibold">Commercial Empires Take Shape</p>
+                    </div>
+                    <p class="mb-4">The 1600s saw the establishment of European trading companies in Asia, including the British East India Company (founded in 1600), the Dutch East India Company (VOC, founded in 1602), and others. These companies were granted monopoly rights by their respective governments to trade with Asia.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">Commercial Power</h4>
+                            <p>These companies were not just businesses but had quasi-governmental powers, including the right to maintain armies, mint money, and govern territories.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">From Trade to Rule</h4>
+                            <p>What began as commercial ventures eventually led to political control. The British East India Company, for example, gradually took control of large parts of India, laying the foundation for British colonial rule.</p>
+                        </div>
+                    </div>
+                    <p>These trading companies played a crucial role in integrating Asian economies into a European-dominated world system, fundamentally altering trade patterns and power relations across the globe.</p>
+                `;
+            } else if (id === 'timeline-3') {
+                content = `
+                    <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-2">1815-1914: Emergence of Global Agricultural Economy</h3>
+                        <p class="text-blue-700 font-semibold">The First Wave of Modern Globalization</p>
+                    </div>
+                    <p class="mb-4">This century saw the emergence of a truly global economy, particularly in agriculture. Food began to be produced for markets around the world rather than for local consumption.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">New Food Geography</h4>
+                            <p>Countries like Eastern Europe, Russia, America, and Australia became specialized in wheat production, while Argentina and New Zealand focused on meat exports. Britain increasingly relied on imported food rather than domestic production.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">Technological Enablers</h4>
+                            <p>Railways, steamships, and refrigeration technology made it possible to transport food across vast distances, fundamentally changing dietary patterns and trade relationships.</p>
+                        </div>
+                    </div>
+                    <p>This period represents the first phase of modern economic globalization, characterized by increased trade, migration, and capital flows across national boundaries, all facilitated by new technologies and liberal economic policies.</p>
+                `;
+            } else if (id === 'timeline-4') {
+                content = `
+                    <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-2">1845-1849: Potato Famine in Ireland</h3>
+                        <p class="text-blue-700 font-semibold">Global Connections and Local Disaster</p>
+                    </div>
+                    <p class="mb-4">The Great Famine in Ireland, caused by potato blight disease, led to the death of approximately one million people and the emigration of another million. This tragedy illustrates the vulnerabilities created by global crop exchanges and agricultural specialization.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">Columbian Exchange Consequences</h4>
+                            <p>The potato, originally from the Americas, had become a staple food in Ireland. The population had grown dependent on this single crop, making them vulnerable when the blight hit.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">Migration Patterns</h4>
+                            <p>The famine triggered large-scale Irish emigration, particularly to the United States, fundamentally changing the demographic and cultural landscape of both Ireland and America.</p>
+                        </div>
+                    </div>
+                    <p>The Irish Potato Famine demonstrates how global connections could lead to local disasters, and how these disasters in turn could reshape global migration patterns and cultural identities.</p>
+                `;
+            } else if (id === 'timeline-5') {
+                content = `
+                    <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-2">1846: Abolition of Corn Laws in Britain</h3>
+                        <p class="text-blue-700 font-semibold">A Landmark in Free Trade Policy</p>
+                    </div>
+                    <p class="mb-4">The repeal of the Corn Laws in 1846 marked Britain's shift toward free trade policies. These laws had imposed heavy duties on imported grain, protecting British agriculture but raising food prices for consumers.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">Industrial Interests</h4>
+                            <p>The repeal was championed by industrial interests who wanted cheaper food for their workers (thus allowing lower wages) and greater export opportunities for British manufactured goods.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">Global Impact</h4>
+                            <p>This policy shift encouraged Britain to import food from around the world, stimulating agricultural production in places like the Americas, Australia, and Eastern Europe. Britain became increasingly dependent on global food supply chains.</p>
+                        </div>
+                    </div>
+                    <p>The abolition of the Corn Laws symbolized the ascendancy of industrial capitalism and free trade ideology, which would come to dominate global economic relations in the later nineteenth century.</p>
+                `;
+            } else if (id === 'timeline-6') {
+                content = `
+                    <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-2">1890s: Rinderpest (Cattle Plague) in Africa</h3>
+                        <p class="text-blue-700 font-semibold">Disease as an Instrument of Colonization</p>
+                    </div>
+                    <p class="mb-4">The 1890s witnessed the devastation caused by rinderpest (cattle plague) in Africa. This was a fast-spreading disease of cattle that was brought to Africa by infected cattle imported from British Asia to feed Italian soldiers invading Eritrea.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">Ecological Disaster</h4>
+                            <p>The disease spread rapidly across the continent, killing an estimated 90% of cattle in many regions. This had catastrophic effects on African societies that depended on cattle for food, farming, and wealth.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">Colonial Opportunity</h4>
+                            <p>European colonial powers took advantage of the crisis. With their livelihoods destroyed, many Africans were forced to work for European settlers, mining companies, and plantations for wages.</p>
+                        </div>
+                    </div>
+                    <p>The rinderpest epidemic demonstrates how disease could serve as an unintentional but effective instrument of colonization, fundamentally disrupting indigenous economies and facilitating European control over African land and labor.</p>
+                `;
+            } else if (id === 'timeline-7') {
+                content = `
+                    <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-2">1914-1918: First World War</h3>
+                        <p class="text-blue-700 font-semibold">Global Conflict and Economic Transformation</p>
+                    </div>
+                    <p class="mb-4">The First World War was a global conflict that dramatically transformed economic relationships worldwide. It marked the end of an era of relatively peaceful economic globalization and ushered in decades of instability.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">Economic Disruption</h4>
+                            <p>The war disrupted international economic networks. Britain borrowed heavily from the US, transforming America from a debtor to a creditor nation. War expenditure led to inflation, budget deficits, and financial instability.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">Industrial Warfare</h4>
+                            <p>The war saw unprecedented use of industrial technologies in combat, requiring massive mobilization of industrial resources. It accelerated industrial development in some regions while causing destruction in others.</p>
+                        </div>
+                    </div>
+                    <p>In India, the war meant increased taxes, rising prices, and forced recruitment of soldiers. The economic hardships were compounded by crop failures in 1918-19 and influenza epidemics, creating famine-like conditions in many regions.</p>
+                `;
+            } else if (id === 'timeline-8') {
+                content = `
+                    <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-2">1920s: Mass Production and Mass Consumption in the US</h3>
+                        <p class="text-blue-700 font-semibold">The American Economic Boom</p>
+                    </div>
+                    <p class="mb-4">The 1920s saw the US economy boom with the rise of mass production and mass consumption. This period, sometimes known as the "Roaring Twenties," created a new economic model centered on consumer goods and American industrial efficiency.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">Fordism</h4>
+                            <p>Henry Ford's assembly-line production methods revolutionized manufacturing. By moving the car on a conveyor belt and having each worker perform a single task repeatedly, Ford dramatically increased efficiency and reduced costs, making the Model T affordable for middle-class Americans.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">Consumer Culture</h4>
+                            <p>Mass consumption was encouraged through advertising, consumer credit, and department stores. New products like automobiles, refrigerators, washing machines, and radios transformed American lifestyles.</p>
+                        </div>
+                    </div>
+                    <p>While the 1920s boom created prosperity for many Americans, it was built on fragile foundations. Agricultural distress, unequal distribution of wealth, stock market speculation, and excessive consumer debt would contribute to the Great Depression that followed.</p>
+                `;
+            } else if (id === 'timeline-9') {
+                content = `
+                    <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-2">1929-1930s: Great Depression</h3>
+                        <p class="text-blue-700 font-semibold">Global Economic Crisis</p>
+                    </div>
+                    <p class="mb-4">The Great Depression was the most severe worldwide economic downturn of the 20th century. Beginning with the Wall Street Crash of 1929, it affected virtually every country in the world, though the timing and intensity varied.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">Causes and Spread</h4>
+                            <p>The crisis began in the US but quickly spread globally through trade, finance, and psychological effects. Contributing factors included overproduction, unequal income distribution, stock market speculation, and weak banking systems.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">Protectionist Responses</h4>
+                            <p>Many countries adopted protectionist measures to safeguard domestic economies. The US Smoot-Hawley Tariff of 1930 raised import duties, triggering retaliatory measures from other countries. This protectionism worsened the global economic situation.</p>
+                        </div>
+                    </div>
+                    <p>In India, the Depression further reduced already declining agricultural prices. Despite falling prices, colonial authorities refused to reduce revenue demands, intensifying rural hardship. The crisis contributed to growing anti-colonial sentiment and support for the nationalist movement.</p>
+                `;
+            } else if (id === 'timeline-10') {
+                content = `
+                    <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-2">1939-1945: Second World War</h3>
+                        <p class="text-blue-700 font-semibold">Global Conflict and Economic Transformation</p>
+                    </div>
+                    <p class="mb-4">The Second World War was even more globally extensive and destructive than the First. It transformed the world economy and political order, ending European dominance and establishing the US and USSR as superpowers.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">War Economy</h4>
+                            <p>The war demanded full economic mobilization. Governments took unprecedented control over economies, directing resources toward military production. This ended the Great Depression through massive government spending and employment.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">US Economic Dominance</h4>
+                            <p>The war devastated European economies but strengthened the US. America emerged as the dominant economic power, accounting for nearly half of world industrial production and holding most of the world's gold reserves.</p>
+                        </div>
+                    </div>
+                    <p>In India, the war had contradictory effects. While it increased demand for Indian goods and boosted industrial production, it also caused inflation and hardship for ordinary people. The war years also saw intensified struggles for independence, culminating in the Quit India Movement of 1942.</p>
+                `;
+            } else if (id === 'timeline-11') {
+                content = `
+                    <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-2">1944: Bretton Woods Conference</h3>
+                        <p class="text-blue-700 font-semibold">Creating a New International Economic Order</p>
+                    </div>
+                    <p class="mb-4">The United Nations Monetary and Financial Conference, held in July 1944 at Bretton Woods, New Hampshire, USA, established the framework for the post-war international economic system. It was attended by delegates from 44 Allied nations.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">Key Institutions</h4>
+                            <p>The conference created two critical institutions: the International Monetary Fund (IMF) to maintain exchange rate stability and provide temporary financial assistance to countries, and the International Bank for Reconstruction and Development (World Bank) to finance post-war reconstruction and development.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">Dollar-Gold Standard</h4>
+                            <p>The system established fixed exchange rates pegged to the US dollar, which in turn was convertible to gold at $35 per ounce. This made the dollar the world's reserve currency and cemented America's dominant position in the global economy.</p>
+                        </div>
+                    </div>
+                    <p>The Bretton Woods system aimed to avoid the economic nationalism and instability of the interwar period. It provided the framework for unprecedented growth in international trade and investment in the post-war decades, often called the "golden age of capitalism."</p>
+                `;
+            } else if (id === 'timeline-12') {
+                content = `
+                    <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-2">1947: India Gains Independence</h3>
+                        <p class="text-blue-700 font-semibold">Economic Implications of Decolonization</p>
+                    </div>
+                    <p class="mb-4">India's independence in 1947 marked not just a political transformation but also the beginning of a new economic era. After nearly two centuries of colonial rule that had fundamentally shaped India's economic structure, the newly independent nation faced the challenge of charting its own economic path.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">Colonial Legacy</h4>
+                            <p>India inherited an economy shaped by colonial interests: a large agricultural sector oriented toward export crops, limited industrial development, and an infrastructure designed primarily to extract resources and facilitate British trade.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">Planning for Development</h4>
+                            <p>Under Prime Minister Nehru, India adopted a mixed economy approach with state-led industrialization and five-year plans. The focus was on building heavy industries, achieving self-reliance, and reducing dependence on imports.</p>
+                        </div>
+                    </div>
+                    <p>Independence allowed India to reorient its economy toward national development goals rather than colonial interests. While continuing to engage with the global economy, India now had the autonomy to determine its own economic policies, trade relationships, and development priorities.</p>
+                `;
+            } else if (id === 'timeline-13') {
+                content = `
+                    <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-2">1971: End of the Bretton Woods System</h3>
+                        <p class="text-blue-700 font-semibold">A New Era in International Finance</p>
+                    </div>
+                    <p class="mb-4">In August 1971, US President Richard Nixon unilaterally ended the convertibility of the US dollar to gold, effectively terminating the Bretton Woods system of fixed exchange rates that had governed the international monetary system since 1944.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">Reasons for Collapse</h4>
+                            <p>The system collapsed due to growing US trade deficits, inflation from Vietnam War expenses, and declining US gold reserves. Foreign governments increasingly sought to convert their dollar holdings to gold, threatening America's ability to maintain the fixed exchange rate.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">New Financial Order</h4>
+                            <p>The end of Bretton Woods led to a system of floating exchange rates. Currencies were now valued based on market forces rather than fixed to the dollar. This increased exchange rate volatility but also provided more flexibility for national economic policies.</p>
+                        </div>
+                    </div>
+                    <p>This transition marked the beginning of a new era in international finance characterized by increased capital mobility, financial deregulation, and the growing importance of private financial institutions. It removed a key stabilizing element from the international economic system but also freed countries from the constraints of maintaining fixed exchange rates.</p>
+                `;
+            } else if (id === 'timeline-14') {
+                content = `
+                    <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-2">1970s onwards: New Phase of Globalization</h3>
+                        <p class="text-blue-700 font-semibold">Information Technology and Economic Integration</p>
+                    </div>
+                    <p class="mb-4">From the 1970s onward, a new phase of globalization emerged, characterized by unprecedented levels of global economic integration. This phase was driven by technological advances, policy changes, and the changing organization of production.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">Technological Revolution</h4>
+                            <p>The information and communication technology revolution transformed global connectivity. Satellite communications, fiber optics, the internet, and mobile technology compressed time and space, allowing for instant global communication and coordination.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">Policy Shifts</h4>
+                            <p>Many countries adopted policies of economic liberalization, deregulation, and privatization. Trade barriers were reduced through multilateral agreements like GATT/WTO and regional trade blocs. Capital controls were eased, increasing international financial flows.</p>
+                        </div>
+                    </div>
+                    <p>Multinational corporations became increasingly important, organizing production across national boundaries through global value chains. This period saw the rise of outsourcing and offshoring, as companies took advantage of wage differentials between countries. While this integration created new economic opportunities, it also generated new forms of inequality and vulnerability to global economic shocks.</p>
+                `;
+            } else if (id === 'timeline-15') {
+                content = `
+                    <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-2">1991: India's Economic Liberalization</h3>
+                        <p class="text-blue-700 font-semibold">Integration with the Global Economy</p>
+                    </div>
+                    <p class="mb-4">In 1991, facing a severe balance of payments crisis, India embarked on a program of economic reforms that marked a fundamental shift in its economic policy. These reforms, often referred to as "liberalization," moved India away from its previous model of state-led development toward greater integration with the global economy.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">Key Reforms</h4>
+                            <p>The reforms included dismantling industrial licensing, reducing trade barriers, opening up to foreign investment, reforming capital markets, and reducing government control over the economy. This marked a departure from the "License Raj" that had characterized India's economy since independence.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700">Economic Impact</h4>
+                            <p>The reforms unleashed higher economic growth, increased foreign investment, expanded the service sector (particularly information technology), and created a more dynamic private sector. India became more integrated into global trade and financial networks.</p>
+                        </div>
+                    </div>
+                    <p>India's economic liberalization was part of a broader global trend in the 1990s, as many developing countries adopted market-oriented reforms following the collapse of Soviet communism. While the reforms have contributed to significant economic growth, debates continue about their impact on inequality, poverty reduction, and industrial development.</p>
+                `;
+            }
+            
+            // Regions
+            else if (id === 'region-1') {
+                content = `
+                    <div class="bg-purple-50 p-4 rounded-lg mb-4">
+                        <h3 class="text-2xl font-bold text-purple-800 mb-2">The Americas</h3>
+                        <p class="text-purple-700 font-semibold">From Colonization to Economic Powerhouse</p>
+                    </div>
+                    <p class="mb-4">The Americas' role in the global economy transformed dramatically over time. Following Columbus's voyage in 1492, European colonization of the Americas had profound economic implications for the entire world.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-purple-700">Colonial Era (16th-18th centuries)</h4>
+                            <ul class="list-disc list-inside space-y-2 mt-2">
+                                <li>Silver mines in present-day Peru and Mexico funded European trade with Asia</li>
+                                <li>Plantation economies using slave labor produced sugar, cotton, tobacco for European markets</li>
+                                <li>Native populations decimated by disease, warfare, and exploitation</li>
+                                <li>New crops from the Americas (potatoes, maize, tomatoes) transformed global food systems</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-purple-700">19th Century Developments</h4>
+                            <ul class="list-disc list-inside space-y-2 mt-2">
+                                <li>Independence movements across Latin America</li>
+                                <li>United States expansion and industrialization</li>
+                                <li>Americas became major food exporters (wheat, meat) to Europe</li>
+                                <li>Destination for millions of European migrants</li>
+                                <li>Railroad construction opened interior regions for settlement and agriculture</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="mb-4">The United States emerged as a major economic power by the late 19th century. World War I transformed the US from an international debtor to a creditor. By the 1920s, the US pioneered mass production and mass consumption under the "Fordist" model.</p>
+                    <p>After World War II, the United States became the world's dominant economic power, with the US dollar serving as the global reserve currency under the Bretton Woods system. US-based multinational corporations and financial institutions played leading roles in shaping the post-war global economy.</p>
+                `;
+            } else if (id === 'region-2') {
+                content = `
+                    <div class="bg-purple-50 p-4 rounded-lg mb-4">
+                        <h3 class="text-2xl font-bold text-purple-800 mb-2">Europe</h3>
+                        <p class="text-purple-700 font-semibold">The Center of Industrialization and Imperialism</p>
+                    </div>
+                    <p class="mb-4">For much of the period covered in this chapter, Europe—particularly Western Europe—was the center of the global economic system. European nations pioneered industrialization, built vast colonial empires, and established the rules and institutions of international trade and finance.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-purple-700">Industrial Revolution and Trade</h4>
+                            <ul class="list-disc list-inside space-y-2 mt-2">
+                                <li>Britain led the Industrial Revolution, becoming the "workshop of the world"</li>
+                                <li>Other European powers industrialized in the 19th century</li>
+                                <li>European nations promoted free trade when it benefited them (e.g., Britain's repeal of the Corn Laws in 1846)</li>
+                                <li>Europe imported raw materials from colonies and exported manufactured goods</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-purple-700">Colonial Expansion</h4>
+                            <ul class="list-disc list-inside space-y-2 mt-2">
+                                <li>European powers scrambled for colonies in Africa and Asia in the late 19th century</li>
+                                <li>Colonial possessions provided markets, raw materials, and investment opportunities</li>
+                                <li>Britain built the largest empire, with colonies across the globe</li>
+                                <li>Colonial economies were structured to benefit European interests, creating relationships of dependency</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="mb-4">The World Wars marked a turning point for Europe's global position. The First World War (1914-18) severely damaged European economies and required massive borrowing from the United States. The Second World War (1939-45) further devastated European infrastructure and manufacturing capacity.</p>
+                    <p>After World War II, Western Europe rebuilt with American assistance under the Marshall Plan. European integration began with the European Coal and Steel Community and eventually led to the European Union. While no longer globally dominant, Europe remains a major economic center and an important hub in the global economy.</p>
+                `;
+            } else if (id === 'region-3') {
+                content = `
+                    <div class="bg-purple-50 p-4 rounded-lg mb-4">
+                        <h3 class="text-2xl font-bold text-purple-800 mb-2">Asia</h3>
+                        <p class="text-purple-700 font-semibold">From Colonies to Emerging Economies</p>
+                    </div>
+                    <p class="mb-4">Asia's role in the global economy has undergone dramatic transformations. In pre-modern times, Asian civilizations were centers of trade and manufacturing, with China and India together accounting for more than half of global manufacturing output before the Industrial Revolution.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-purple-700">Colonial Period</h4>
+                            <ul class="list-disc list-inside space-y-2 mt-2">
+                                <li>European trading companies established footholds in the 16th-17th centuries</li>
+                                <li>India became the "jewel in the crown" of the British Empire</li>
+                                <li>China forced to open markets through "unequal treaties" after the Opium Wars</li>
+                                <li>Southeast Asian regions colonized by British, French, Dutch, Spanish, and later American powers</li>
+                                <li>Colonial economies restructured to produce raw materials and cash crops for export</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-purple-700">Labor and Migration</h4>
+                            <ul class="list-disc list-inside space-y-2 mt-2">
+                                <li>Indian indentured laborers sent to work on plantations across the British Empire</li>
+                                <li>Chinese migrants formed labor forces in Southeast Asia, Americas, and Australia</li>
+                                <li>Asian labor built railroads, worked in mines, and developed plantation agriculture globally</li>
+                                <li>Asian merchants and traders created diaspora networks that facilitated commerce</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="mb-4">Japan became the first Asian nation to industrialize in the late 19th century, following the Meiji Restoration of 1868. It emerged as an imperial power itself, colonizing Korea and Taiwan and invading parts of China.</p>
+                    <p>After World War II and decolonization, Asian countries pursued various development strategies. Japan achieved rapid economic growth to become the world's second-largest economy by the 1980s. More recently, China's economic rise has dramatically reshaped the global economy, returning Asia to a central position in world trade and manufacturing.</p>
+                `;
+            } else if (id === 'region-4') {
+                content = `
+                    <div class="bg-purple-50 p-4 rounded-lg mb-4">
+                        <h3 class="text-2xl font-bold text-purple-800 mb-2">Africa</h3>
+                        <p class="text-purple-700 font-semibold">Colonization, Resources, and Labor</p>
+                    </div>
+                    <p class="mb-4">Africa's integration into the global economy has been profoundly shaped by colonialism, the slave trade, and resource extraction. African societies had their own trade networks and economic systems before European contact, but these were disrupted and transformed by external forces.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-purple-700">Slave Trade and Early Colonialism</h4>
+                            <ul class="list-disc list-inside space-y-2 mt-2">
+                                <li>Trans-Atlantic slave trade (16th-19th centuries) forcibly removed millions of Africans to the Americas</li>
+                                <li>Slave trade disrupted African societies and economies</li>
+                                <li>European coastal trading posts established for gold, ivory, and other commodities</li>
+                                <li>Berlin Conference (1884-85) formalized the "Scramble for Africa" among European powers</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-purple-700">Colonial Economy</h4>
+                            <ul class="list-disc list-inside space-y-2 mt-2">
+                                <li>Colonies structured to provide raw materials (minerals, agricultural products) to Europe</li>
+                                <li>Forced labor systems implemented in many colonies</li>
+                                <li>Infrastructure (railroads, ports) built primarily to facilitate resource extraction</li>
+                                <li>Traditional economies disrupted by cash crop requirements and taxation</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="mb-4">The rinderpest epidemic of the 1890s provides a striking example of how global connections affected Africa. This cattle disease, brought by infected cattle imported from British Asia to feed Italian soldiers, killed about 90% of cattle in many regions. This ecological disaster weakened African societies and made them more vulnerable to European colonization.</p>
+                    <p>After independence (mostly in the 1950s-60s), African nations faced the challenge of developing economies that had been structured around colonial needs. Many remained dependent on exporting primary commodities, making them vulnerable to price fluctuations in global markets. More recently, some African countries have achieved higher growth rates, though the continent's integration into the global economy continues to reflect historical patterns of unequal exchange.</p>
+                `;
+            } else if (id === 'region-5') {
+                content = `
+                    <div class="bg-purple-50 p-4 rounded-lg mb-4">
+                        <h3 class="text-2xl font-bold text-purple-800 mb-2">India</h3>
+                        <p class="text-purple-700 font-semibold">From Colony to Independent Nation</p>
+                    </div>
+                    <p class="mb-4">India's place in the global economy has evolved dramatically over the centuries. From being a major manufacturing center in the pre-colonial era to becoming a British colony and then an independent nation pursuing its own development path.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-purple-700">Colonial Period</h4>
+                            <ul class="list-disc list-inside space-y-2 mt-2">
+                                <li>British East India Company established trading posts in the 17th century, gradually expanded control</li>
+                                <li>Traditional industries (textiles) undermined by British manufactured imports</li>
+                                <li>Indian agriculture reoriented to produce cash crops (cotton, jute, tea, indigo) for export</li>
+                                <li>India served as a captive market for British manufactures</li>
+                                <li>India's trade surplus with Britain helped finance Britain's trade deficit with the rest of the world</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-purple-700">Indentured Labor</h4>
+                            <ul class="list-disc list-inside space-y-2 mt-2">
+                                <li>After slavery's abolition, indentured workers from India sent to British colonies worldwide</li>
+                                <li>Workers signed contracts for 5-year terms, with promised return passage</li>
+                                <li>Most indentured workers came from present-day Uttar Pradesh, Bihar, central India, and Tamil Nadu</li>
+                                <li>Worked on sugar plantations in Caribbean, Fiji, Mauritius; railways and mines in Africa and Southeast Asia</li>
+                                <li>Established Indian diaspora communities across the world</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="mb-4">World War I and the Great Depression had severe impacts on India's economy. War-related inflation, requisitioning of food supplies, and forced recruitment caused hardship. During the Depression, agricultural prices collapsed, but revenue demands remained high, intensifying rural distress.</p>
+                    <p>After independence in 1947, India adopted a mixed economy approach, emphasizing self-reliance and state-led industrialization. While maintaining some international trade, India was relatively insulated from global markets until economic liberalization began in 1991. Since then, India has become more integrated with the global economy, particularly in services, information technology, and manufacturing sectors.</p>
+                `;
+            } else if (id === 'region-6') {
+                content = `
+                    <div class="bg-purple-50 p-4 rounded-lg mb-4">
+                        <h3 class="text-2xl font-bold text-purple-800 mb-2">Global Institutions</h3>
+                        <p class="text-purple-700 font-semibold">The Frameworks of the Global Economy</p>
+                    </div>
+                    <p class="mb-4">International institutions have played a crucial role in shaping the global economic order, particularly in the post-World War II period. These organizations establish rules, provide financing, and create forums for international economic cooperation.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-purple-700">Bretton Woods Institutions</h4>
+                            <ul class="list-disc list-inside space-y-2 mt-2">
+                                <li><strong>International Monetary Fund (IMF):</strong> Established 1944 to monitor exchange rates and lend to countries with balance of payments difficulties</li>
+                                <li><strong>World Bank:</strong> Created to finance post-war reconstruction and later development projects, particularly in developing countries</li>
+                                <li>Both institutions initially reflected US dominance in the post-war world order</li>
+                                <li>Voting power proportional to financial contributions, giving developed countries greater influence</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-purple-700">Trade Organizations</h4>
+                            <ul class="list-disc list-inside space-y-2 mt-2">
+                                <li><strong>GATT (General Agreement on Tariffs and Trade):</strong> Established 1947 to reduce trade barriers through multilateral negotiations</li>
+                                <li><strong>WTO (World Trade Organization):</strong> Succeeded GATT in 1995, with broader mandate and stronger dispute settlement mechanisms</li>
+                                <li>Regional trade blocs emerged in different parts of the world (EU, NAFTA, ASEAN, etc.)</li>
+                                <li>Trade liberalization promoted global economic integration but also created winners and losers</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="mb-4">The Bretton Woods system established a fixed exchange rate regime with the US dollar as the key currency, convertible to gold at $35 per ounce. This system lasted until 1971, when the US unilaterally ended dollar-gold convertibility, leading to floating exchange rates.</p>
+                    <p>While these institutions have promoted economic stability and growth in many ways, they have also faced criticism for imposing policy conditions on developing countries, prioritizing the interests of wealthy nations, and promoting a "one-size-fits-all" approach to economic development. In recent decades, emerging economies have demanded greater representation in global economic governance, leading to some reforms in these institutions.</p>
+                `;
+            }
+            
+            // Key Figures
+            else if (id === 'figure-1') {
+                content = `
+                    <div class="bg-teal-50 p-4 rounded-lg mb-4">
+                        <h3 class="text-2xl font-bold text-teal-800 mb-2">Henry Ford (1863-1947)</h3>
+                        <p class="text-teal-700 font-semibold">Revolutionized Mass Production</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
+                        <div class="image-container">
+                            <img src="https://cdn.jsdelivr.net/gh/lipika02/NCERTImages@master/HenryFord.jpg" alt="Henry Ford" class="w-full h-auto rounded-lg shadow-lg">
+                        </div>
+                        <div class="col-span-2">
+                            <p class="mb-4">Henry Ford was an American industrialist who revolutionized manufacturing through the development of the assembly line technique of mass production. His innovations transformed not just the automobile industry but the entire concept of industrial production.</p>
+                            
+                            <h4 class="font-semibold text-teal-700 mb-2">Key Contributions:</h4>
+                            <ul class="list-disc list-inside space-y-2 mb-4">
+                                <li>Founded the Ford Motor Company in 1903</li>
+                                <li>Introduced the Model T in 1908, the first affordable automobile for the middle class</li>
+                                <li>Pioneered the moving assembly line in 1913, dramatically reducing production time and costs</li>
+                                <li>Introduced the $5 per day wage in 1914, more than doubling the average factory wage</li>
+                                <li>Created the concept of vertical integration, controlling raw materials through to final product</li>
+                            </ul>
+                            
+                            <p>Ford's assembly line method involved moving the car on a conveyor belt, with each worker repeatedly performing a single task. This increased efficiency dramatically - the time to build a car fell from over 12 hours to just 93 minutes.</p>
+                        </div>
+                    </div>
+                    <div class="note-box">
+                        <p><strong>Global Significance:</strong> Ford's mass production techniques enabled the rise of mass consumption. Higher wages meant workers could afford to buy the products they made, creating a virtuous cycle of production and consumption. This "Fordist" model became the basis for economic growth in many industrialized countries and shaped global manufacturing practices throughout the 20th century.</p>
+                    </div>
+                `;
+            } else if (id === 'figure-2') {
+                content = `
+                    <div class="bg-teal-50 p-4 rounded-lg mb-4">
+                        <h3 class="text-2xl font-bold text-teal-800 mb-2">John Maynard Keynes (1883-1946)</h3>
+                        <p class="text-teal-700 font-semibold">Influential Economist at Bretton Woods</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
+                        <div class="image-container">
+                            <img src="https://cdn.jsdelivr.net/gh/lipika02/NCERTImages@master/JMKeynes.jpg" alt="John Maynard Keynes" class="w-full h-auto rounded-lg shadow-lg">
+                        </div>
+                        <div class="col-span-2">
+                            <p class="mb-4">John Maynard Keynes was a British economist whose ideas fundamentally changed economic theory and policy. His work was particularly influential in shaping the post-World War II international economic order.</p>
+                            
+                            <h4 class="font-semibold text-teal-700 mb-2">Key Contributions:</h4>
+                            <ul class="list-disc list-inside space-y-2 mb-4">
+                                <li>Published "The General Theory of Employment, Interest and Money" (1936), revolutionizing economic thinking during the Great Depression</li>
+                                <li>Advocated for government intervention in the economy, particularly during downturns</li>
+                                <li>Led the British delegation at the Bretton Woods Conference (1944)</li>
+                                <li>Proposed an international clearing union (similar to a global central bank)</li>
+                                <li>Argued that economic policies should aim for full employment</li>
+                            </ul>
+                            
+                            <p>At Bretton Woods, Keynes proposed a more balanced international monetary system than what was ultimately adopted. While his proposal for a global currency ("bancor") was rejected in favor of a dollar-based system, he did help shape the IMF and World Bank, institutions that remain central to the global economy.</p>
+                        </div>
+                    </div>
+                    <div class="note-box">
+                        <p><strong>Global Significance:</strong> Keynes's ideas provided the theoretical foundation for the mixed economies that characterized the post-war period in Western countries. His emphasis on maintaining aggregate demand through government spending during downturns became orthodox policy for decades. The Bretton Woods institutions he helped design created a framework for international economic cooperation that, though modified, continues to shape global economic governance today.</p>
+                    </div>
+                `;
+            } else if (id === 'figure-3') {
+                content = `
+                    <div class="bg-teal-50 p-4 rounded-lg mb-4">
+                        <h3 class="text-2xl font-bold text-teal-800 mb-2">Jawaharlal Nehru (1889-1964)</h3>
+                        <p class="text-teal-700 font-sem
