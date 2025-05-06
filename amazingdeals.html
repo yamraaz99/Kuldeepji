@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazing Dealz - Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #FFEB3B;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+        }
+        .dealz-color {
+            color: #FF9800;
+        }
+        .header-bg {
+            background-color: #FFEB3B;
+        }
+        .btn-dealz {
+            background-color: #FF9800;
+            color: white;
+            transition: all 0.3s;
+        }
+        .btn-dealz:hover {
+            background-color: #F57C00;
+            transform: scale(1.05);
+        }
+        .section-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .feature-icon {
+            background-color: #FFF9C4;
+            color: #FF9800;
+        }
+        .accordion-button {
+            background-color: #FFF9C4;
+            transition: all 0.3s ease;
+        }
+        .accordion-button:hover {
+            background-color: #FFECB3;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .accordion-content.active {
+            max-height: 500px;
+        }
+        .category-pill {
+            background-color: white;
+            border-radius: 20px;
+            padding: 5px 15px;
+            margin: 5px;
+            display: inline-block;
+        }
+        code {
+            background-color: #f5f5f5;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-20">
+    <!-- Navigation -->
+    <nav class="header-bg sticky top-0 z-50 shadow-md p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <h1 class="text-3xl font-bold">
+                    Amazing <span class="dealz-color">Dealz</span>
+                </h1>
+            </div>
+            <div>
+                <a href="#introduction" class="btn-dealz px-4 py-2 rounded-lg font-medium">Documentation</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="header-bg py-16 text-center">
+        <div class="container mx-auto px-4">
+            <h1 class="text-5xl font-bold mb-6">
+                Amazing <span class="dealz-color">Dealz</span> Documentation
+            </h1>
+            <p class="text-xl mb-8">Daily alerts on incredible deals and offers</p>
+            <div class="flex flex-wrap justify-center gap-2 mb-8">
+                <span class="category-pill shadow-sm">All</span>
+                <span class="category-pill shadow-sm">Amazon</span>
+                <span class="category-pill shadow-sm">Flipkart</span>
+                <span class="category-pill shadow-sm">Myntra</span>
+                <span class="category-pill shadow-sm">Other</span>
+            </div>
+            <p class="italic text-lg">A comprehensive guide to understanding how we find magical deals for you...</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <!-- Table of Contents -->
+        <div class="section-card mb-12 p-6">
+            <h2 class="text-2xl font-bold mb-4">Table of Contents</h2>
+            <ol class="list-decimal pl-5 space-y-2">
+                <li><a href="#introduction" class="text-blue-600 hover:underline">Introduction</a></li>
+                <li><a href="#how-it-works" class="text-blue-600 hover:underline">How Amazing Dealz Works</a></li>
+                <li><a href="#user-experience" class="text-blue-600 hover:underline">User Experience</a></li>
+                <li><a href="#key-features" class="text-blue-600 hover:underline">Key Features</a></li>
+                <li><a href="#benefits" class="text-blue-600 hover:underline">Benefits for Users</a></li>
+                <li><a href="#integration" class="text-blue-600 hover:underline">Integration with Partners</a></li>
+                <li><a href="#how-to-use" class="text-blue-600 hover:underline">How to Use Amazing Dealz</a></li>
+                <li><a href="#faqs" class="text-blue-600 hover:underline">FAQs</a></li>
+                <li><a href="#conclusion" class="text-blue-600 hover:underline">Conclusion</a></li>
+            </ol>
+        </div>
+
+        <!-- Introduction Section -->
+        <section id="introduction" class="section-card mb-12 p-6">
+            <h2 class="text-3xl font-bold mb-6">Introduction</h2>
+            <div class="space-y-4">
+                <h3 class="text-2xl font-semibold dealz-color">Overview of the Website</h3>
+                <p class="text-lg">
+                    Amazing Dealz is a cutting-edge platform designed to fetch and update the latest live offers from various sources, providing users with the best deals in real-time. Our advanced technology continuously scans multiple e-commerce platforms including Amazon, Flipkart, and Myntra to ensure you never miss out on a great deal.
+                </p>
+                <p class="text-lg">
+                    In today's fast-paced online shopping environment, deals come and go quickly. Amazing Dealz was created to solve this problem by automatically tracking and presenting the most valuable offers as they appear, eliminating the need for users to manually check multiple websites or miss flash sales.
+                </p>
+                <h3 class="text-2xl font-semibold dealz-color mt-6">Primary Function</h3>
+                <p class="text-lg">
+                    Our primary mission is to help users discover exclusive discounts, deals, and promotions across multiple categories. Whether you're looking for electronics, fashion, home goods, or travel offers, Amazing Dealz aggregates them all in one convenient location.
+                </p>
+                <p class="text-lg">
+                    The platform functions as your personal deal-hunting assistant, working tirelessly behind the scenes to identify genuine savings opportunities and presenting them in an easy-to-navigate interface that helps you make informed purchasing decisions.
+                </p>
+                <div class="bg-yellow-100 border-l-4 border-yellow-500 p-4 mt-6">
+                    <p class="font-semibold">Our Promise:</p>
+                    <p>We're committed to finding magical deals for you, saving both your time and money while ensuring you have access to the best offers available online.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="section-card mb-12 p-6">
+            <h2 class="text-3xl font-bold mb-6">How Amazing Dealz Works</h2>
+            
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-2xl font-semibold dealz-color">Data Fetching Process</h3>
+                    <div class="mt-4 space-y-4">
+                        <p class="text-lg">
+                            Amazing Dealz employs sophisticated web scraping technology to collect real-time offers from trusted merchants and affiliate partners. Our system uses the following methods to ensure accuracy and comprehensiveness:
+                        </p>
+                        <div class="pl-5 space-y-3">
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Automated Web Crawlers</h4>
+                                    <p>Our custom-built crawlers visit partner websites at regular intervals, scanning for newly added offers, price drops, and special promotions.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-plug"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">API Integrations</h4>
+                                    <p>Direct API connections with major retailers allow us to receive real-time deal information as soon as it becomes available in their systems.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-filter"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Data Validation</h4>
+                                    <p>Each offer undergoes validation checks to confirm availability, accuracy of discount calculations, and legitimacy before being displayed to users.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold dealz-color">Updating Mechanism</h3>
+                    <div class="mt-4 space-y-4">
+                        <p class="text-lg">
+                            To ensure that users always have access to the most up-to-date deals, our platform implements a sophisticated updating system:
+                        </p>
+                        <div class="pl-5 space-y-3">
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Real-Time Updates</h4>
+                                    <p>Deals are refreshed every 15 minutes for major retailers and hourly for smaller partners, ensuring that what you see is current and available.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-sync-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Dynamic Content Management</h4>
+                                    <p>Our system automatically removes expired deals and prioritizes new offers, keeping the content fresh and relevant.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-server"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Distributed Processing</h4>
+                                    <p>Our cloud-based architecture allows for parallel processing of multiple data sources simultaneously, reducing the time between when a deal goes live and when it appears on our platform.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold dealz-color">Technology Behind the Magic</h3>
+                    <div class="mt-4 space-y-4">
+                        <p class="text-lg">
+                            Amazing Dealz employs cutting-edge technologies to ensure that our deal discovery process is both efficient and accurate:
+                        </p>
+                        <div class="pl-5 space-y-3">
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Machine Learning Algorithms</h4>
+                                    <p>Our smart filtering system learns from user interactions to identify the most valuable deals, improving its recommendations over time.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-percentage"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Price Comparison Engine</h4>
+                                    <p>Our proprietary algorithm compares current prices against historical data to calculate true discount percentages, ensuring that marked savings are genuine.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Trend Analysis</h4>
+                                    <p>We monitor shopping patterns and seasonal fluctuations to anticipate upcoming sales and prepare our systems for high-traffic periods.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-gray-100 p-4 rounded-lg mt-8">
+                <h4 class="font-semibold">Technical Flow Diagram:</h4>
+                <div class="flex flex-col md:flex-row justify-around items-center mt-4 text-center">
+                    <div class="p-3 bg-white rounded-lg shadow-sm mb-4 md:mb-0">
+                        <i class="fas fa-spider text-2xl dealz-color mb-2"></i>
+                        <p>Data Collection</p>
+                    </div>
+                    <i class="fas fa-arrow-right hidden md:block dealz-color"></i>
+                    <i class="fas fa-arrow-down md:hidden dealz-color"></i>
+                    <div class="p-3 bg-white rounded-lg shadow-sm mb-4 md:mb-0">
+                        <i class="fas fa-tasks text-2xl dealz-color mb-2"></i>
+                        <p>Processing & Validation</p>
+                    </div>
+                    <i class="fas fa-arrow-right hidden md:block dealz-color"></i>
+                    <i class="fas fa-arrow-down md:hidden dealz-color"></i>
+                    <div class="p-3 bg-white rounded-lg shadow-sm mb-4 md:mb-0">
+                        <i class="fas fa-database text-2xl dealz-color mb-2"></i>
+                        <p>Storage & Categorization</p>
+                    </div>
+                    <i class="fas fa-arrow-right hidden md:block dealz-color"></i>
+                    <i class="fas fa-arrow-down md:hidden dealz-color"></i>
+                    <div class="p-3 bg-white rounded-lg shadow-sm">
+                        <i class="fas fa-desktop text-2xl dealz-color mb-2"></i>
+                        <p>User Display</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- User Experience Section -->
+        <section id="user-experience" class="section-card mb-12 p-6">
+            <h2 class="text-3xl font-bold mb-6">User Experience</h2>
+            
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-2xl font-semibold dealz-color">UI/UX Design Philosophy</h3>
+                    <p class="text-lg mt-4">
+                        Amazing Dealz was designed with a clear focus on user-centric principles. Our interface is tailored to help users find deals quickly and easily, minimizing friction and maximizing discovery:
+                    </p>
+                    <div class="pl-5 space-y-3 mt-4">
+                        <div class="flex items-start">
+                            <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                <i class="fas fa-paint-brush"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Clean Visual Design</h4>
+                                <p>We use a bright, engaging color scheme dominated by yellow and orange tones to create an atmosphere of excitement and opportunity, while maintaining sufficient contrast for readability.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                <i class="fas fa-layer-group"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Intuitive Layout</h4>
+                                <p>Deals are presented in card format with essential information visible at a glance, including discount percentage, original price, sale price, and merchant information.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Performance-Focused</h4>
+                                <p>Our website is optimized for rapid loading and smooth interactions, with progressive loading techniques to display deals as quickly as possible even on slower connections.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold dealz-color">Responsive Design</h3>
+                    <p class="text-lg mt-4">
+                        Amazing Dealz is built to provide a seamless experience across all devices:
+                    </p>
+                    <div class="pl-5 space-y-3 mt-4">
+                        <div class="flex items-start">
+                            <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                <i class="fas fa-laptop"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Desktop Experience</h4>
+                                <p>On larger screens, users can view multiple deals in a grid layout, with advanced filtering options readily available in the sidebar for power users.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                <i class="fas fa-tablet-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Tablet Optimization</h4>
+                                <p>Medium-sized devices display a modified layout that maintains most desktop functionality while adapting to touch-based navigation.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Mobile-First Approach</h4>
+                                <p>Our mobile experience features a streamlined interface with swipe gestures for quick browsing, bottom navigation for easy thumb access, and simplified filters accessible through a slide-up panel.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold dealz-color">Search & Filter Features</h3>
+                    <p class="text-lg mt-4">
+                        Finding exactly what you're looking for is simple with our comprehensive search and filtering system:
+                    </p>
+                    <div class="pl-5 space-y-3 mt-4">
+                        <div class="flex items-start">
+                            <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Intelligent Search</h4>
+                                <p>Our search functionality includes predictive text, synonym recognition, and spelling correction to help users find relevant deals even with imprecise queries.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                <i class="fas fa-tags"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Category Navigation</h4>
+                                <p>Deals are organized into intuitive categories (Electronics, Fashion, Home, Travel, etc.) and subcategories for browsing-based discovery.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                <i class="fas fa-sliders-h"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Advanced Filtering</h4>
+                                <p>Users can refine results by:
+                                    <ul class="list-disc pl-6 mt-2 space-y-1">
+                                        <li>Discount percentage (e.g., 50%+ off)</li>
+                                        <li>Price range</li>
+                                        <li>Merchant (Amazon, Flipkart, Myntra, etc.)</li>
+                                        <li>Deal recency (New today, This week)</li>
+                                        <li>User ratings and popularity</li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-yellow-50 p-6 rounded-lg mt-8 text-center">
+                <h4 class="font-semibold text-xl mb-3">User-Centered Design Principles</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <i class="fas fa-bolt text-2xl dealz-color mb-2"></i>
+                        <h5 class="font-medium">Speed</h5>
+                        <p class="text-sm">Quick access to deals without waiting</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <i class="fas fa-lightbulb text-2xl dealz-color mb-2"></i>
+                        <h5 class="font-medium">Clarity</h5>
+                        <p class="text-sm">No confusing interfaces or hidden information</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <i class="fas fa-hand-pointer text-2xl dealz-color mb-2"></i>
+                        <h5 class="font-medium">Accessibility</h5>
+                        <p class="text-sm">Designed for users of all abilities</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Features Section -->
+        <section id="key-features" class="section-card mb-12 p-6">
+            <h2 class="text-3xl font-bold mb-6">Key Features</h2>
+            
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-2xl font-semibold dealz-color">Real-time Offer Updates</h3>
+                    <div class="mt-4 space-y-4">
+                        <p class="text-lg">
+                            Our platform ensures that users always have access to the freshest deals through:
+                        </p>
+                        <div class="pl-5 space-y-3">
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-sync"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Continuous Monitoring</h4>
+                                    <p>Our systems constantly monitor partner sites for price changes and new promotions, updating deals in near real-time.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-calendar-day"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Deal Freshness Indicators</h4>
+                                    <p>Visual cues show how recently a deal was added or updated, with special highlighting for deals added in the last hour.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-hourglass-half"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Limited-Time Offers</h4>
+                                    <p>Countdown timers on flash deals and limited-time offers help users understand urgency and make timely decisions.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold dealz-color">Notification System</h3>
+                    <div class="mt-4 space-y-4">
+                        <p class="text-lg">
+                            Users can stay informed about deals that matter to them through our comprehensive notification system:
+                        </p>
+                        <div class="pl-5 space-y-3">
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-bell"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Deal Alerts</h4>
+                                    <p>Users can subscribe to receive notifications for deals matching specific criteria, such as product categories, brands, or discount thresholds.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Wishlist Notifications</h4>
+                                    <p>When items in a user's wishlist go on sale, they receive immediate alerts to take advantage of the price drop.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Multi-Channel Delivery</h4>
+                                    <p>Notifications can be delivered through multiple channels including browser notifications, email digests, and mobile push notifications via our app.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold dealz-color">Deal Categories</h3>
+                    <div class="mt-4 space-y-4">
+                        <p class="text-lg">
+                            Amazing Dealz organizes offers across a wide range of categories to help users find exactly what they're looking for:
+                        </p>
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
+                            <div class="bg-white p-4 rounded-lg text-center shadow-sm">
+                                <i class="fas fa-laptop text-2xl dealz-color mb-2"></i>
+                                <p>Electronics</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg text-center shadow-sm">
+                                <i class="fas fa-tshirt text-2xl dealz-color mb-2"></i>
+                                <p>Fashion</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg text-center shadow-sm">
+                                <i class="fas fa-home text-2xl dealz-color mb-2"></i>
+                                <p>Home & Kitchen</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg text-center shadow-sm">
+                                <i class="fas fa-dumbbell text-2xl dealz-color mb-2"></i>
+                                <p>Sports & Fitness</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg text-center shadow-sm">
+                                <i class="fas fa-baby text-2xl dealz-color mb-2"></i>
+                                <p>Kids & Toys</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg text-center shadow-sm">
+                                <i class="fas fa-utensils text-2xl dealz-color mb-2"></i>
+                                <p>Food & Grocery</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg text-center shadow-sm">
+                                <i class="fas fa-plane text-2xl dealz-color mb-2"></i>
+                                <p>Travel</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg text-center shadow-sm">
+                                <i class="fas fa-gift text-2xl dealz-color mb-2"></i>
+                                <p>Gifts & Vouchers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold dealz-color">Secure and Reliable</h3>
+                    <div class="mt-4 space-y-4">
+                        <p class="text-lg">
+                            We prioritize user security and system reliability in every aspect of our platform:
+                        </p>
+                        <div class="pl-5 space-y-3">
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Secure Browsing</h4>
+                                    <p>All connections to Amazing Dealz are encrypted using HTTPS, ensuring that user data and browsing activities remain private and protected.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-user-shield"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Privacy-Focused</h4>
+                                    <p>Our platform collects only essential user data with transparent policies and clear opt-out options for personalization features.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Deal Verification</h4>
+                                    <p>Every deal undergoes verification before being published to ensure that links are legitimate, discounts are accurate, and there are no misleading terms.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white border border-gray-200 rounded-lg p-6 mt-8">
+                <h4 class="font-semibold text-xl mb-4 dealz-color text-center">Feature Comparison</h4>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="p-3">Feature</th>
+                                <th class="p-3">Amazing Dealz</th>
+                                <th class="p-3">Other Deal Sites</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b">
+                                <td class="p-3">Real-time Updates</td>
+                                <td class="p-3"><i class="fas fa-check-circle text-green-500"></i> Every 15 minutes</td>
+                                <td class="p-3"><i class="fas fa-times-circle text-red-500"></i> Often daily or manual</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">Deal Verification</td>
+                                <td class="p-3"><i class="fas fa-check-circle text-green-500"></i> 100% verified</td>
+                                <td class="p-3"><i class="fas fa-exclamation-circle text-yellow-500"></i> Varies by site</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">Personalized Alerts</td>
+                                <td class="p-3"><i class="fas fa-check-circle text-green-500"></i> Customizable</td>
+                                <td class="p-3"><i class="fas fa-times-circle text-red-500"></i> Limited or none</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3">Mobile Optimization</td>
+                                <td class="p-3"><i class="fas fa-check-circle text-green-500"></i> Fully responsive</td>
+                                <td class="p-3"><i class="fas fa-exclamation-circle text-yellow-500"></i> Often desktop-focused</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section id="benefits" class="section-card mb-12 p-6">
+            <h2 class="text-3xl font-bold mb-6">Benefits for Users</h2>
+            
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-2xl font-semibold dealz-color">Save Money</h3>
+                    <div class="mt-4 space-y-4">
+                        <p class="text-lg">
+                            Amazing Dealz helps users maximize their savings through several mechanisms:
+                        </p>
+                        <div class="pl-5 space-y-3">
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Price Drop Alerts</h4>
+                                    <p>Our price tracking system identifies significant discounts from regular prices, ensuring that featured deals represent genuine savings opportunities.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-ticket-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Exclusive Coupon Codes</h4>
+                                    <p>Through partnerships with retailers, we provide access to exclusive promotional codes not widely available elsewhere, amplifying potential savings.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Time Efficiency</h4>
+                                    <p>By aggregating offers from multiple sources, Amazing Dealz eliminates the need to visit dozens of websites, saving users valuable time in their deal-hunting process.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold dealz-color">Personalized Deals</h3>
+                    <div class="mt-4 space-y-4">
+                        <p class="text-lg">
+                            Our platform tailors the deal discovery experience to each user's preferences:
+                        </p>
+                        <div class="pl-5 space-y-3">
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-user-cog"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Preference Learning</h4>
+                                    <p>Our recommendation engine analyzes browsing patterns and interaction history to surface deals most likely to interest individual users.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-sliders-h"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Custom Filters</h4>
+                                    <p>Users can save preferred search filters to quickly access deals matching their specific criteria, such as price range, categories, or favorite brands.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Favorites and Wishlists</h4>
+                                    <p>Users can save items they're interested in and receive notifications when these items go on sale or experience significant price drops.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-yellow-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold mb-4 text-center">User Success Stories</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-quote-left text-2xl dealz-color mr-2"></i>
+                                <h4 class="font-semibold">Smartphone Savings</h4>
+                            </div>
+                            <p class="italic">
+                                "I had been eyeing the latest smartphone for months but couldn't justify the price. Amazing Dealz alerted me to a 24-hour flash sale where it was 30% off. I saved ₹15,000!"
+                            </p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-quote-left text-2xl dealz-color mr-2"></i>
+                                <h4 class="font-semibold">Fashion Finds</h4>
+                            </div>
+                            <p class="italic">
+                                "The personalized alerts feature is fantastic. I set up notifications for designer clothing, and within a week, I received an alert about an 80% off clearance sale at my favorite brand that wasn't advertised anywhere else."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8">
+                <h3 class="text-xl font-bold mb-4">Annual Savings Potential</h3>
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                    <div class="h-12 bg-orange-100 flex items-center px-4">
+                        <div class="w-full bg-orange-200 rounded-full">
+                            <div class="bg-orange-500 text-xs font-medium text-white text-center p-1 rounded-full" style="width: 75%">
+                                Average user saves 15-20% on purchases
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 text-center">
+                        <p class="text-lg font-semibold">Active users report saving ₹20,000 to ₹50,000 annually</p>
+                        <p class="text-sm text-gray-600">Based on survey of users who make at least one purchase per month through Amazing Dealz</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Integration Section -->
+        <section id="integration" class="section-card mb-12 p-6">
+            <h2 class="text-3xl font-bold mb-6">Integration with Partners</h2>
+            
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-2xl font-semibold dealz-color">Partnerships and Affiliate Programs</h3>
+                    <div class="mt-4 space-y-4">
+                        <p class="text-lg">
+                            Amazing Dealz has established strong relationships with leading retailers to bring the best deals to our users:
+                        </p>
+                        <div class="pl-5 space-y-3">
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-handshake"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Official Retail Partnerships</h4>
+                                    <p>We maintain direct relationships with major e-commerce platforms including Amazon, Flipkart, and Myntra, ensuring that our deal information is accurate and up-to-date.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-link"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Affiliate Network</h4>
+                                    <p>Our affiliate partnerships allow us to monetize referrals while providing users with verified deal links that track properly for discount application.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-store"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Merchant Diversity</h4>
+                                    <p>Beyond major retailers, we partner with smaller specialty stores and direct-to-consumer brands, offering users access to deals across the full spectrum of online shopping.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold dealz-color">Exclusive Offers</h3>
+                    <div class="mt-4 space-y-4">
+                        <p class="text-lg">
+                            What sets Amazing Dealz apart from other deal aggregators is our ability to secure exclusive offers for our users:
+                        </p>
+                        <div class="pl-5 space-y-3">
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-gem"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Merchant-Specific Discounts</h4>
+                                    <p>We negotiate with retailers to create special promotional offers exclusively for Amazing Dealz users, often featuring deeper discounts than publicly available deals.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Early Access</h4>
+                                    <p>Our partnerships sometimes include early access to upcoming sales events, giving our users a head start on limited-quantity deals before they're available to the general public.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-gift"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Bundled Offers</h4>
+                                    <p>We work with partners to create special bundles and value-added offers that combine multiple products or include bonuses like extended warranties or free accessories.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+                <div class="p-4 bg-white rounded-lg shadow-sm flex items-center justify-center">
+                    <div class="text-center">
+                        <i class="fab fa-amazon text-4xl dealz-color"></i>
+                        <p class="mt-2 font-medium">Amazon</p>
+                    </div>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow-sm flex items-center justify-center">
+                    <div class="text-center">
+                        <i class="fas fa-shopping-bag text-4xl dealz-color"></i>
+                        <p class="mt-2 font-medium">Flipkart</p>
+                    </div>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow-sm flex items-center justify-center">
+                    <div class="text-center">
+                        <i class="fas fa-tshirt text-4xl dealz-color"></i>
+                        <p class="mt-2 font-medium">Myntra</p>
+                    </div>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow-sm flex items-center justify-center">
+                    <div class="text-center">
+                        <i class="fas fa-plus-circle text-4xl dealz-color"></i>
+                        <p class="mt-2 font-medium">Other Partners</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-gray-50 p-6 rounded-lg mt-8">
+                <h4 class="font-semibold text-xl mb-4">Partner Integration Process</h4>
+                <ol class="space-y-3">
+                    <li class="flex items-start">
+                        <div class="bg-orange-100 rounded-full w-6 h-6 flex items-center justify-center text-orange-600 font-bold mr-3 flex-shrink-0">1</div>
+                        <div>
+                            <p class="font-medium">Partner Onboarding</p>
+                            <p class="text-sm text-gray-600">We establish data sharing protocols and connection methods with each retailer</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <div class="bg-orange-100 rounded-full w-6 h-6 flex items-center justify-center text-orange-600 font-bold mr-3 flex-shrink-0">2</div>
+                        <div>
+                            <p class="font-medium">API Integration</p>
+                            <p class="text-sm text-gray-600">Technical implementation of real-time data feeds from partner inventory systems</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <div class="bg-orange-100 rounded-full w-6 h-6 flex items-center justify-center text-orange-600 font-bold mr-3 flex-shrink-0">3</div>
+                        <div>
+                            <p class="font-medium">Quality Testing</p>
+                            <p class="text-sm text-gray-600">Verification of deal accuracy and link functionality across different scenarios</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <div class="bg-orange-100 rounded-full w-6 h-6 flex items-center justify-center text-orange-600 font-bold mr-3 flex-shrink-0">4</div>
+                        <div>
+                            <p class="font-medium">Continuous Monitoring</p>
+                            <p class="text-sm text-gray-600">Ongoing oversight to maintain integration quality and catch any issues</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- How to Use Section -->
+        <section id="how-to-use" class="section-card mb-12 p-6">
+            <h2 class="text-3xl font-bold mb-6">How to Use Amazing Dealz</h2>
+            
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-2xl font-semibold dealz-color">Getting Started</h3>
+                    <div class="mt-6 space-y-6">
+                        <div class="flex flex-col md:flex-row gap-6 items-center">
+                            <div class="bg-yellow-50 p-4 rounded-lg w-full md:w-24 h-24 flex items-center justify-center">
+                                <span class="text-4xl font-bold dealz-color">1</span>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-xl mb-2">Visit the Website</h4>
+                                <p>Navigate to <a href="https://amazingdealslive.netlify.app/" class="text-blue-600 underline">amazingdealslive.netlify.app</a> using any modern web browser on your desktop or mobile device.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col md:flex-row gap-6 items-center">
+                            <div class="bg-yellow-50 p-4 rounded-lg w-full md:w-24 h-24 flex items-center justify-center">
+                                <span class="text-4xl font-bold dealz-color">2</span>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-xl mb-2">Browse Categories</h4>
+                                <p>Use the navigation tabs at the top of the page to filter deals by your preferred retailers (Amazon, Flipkart, Myntra) or browse all deals by clicking the "All" tab.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col md:flex-row gap-6 items-center">
+                            <div class="bg-yellow-50 p-4 rounded-lg w-full md:w-24 h-24 flex items-center justify-center">
+                                <span class="text-4xl font-bold dealz-color">3</span>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-xl mb-2">Discover Deals</h4>
+                                <p>Scroll through the available deals, which are presented in card format showing the product image, original price, discounted price, and discount percentage.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col md:flex-row gap-6 items-center">
+                            <div class="bg-yellow-50 p-4 rounded-lg w-full md:w-24 h-24 flex items-center justify-center">
+                                <span class="text-4xl font-bold dealz-color">4</span>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-xl mb-2">Click to Shop</h4>
+                                <p>When you find a deal you're interested in, click on the deal card to be redirected to the retailer's website where you can complete your purchase with the discount automatically applied.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold dealz-color">Sign Up for Updates</h3>
+                    <div class="mt-4 space-y-4">
+                        <p class="text-lg">
+                            To maximize your savings potential, consider signing up for alerts and personalized deal notifications:
+                        </p>
+                        <div class="pl-5 space-y-3">
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Create an Account</h4>
+                                    <p>Click the "Sign Up" button in the top right corner of the page and provide your email address and a secure password.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-cog"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Set Preferences</h4>
+                                    <p>In your account settings, select the categories, brands, and price ranges you're interested in to receive tailored deal recommendations.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="feature-icon rounded-full p-2 mr-3 flex-shrink-0">
+                                    <i class="fas fa-bell"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Configure Notifications</h4>
+                                    <p>Choose how you want to be notified about new deals—options include email digests (daily or weekly), browser notifications, or mobile push notifications if you've installed our app.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold dealz-color">Advanced Features</h3>
+                    <div class="mt-4 space-y-4">
+                        <p class="text-lg">
+                            Once familiar with the basic functionality, explore these advanced features to enhance your deal hunting:
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-white p-4 rounded-lg shadow-sm">
+                                <h4 class="font-semibold flex items-center">
+                                    <i class="fas fa-heart dealz-color mr-2"></i>
+                                    Wishlist Tracking
+                                </h4>
+                                <p class="mt-2 text-sm">Add products to your wishlist and receive immediate notifications when their prices drop below your specified threshold.</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg shadow-sm">
+                                <h4 class="font-semibold flex items-center">
+                                    <i class="fas fa-share-alt dealz-color mr-2"></i>
+                                    Deal Sharing
+                                </h4>
+                                <p class="mt-2 text-sm">Share great deals with friends and family via email, WhatsApp, or social media directly from the deal card.</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg shadow-sm">
+                                <h4 class="font-semibold flex items-center">
+                                    <i class="fas fa-history dealz-color mr-2"></i>
+                                    Price History
+                                </h4>
+                                <p class="mt-2 text-sm">View the price history graph for products to determine if the current deal is truly a good value compared to historical prices.</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg shadow-sm">
+                                <h4 class="font-semibold flex items-center">
+                                    <i class="fas fa-calendar-alt dealz-color mr-2"></i>
+                                    Deal Calendar
+                                </h4>
+                                <p class="mt-2 text-sm">Access our deal forecast calendar to plan purchases around upcoming sales events like Black Friday, Diwali sales, or end-of-season clearances.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-yellow-50 p-6 rounded-lg mt-8">
+                <h4 class="font-semibold text-xl mb-4 text-center">Quick Tips for Maximum Savings</h4>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle dealz-color mt-1 mr-3"></i>
+                        <p><strong>Check Daily:</strong> The best deals often sell out quickly, so make it a habit to check the site or set up notifications for time-sensitive offers.</p>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle dealz-color mt-1 mr-3"></i>
+                        <p><strong>Use Filters:</strong> Narrow your search with specific filters to find exactly what you need without scrolling through unrelated deals.</p>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle dealz-color mt-1 mr-3"></i>
+                        <p><strong>Compare Across Retailers:</strong> The same product might be available from multiple sellers at different prices. Amazing Dealz makes it easy to compare options.</p>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle dealz-color mt-1 mr-3"></i>
+                        <p><strong>Act Fast on Flash Deals:</strong> Limited-time offers with countdown timers often represent the deepest discounts but require quick action.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- FAQs Section -->
+        <section id="faqs" class="section-card mb-12 p-6">
+            <h2 class="text-3xl font-bold mb-6">Frequently Asked Questions</h2>
+            
+            <div class="space-y-4">
+                <div class="border border-gray-200 rounded-lg">
+                    <button class="accordion-button w-full text-left p-4 font-semibold focus:outline-none flex justify-between items-center">
+                        <span>How are the deals sourced?</span>
+                        <i class="fas fa-chevron-down transition-transform transform"></i>
+                    </button>
+                    <div class="accordion-content bg-white px-4 pb-4">
+                        <p>Amazing Dealz sources deals through multiple channels. We have direct API integrations with major retailers like Amazon, Flipkart, and Myntra that provide us with real-time product and pricing data. Additionally, we employ automated web scraping tools that continuously monitor thousands of websites for price drops and special promotions. Our team also manually curates and verifies deals to ensure they're legitimate and valuable before featuring them on the platform.</p>
+                    </div>
+                </div>
+                
+                <div class="border border-gray-200 rounded-lg">
+                    <button class="accordion-button w-full text-left p-4 font-semibold focus:outline-none flex justify-between items-center">
+                        <span>How can I trust that the deals are valid?</span>
+                        <i class="fas fa-chevron-down transition-transform transform"></i>
+                    </button>
+                    <div class="accordion-content bg-white px-4 pb-4">
+                        <p>Every deal featured on Amazing Dealz undergoes a thorough verification process. Our system checks several factors before publishing a deal:</p>
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li>Confirmation that the product is in stock and available at the listed price</li>
+                            <li>Validation of discount calculations against historical price data</li>
+                            <li>Testing of coupon codes and promotional links to ensure they apply correctly</li>
+                            <li>Review of terms and conditions to verify there are no hidden restrictions</li>
+                        </ul>
+                        <p class="mt-2">Additionally, we track user feedback about deals and quickly remove any that are reported as expired or problematic.</p>
+                    </div>
+                </div>
+                
+                <div class="border border-gray-200 rounded-lg">
+                    <button class="accordion-button w-full text-left p-4 font-semibold focus:outline-none flex justify-between items-center">
+                        <span>How frequently are new deals added?</span>
+                        <i class="fas fa-chevron-down transition-transform transform"></i>
+                    </button>
+                    <div class="accordion-content bg-white px-4 pb-4">
+                        <p>Amazing Dealz updates its deal inventory continuously throughout the day:</p>
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li>Major retailers (Amazon, Flipkart, Myntra): Updates every 15 minutes</li>
+                            <li>Secondary retailers and specialty stores: Updates every 1-3 hours</li>
+                            <li>Flash deals and limited-time offers: Added in real-time as they become available</li>
+                        </ul>
+                        <p class="mt-2">Our most active periods are typically early morning (6-8 AM) when many retailers launch new promotions, and evening hours (7-10 PM) when flash sales often go live.</p>
+                    </div>
+                </div>
+                
+                <div class="border border-gray-200 rounded-lg">
+                    <button class="accordion-button w-full text-left p-4 font-semibold focus:outline-none flex justify-between items-center">
+                        <span>Can I track my favorite deals?</span>
+                        <i class="fas fa-chevron-down transition-transform transform"></i>
+                    </button>
+                    <div class="accordion-content bg-white px-4 pb-4">
+                        <p>Yes, Amazing Dealz offers several ways to track and monitor deals:</p>
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li><strong>Wishlist Feature:</strong> Create an account and add products to your wishlist to receive alerts when prices drop</li>
+                            <li><strong>Deal Alerts:</strong> Set up custom alerts for specific product categories, brands, or price ranges</li>
+                            <li><strong>Saved Searches:</strong> Save your frequent search parameters for quick access</li>
+                            <li><strong>Browser Notifications:</strong> Enable browser notifications to get instant alerts for deals matching your interests</li>
+                        </ul>
+                        <p class="mt-2">All these tracking features are available free of charge to registered users.</p>
+                    </div>
+                </div>
+                
+                <div class="border border-gray-200 rounded-lg">
+                    <button class="accordion-button w-full text-left p-4 font-semibold focus:outline-none flex justify-between items-center">
+                        <span>How does Amazing Dealz make money?</span>
+                        <i class="fas fa-chevron-down transition-transform transform"></i>
+                    </button>
+                    <div class="accordion-content bg-white px-4 pb-4">
+                        <p>Amazing Dealz operates on an affiliate marketing model. When users click through to retailer websites from our platform and make purchases, we earn a small commission from the retailer. Importantly, this does not increase the price paid by the user—you still get the full discount advertised.</p>
+                        <p class="mt-2">This business model allows us to provide the service free of charge to users while maintaining our independence in selecting and recommending deals. We prioritize genuine value for users over commission rates when featuring deals.</p>
+                    </div>
+                </div>
+                
+                <div class="border border-gray-200 rounded-lg">
+                    <button class="accordion-button w-full text-left p-4 font-semibold focus:outline-none flex justify-between items-center">
+                        <span>Are there any hidden fees for users?</span>
+                        <i class="fas fa-chevron-down transition-transform transform"></i>
+                    </button>
+                    <div class="accordion-content bg-white px-4 pb-4">
+                        <p>No, Amazing Dealz is completely free for users. There are no subscription fees, hidden charges, or premium tiers. All features—including deal browsing, alerts, wishlists, and price history—are available to all registered users at no cost.</p>
+                        <p class="mt-2">We're committed to maintaining this free access model while continuing to add new features and improve the service.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion Section -->
+        <section id="conclusion" class="section-card mb-12 p-6">
+            <h2 class="text-3xl font-bold mb-6">Conclusion</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-2xl font-semibold dealz-color">The Amazing Dealz Advantage</h3>
+                    <p class="text-lg mt-4">
+                        Amazing Dealz represents a revolution in how online shoppers discover and take advantage of discounts and special offers. By leveraging cutting-edge technology to aggregate, verify, and present deals from across the web, we provide a streamlined and user-friendly experience that saves both time and money.
+                    </p>
+                    <p class="text-lg mt-3">
+                        Our platform stands out for its commitment to:
+                    </p>
+                    <ul class="pl-5 space-y-2 mt-3">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle dealz-color mr-2"></i>
+                            <span><strong>Real-time updates</strong> that ensure you never miss a limited-time offer</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle dealz-color mr-2"></i>
+                            <span><strong>Deal verification</strong> that protects you from misleading promotions</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle dealz-color mr-2"></i>
+                            <span><strong>Personalized recommendations</strong> that match your interests and shopping habits</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle dealz-color mr-2"></i>
+                            <span><strong>User-friendly design</strong> that makes deal discovery effortless</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold dealz-color">Coming Soon</h3>
+                    <p class="text-lg mt-4">
+                        We're constantly working to enhance the Amazing Dealz experience. Here are some exciting features on our roadmap:
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <div class="flex items-center">
+                                <i class="fas fa-mobile-alt text-2xl dealz-color mr-3"></i>
+                                <h4 class="font-semibold">Mobile App Launch</h4>
+                            </div>
+                            <p class="mt-2">Native iOS and Android applications with enhanced push notifications and offline browsing capabilities.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <div class="flex items-center">
+                                <i class="fas fa-comment-dots text-2xl dealz-color mr-3"></i>
+                                <h4 class="font-semibold">Community Features</h4>
+                            </div>
+                            <p class="mt-2">User reviews, deal ratings, and discussion forums to share shopping experiences and tips.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <div class="flex items-center">
+                                <i class="fas fa-globe text-2xl dealz-color mr-3"></i>
+                                <h4 class="font-semibold">International Expansion</h4>
+                            </div>
+                            <p class="mt-2">Extended coverage to include deals from retailers in additional countries and regions.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <div class="flex items-center">
+                                <i class="fas fa-robot text-2xl dealz-color mr-3"></i>
+                                <h4 class="font-semibold">AI Deal Advisor</h4>
+                            </div>
+                            <p class="mt-2">Intelligent assistant that provides personalized deal recommendations and buying advice based on your preferences and behavior.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-yellow-50 p-6 rounded-lg text-center">
+                    <h3 class="text-2xl font-semibold dealz-color mb-4">Start Saving Today</h3>
+                    <p class="text-lg mb-6">
+                        Join thousands of smart shoppers who use Amazing Dealz to make their money go further every day. Whether you're looking for everyday essentials or planning a major purchase, we're here to help you find the best prices available.
+                    </p>
+                    <a href="https://amazingdealslive.netlify.app/" class="btn-dealz px-6 py-3 rounded-lg font-bold text-lg inline-block">
+                        Visit Amazing Dealz
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-10">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">
+                        Amazing <span class="dealz-color">Dealz</span>
+                    </h3>
+                    <p>Finding magical deals for you...</p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="#" class="text-white hover:text-orange-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-orange-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-orange-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-orange-300">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#introduction" class="hover:text-orange-300">About Us</a></li>
+                        <li><a href="#how-it-works" class="hover:text-orange-300">How It Works</a></li>
+                        <li><a href="#faqs" class="hover:text-orange-300">FAQs</a></li>
+                        <li><a href="#" class="hover:text-orange-300">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-orange-300">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-3"></i>
+                            <span>Mailtokuldeepiit@gmail.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone-alt mt-1 mr-3"></i>
+                            <span>+91 987XXXXXXX</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3"></i>
+                            <span>Uttar Pradesh, India</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center">
+                <p>© 2025 Amazing Dealz. All rights reserved.</p>
+                <p class="text-sm mt-2 text-gray-400">Documentation Version 1.0.0</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Accordion functionality
+        document.querySelectorAll('.accordion-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                content.classList.toggle('active');
+                button.querySelector('i').classList.toggle('rotate-180');
+            });
+        });
+    </script>
+</body>
+</html>
