@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thumbify - HD YouTube Thumbnail Downloader</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/inter-ui@3.19.3/inter.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 20px;
+      height: fit-content;
+    }
+
+    .section {
+      scroll-margin-top: 20px;
+    }
+
+    .thumbnail-preview {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.5rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .thumbnail-preview img {
+      width: 100%;
+      height: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .thumbnail-preview:hover img {
+      transform: scale(1.05);
+    }
+
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background-color: #8b5cf6;
+      color: white;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    .faq-item summary {
+      cursor: pointer;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      background-color: #f9fafb;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .faq-item summary:hover {
+      background-color: #f3f4f6;
+    }
+
+    .faq-item details[open] summary {
+      margin-bottom: 0;
+      border-radius: 0.5rem 0.5rem 0 0;
+    }
+
+    .faq-answer {
+      padding: 1rem;
+      background-color: #f3f4f6;
+      border-radius: 0 0 0.5rem 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .active-nav {
+      color: #8b5cf6;
+      font-weight: 600;
+    }
+
+    .nav-item:hover {
+      color: #8b5cf6;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        position: static;
+        margin-bottom: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Header -->
+    <header class="bg-white shadow-md rounded-lg p-8 mb-8 text-center">
+      <h1 class="text-5xl font-bold text-purple-500 mb-2">Thumbify</h1>
+      <p class="text-xl text-gray-600">Download HD YouTube Thumbnails in 1 Click</p>
+    </header>
+
+    <div class="lg:flex lg:gap-8">
+      <!-- Sidebar Navigation -->
+      <aside class="lg:w-1/4">
+        <div class="bg-white p-5 rounded-lg shadow-md sidebar">
+          <h2 class="text-lg font-bold mb-4 text-gray-800">Table of Contents</h2>
+          <nav>
+            <ul class="space-y-2">
+              <li><a href="#introduction" class="nav-item text-gray-600 hover:text-purple-500 block py-1">Introduction</a></li>
+              <li><a href="#how-to-use" class="nav-item text-gray-600 hover:text-purple-500 block py-1">How to Use</a></li>
+              <li><a href="#features" class="nav-item text-gray-600 hover:text-purple-500 block py-1">Features</a></li>
+              <li><a href="#example-thumbnails" class="nav-item text-gray-600 hover:text-purple-500 block py-1">Example Thumbnails</a></li>
+              <li><a href="#faqs" class="nav-item text-gray-600 hover:text-purple-500 block py-1">FAQs</a></li>
+              <li><a href="#limitations" class="nav-item text-gray-600 hover:text-purple-500 block py-1">Limitations</a></li>
+              <li><a href="#credits" class="nav-item text-gray-600 hover:text-purple-500 block py-1">Credits</a></li>
+            </ul>
+          </nav>
+          <div class="mt-8">
+            <a href="https://thumbifytool.netlify.app/" class="bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 rounded-lg inline-block transition duration-150 ease-in-out">
+              <i class="fas fa-external-link-alt mr-2"></i>Open Thumbify Tool
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="lg:w-3/4 mt-8 lg:mt-0">
+        <!-- Introduction Section -->
+        <section id="introduction" class="section bg-white p-8 rounded-lg shadow-md mb-8">
+          <h2 class="text-2xl font-bold text-gray-800 mb-4">Introduction</h2>
+          <div class="text-gray-600 space-y-4">
+            <p>
+              Thumbify is a lightweight, fast, and easy-to-use tool designed specifically for downloading high-resolution
+              YouTube thumbnails. Whether you're a content creator, digital marketer, or just someone who needs YouTube
+              thumbnails for presentations or articles, Thumbify provides a simple one-click solution.
+            </p>
+            <p>
+              Unlike other thumbnail downloaders that may require multiple steps or show ads, Thumbify focuses on
+              simplicity and efficiency. The tool works directly in your browser with no installation required and no
+              data collection.
+            </p>
+            <p>
+              Simply paste any YouTube URL or video ID, click a button, and get instant access to the highest quality
+              thumbnail available for that video. Thumbify automatically tries to fetch the maximum resolution thumbnail
+              (typically 1280×720 pixels) and provides fallbacks if the highest quality isn't available.
+            </p>
+          </div>
+        </section>
+
+        <!-- How to Use Section -->
+        <section id="how-to-use" class="section bg-white p-8 rounded-lg shadow-md mb-8">
+          <h2 class="text-2xl font-bold text-gray-800 mb-6">How to Use</h2>
+          <div class="text-gray-600 space-y-6">
+            <div class="flex items-start">
+              <div class="step-number">1</div>
+              <div>
+                <h3 class="font-semibold text-lg text-gray-800">Paste YouTube URL or Video ID</h3>
+                <p class="mt-2">Enter any YouTube video URL or just the video ID in the input field. Thumbify accepts full URLs (like
+                  https://www.youtube.com/watch?v=dQw4w9WgXcQ), shortened URLs (youtu.be links), or just the video ID
+                  (dQw4w9WgXcQ).</p>
+                <div class="bg-gray-100 p-3 rounded-md mt-2">
+                  <code class="text-sm text-purple-700">https://www.youtube.com/watch?v=dQw4w9WgXcQ</code>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <div class="step-number">2</div>
+              <div>
+                <h3 class="font-semibold text-lg text-gray-800">Click "Fetch Thumbnail"</h3>
+                <p class="mt-2">After entering the URL, simply click the "Fetch Thumbnail" button. Thumbify will instantly process your
+                  request and retrieve the thumbnail.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <div class="step-number">3</div>
+              <div>
+                <h3 class="font-semibold text-lg text-gray-800">Preview and Download</h3>
+                <p class="mt-2">A preview of the thumbnail will appear on the screen. Thumbify will automatically try to get the
+                  highest quality version available.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <div class="step-number">4</div>
+              <div>
+                <h3 class="font-semibold text-lg text-gray-800">Save the Image</h3>
+                <p class="mt-2">Right-click on the displayed thumbnail and select "Save Image As" to download it to your device. You
+                  can also click on any available download buttons if shown in the interface.</p>
+              </div>
+            </div>
+
+            <div class="mt-6 bg-purple-50 p-4 rounded-lg">
+              <h3 class="font-semibold text-lg text-gray-800">Pro Tip</h3>
+              <p class="mt-2">If you're frequently working with thumbnails, bookmark Thumbify for quick access. The tool works
+                equally well on mobile devices, so you can use it on the go!</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="section bg-white p-8 rounded-lg shadow-md mb-8">
+          <h2 class="text-2xl font-bold text-gray-800 mb-6">Features</h2>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-purple-50 p-5 rounded-lg">
+              <div class="text-purple-500 text-2xl mb-3">
+                <i class="fas fa-photo-video"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-800 mb-2">Maximum Resolution Support</h3>
+              <p class="text-gray-600">Automatically attempts to fetch the highest quality thumbnail available (typically 1280×720
+                pixels) for crystal-clear images.</p>
+            </div>
+
+            <div class="bg-purple-50 p-5 rounded-lg">
+              <div class="text-purple-500 text-2xl mb-3">
+                <i class="fas fa-layer-group"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-800 mb-2">Quality Fallbacks</h3>
+              <p class="text-gray-600">If the maximum quality isn't available, Thumbify intelligently falls back to high-quality
+                alternatives without any user intervention.</p>
+            </div>
+
+            <div class="bg-purple-50 p-5 rounded-lg">
+              <div class="text-purple-500 text-2xl mb-3">
+                <i class="fas fa-globe"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-800 mb-2">Client-Side Processing</h3>
+              <p class="text-gray-600">Works entirely in your browser with no backend server required, ensuring quick response times and
+                enhanced privacy.</p>
+            </div>
+
+            <div class="bg-purple-50 p-5 rounded-lg">
+              <div class="text-purple-500 text-2xl mb-3">
+                <i class="fas fa-bolt"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-800 mb-2">Lightning Fast</h3>
+              <p class="text-gray-600">Get thumbnails instantly with minimal loading time, optimized for efficiency.</p>
+            </div>
+
+            <div class="bg-purple-50 p-5 rounded-lg">
+              <div class="text-purple-500 text-2xl mb-3">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-800 mb-2">Secure</h3>
+              <p class="text-gray-600">No data collection, no tracking, and no cookies - just a simple, secure tool that respects your
+                privacy.</p>
+            </div>
+
+            <div class="bg-purple-50 p-5 rounded-lg">
+              <div class="text-purple-500 text-2xl mb-3">
+                <i class="fas fa-money-bill-wave"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-800 mb-2">Completely Free</h3>
+              <p class="text-gray-600">Use Thumbify as much as you want - it's 100% free with no hidden costs or premium features.</p>
+            </div>
+
+            <div class="bg-purple-50 p-5 rounded-lg">
+              <div class="text-purple-500 text-2xl mb-3">
+                <i class="fas fa-mobile-alt"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-800 mb-2">Mobile Friendly</h3>
+              <p class="text-gray-600">Fully responsive design works seamlessly across desktops, tablets, and smartphones.</p>
+            </div>
+
+            <div class="bg-purple-50 p-5 rounded-lg">
+              <div class="text-purple-500 text-2xl mb-3">
+                <i class="fas fa-code"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-800 mb-2">Simple Interface</h3>
+              <p class="text-gray-600">Clean, minimalist design focused on usability - no distractions or complicated options.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Example Thumbnails Section -->
+        <section id="example-thumbnails" class="section bg-white p-8 rounded-lg shadow-md mb-8">
+          <h2 class="text-2xl font-bold text-gray-800 mb-6">Example Thumbnails</h2>
+          <p class="text-gray-600 mb-6">Here are some examples of high-quality YouTube thumbnails that you can download with Thumbify.
+            These showcase the resolution and quality you can expect:</p>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="space-y-3">
+              <div class="thumbnail-preview">
+                <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Example YouTube Thumbnail 1"
+                  class="w-full rounded-lg">
+              </div>
+              <div class="text-sm text-gray-500 text-center">
+                <p>Maximum resolution (1280×720) thumbnail</p>
+                <p class="text-xs">Video ID: dQw4w9WgXcQ</p>
+              </div>
+            </div>
+
+            <div class="space-y-3">
+              <div class="thumbnail-preview">
+                <img src="https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg" alt="Example YouTube Thumbnail 2"
+                  class="w-full rounded-lg">
+              </div>
+              <div class="text-sm text-gray-500 text-center">
+                <p>Maximum resolution (1280×720) thumbnail</p>
+                <p class="text-xs">Video ID: 9bZkp7q19f0</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 bg-gray-100 p-4 rounded-lg">
+            <h3 class="font-semibold text-lg text-gray-800 mb-2">Available Thumbnail Qualities</h3>
+            <p class="text-gray-600 mb-3">YouTube offers several thumbnail qualities. Thumbify tries to fetch them in this order:</p>
+            <ol class="list-decimal pl-5 text-gray-600 space-y-2">
+              <li><strong>maxresdefault.jpg</strong> - Maximum resolution (typically 1280×720)</li>
+              <li><strong>sddefault.jpg</strong> - Standard definition (640×480)</li>
+              <li><strong>hqdefault.jpg</strong> - High quality (480×360)</li>
+              <li><strong>mqdefault.jpg</strong> - Medium quality (320×180)</li>
+              <li><strong>default.jpg</strong> - Default quality (120×90)</li>
+            </ol>
+          </div>
+        </section>
+
+        <!-- FAQs Section -->
+        <section id="faqs" class="section bg-white p-8 rounded-lg shadow-md mb-8">
+          <h2 class="text-2xl font-bold text-gray-800 mb-6">Frequently Asked Questions</h2>
+
+          <div class="space-y-1">
+            <details class="faq-item">
+              <summary>Why is my thumbnail not showing?</summary>
+              <div class="faq-answer">
+                <p>There could be several reasons why a thumbnail isn't showing:</p>
+                <ul class="list-disc pl-5 mt-2 space-y-1">
+                  <li>The video might be private or unlisted - Thumbify can only download thumbnails from public videos</li>
+                  <li>The video ID might be incorrect - double-check the URL or ID for typos</li>
+                  <li>YouTube might be experiencing temporary issues with their thumbnail CDN</li>
+                  <li>The video might be very new and YouTube hasn't generated all thumbnail sizes yet</li>
+                </ul>
+                <p class="mt-2">Try copying the URL directly from YouTube to ensure you have the correct video ID.</p>
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary>Can I use these images commercially?</summary>
+              <div class="faq-answer">
+                <p>The thumbnails are subject to the same copyright restrictions as the videos they represent. In general:</p>
+                <ul class="list-disc pl-5 mt-2 space-y-1">
+                  <li>For personal use (like school projects or personal blogs), you'll likely be fine under fair use</li>
+                  <li>For commercial use, you should contact the video owner for permission</li>
+                  <li>For educational or review purposes, you may be protected under fair use doctrine, but this varies by country</li>
+                </ul>
+                <p class="mt-2">Thumbify is just a tool to download images that are already publicly accessible - we don't grant any
+                  additional rights to use those images.</p>
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary>Does this work with YouTube Shorts?</summary>
+              <div class="faq-answer">
+                <p>Yes, Thumbify works with YouTube Shorts as well. Simply paste the Shorts URL in the same way you would for a regular
+                  YouTube video. The tool will extract the video ID and fetch the thumbnail.</p>
+                <p class="mt-2">Note that YouTube Shorts often use the same thumbnail system as regular videos, so you'll get the same
+                  quality options.</p>
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary>Is there a limit to how many thumbnails I can download?</summary>
+              <div class="faq-answer">
+                <p>No, there are no limits imposed by Thumbify on the number of thumbnails you can download. You can use the tool as
+                  frequently as you need without any restrictions.</p>
+                <p class="mt-2">However, please be mindful of YouTube's terms of service when using thumbnails, especially in bulk.</p>
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary>Does Thumbify store the videos or thumbnails?</summary>
+              <div class="faq-answer">
+                <p>No, Thumbify doesn't store any videos or thumbnails on its servers. The tool simply creates direct links to the
+                  thumbnail images that are already hosted on YouTube's content delivery network.</p>
+                <p class="mt-2">When you use Thumbify, your browser downloads the thumbnail directly from YouTube's servers - we never
+                  see or store the images ourselves.</p>
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary>Can I use Thumbify in my application or website?</summary>
+              <div class="faq-answer">
+                <p>Yes, you can embed Thumbify in your application or website if you'd like to offer thumbnail downloading
+                  functionality to your users. However, please credit the original creator and link back to the original Thumbify tool.</p>
+                <p class="mt-2">For large-scale or commercial integration, please reach out to the developer directly for permission.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- Limitations Section -->
+        <section id="limitations" class="section bg-white p-8 rounded-lg shadow-md mb-8">
+          <h2 class="text-2xl font-bold text-gray-800 mb-6">Limitations</h2>
+
+          <div class="text-gray-600 space-y-4">
+            <div class="bg-gray-100 p-4 rounded-lg">
+              <h3 class="font-semibold text-gray-800 mb-2">Not All Videos Have HD Thumbnails</h3>
+              <p>While Thumbify attempts to retrieve the highest quality thumbnail available (maxresdefault.jpg), not all YouTube videos
+                have this high-resolution version. Some older videos or videos from smaller channels may only have lower resolution
+                thumbnails available.</p>
+            </div>
+
+            <div class="bg-gray-100 p-4 rounded-lg">
+              <h3 class="font-semibold text-gray-800 mb-2">Private and Unlisted Videos</h3>
+              <p>Thumbify cannot access thumbnails from private or unlisted YouTube videos. The tool can only download thumbnails from
+                publicly available videos that anyone can view without restrictions.</p>
+            </div>
+
+            <div class="bg-gray-100 p-4 rounded-lg">
+              <h3 class="font-semibold text-gray-800 mb-2">Dependent on YouTube's CDN</h3>
+              <p>Thumbify directly links to images on YouTube's Content Delivery Network. If YouTube changes their thumbnail URL
+                structure or experiences downtime, Thumbify may temporarily not work as expected.</p>
+            </div>
+
+            <div class="bg-gray-100 p-4 rounded-lg">
+              <h3 class="font-semibold text-gray-800 mb-2">Browser Limitations</h3>
+              <p>Thumbify is a client-side tool that runs in your web browser. It requires JavaScript to be enabled and may not work
+                with very old browser versions.</p>
+            </div>
+
+            <div class="bg-gray-100 p-4 rounded-lg">
+              <h3 class="font-semibold text-gray-800 mb-2">No Custom Thumbnail Generation</h3>
+              <p>Thumbify can only download thumbnails that already exist on YouTube. It cannot create custom thumbnails, modify
+                existing ones, or generate thumbnails from specific video frames.</p>
+            </div>
+
+            <div class="bg-gray-100 p-4 rounded-lg">
+              <h3 class="font-semibold text-gray-800 mb-2">No Batch Processing</h3>
+              <p>Currently, Thumbify processes one video at a time and doesn't support batch downloading of thumbnails from multiple
+                videos simultaneously.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Credits Section -->
+        <section id="credits" class="section bg-white p-8 rounded-lg shadow-md mb-8">
+          <h2 class="text-2xl font-bold text-gray-800 mb-6">Credits</h2>
+
+          <div class="text-gray-600 space-y-6">
+            <div class="flex items-center space-x-4">
+              <div class="text-purple-500 text-4xl">
+                <i class="fas fa-code"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-gray-800">Created by Kuldeep Singh</h3>
+                <p class="mt-1">Thumbify was designed and developed as a simple solution to a common need - getting high-quality
+                  YouTube thumbnails quickly and easily.</p>
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-4">
+              <div class="text-purple-500 text-4xl">
+                <i class="fas fa-server"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-gray-800">Powered by YouTube's CDN</h3>
+                <p class="mt-1">Thumbify accesses thumbnails directly from YouTube's Content Delivery Network, ensuring you get the
+                  original, unmodified thumbnail files.</p>
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-4">
+              <div class="text-purple-500 text-4xl">
+                <i class="fas fa-cloud"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-gray-800">Hosted on Netlify</h3>
+                <p class="mt-1">The Thumbify tool is hosted on Netlify's globally distributed hosting platform, providing fast access
+                  from anywhere in the world.</p>
+              </div>
+            </div>
+
+            <div class="mt-8 p-4 bg-gray-100 rounded-lg">
+              <h3 class="font-semibold text-lg text-gray-800 mb-2">Acknowledgements</h3>
+              <p>Special thanks to the open-source community and all users who have provided feedback to help improve Thumbify.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 mt-8 text-gray-600">
+      <p>Made with ❤️ by Kuldeep Singh</p>
+      <p class="mt-2 text-sm">© 2023 Thumbify - HD YouTube Thumbnail Downloader</p>
+      <a href="https://thumbifytool.netlify.app/" class="text-purple-500 hover:text-purple-700 inline-block mt-2">Visit Thumbify Tool</a>
+    </footer>
+  </div>
+
+  <script>
+    // Highlight active navigation item based on scroll position
+    document.addEventListener('DOMContentLoaded', function () {
+      const sections = document.querySelectorAll('.section');
+      const navItems = document.querySelectorAll('.nav-item');
+
+      function highlightNavigation() {
+        let scrollPosition = window.scrollY;
+
+        sections.forEach((section, index) => {
+          const sectionTop = section.offsetTop - 100;
+          const sectionHeight = section.offsetHeight;
+
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            navItems.forEach(item => item.classList.remove('active-nav'));
+            navItems[index].classList.add('active-nav');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', highlightNavigation);
+      highlightNavigation(); // Run once on page load
+
+      // Smooth scroll for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 20,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
