@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Documentation for AI Bio Generator - Create perfect social media bios for Instagram, Twitter/X, LinkedIn and more">
+    <meta name="keywords" content="AI Bio Generator, social media bio, Instagram bio, Twitter bio, LinkedIn bio, bio generator">
+    <meta name="author" content="Kuldeep Singh">
+    <title>AI Bio Generator - Documentation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #0061ff 0%, #60efff 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .section {
+            margin-bottom: 3rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        .feature-card {
+            border-left: 4px solid #0061ff;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            background-color: #f9f9f9;
+            transform: translateX(5px);
+        }
+        .step-card {
+            display: flex;
+            margin-bottom: 1.5rem;
+            align-items: flex-start;
+        }
+        .step-number {
+            background-color: #0061ff;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .faq-item {
+            border-bottom: 1px solid #eee;
+            padding: 1rem 0;
+        }
+        .faq-question {
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .tech-stack-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+            background-color: #f7f7f7;
+        }
+        .tech-stack-icon {
+            margin-right: 10px;
+            color: #0061ff;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem 0;
+            border-top: 1px solid #eee;
+        }
+        .nav-link {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            color: #0061ff;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .nav-link:hover {
+            background-color: rgba(0, 97, 255, 0.1);
+        }
+        .btn-copy {
+            background-color: #0061ff;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .btn-copy:hover {
+            background-color: #0051d3;
+        }
+        .nav-link.active {
+            background-color: #0061ff;
+            color: white;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            .header {
+                padding: 1.5rem 0;
+            }
+        }
+        .tool-screenshot {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 1.5rem;
+        }
+        .highlight {
+            background-color: rgba(0, 97, 255, 0.1);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #0051d3;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <nav class="sticky top-0 bg-white p-4 shadow-md z-50">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="text-xl font-bold text-blue-600 mb-4 md:mb-0">AI Bio Generator</div>
+            <div class="flex flex-wrap justify-center">
+                <a href="#overview" class="nav-link">Overview</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#how-to-use" class="nav-link">How to Use</a>
+                <a href="#tech-stack" class="nav-link">Tech Stack</a>
+                <a href="#faqs" class="nav-link">FAQs</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <header class="header">
+            <h1 class="text-4xl font-bold mb-2">AI Bio Generator</h1>
+            <p class="text-xl">Create perfect platform-specific bios in seconds</p>
+        </header>
+
+        <section id="overview" class="section">
+            <h2 class="text-2xl font-bold mb-4 text-blue-600">Overview</h2>
+            <p class="mb-4">AI Bio Generator is a powerful tool designed to help content creators, professionals, and social media influencers create compelling and platform-optimized social media bios with minimal effort. This free tool leverages AI to generate tailored bios that match your profession, style preferences, and target platform specifications.</p>
+            <p>Whether you need a professional LinkedIn bio, a catchy Instagram description, or a concise Twitter/X bio, the AI Bio Generator will help you make a great first impression online while saving you time and creative energy.</p>
+            <div class="mt-5">
+                <img src="https://cdn1.genspark.ai/user-upload-image/v1/webpage_capture_screen_tool_call/25f765b5-07fa-48c5-b1b6-ec20a2759b2a" alt="AI Bio Generator Screenshot" class="tool-screenshot">
+            </div>
+        </section>
+
+        <section id="features" class="section">
+            <h2 class="text-2xl font-bold mb-4 text-blue-600">Features</h2>
+            
+            <div class="feature-card">
+                <h3 class="text-lg font-semibold">Platform-Specific Bio Generation</h3>
+                <p>Automatically generates optimized bios for multiple platforms:</p>
+                <ul class="list-disc pl-8 mt-2">
+                    <li>Instagram - Visual and engaging bios with proper hashtag usage</li>
+                    <li>Twitter/X - Concise and impactful bios within character limits</li>
+                    <li>LinkedIn - Professional bios highlighting expertise and credentials</li>
+                    <li>Threads - Conversational and engaging profile descriptions</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <h3 class="text-lg font-semibold">Emoji Integration</h3>
+                <p>Toggle emojis on or off to add personality and visual appeal to your bios. When enabled, the AI intelligently selects relevant emojis that complement your profession and keywords.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3 class="text-lg font-semibold">Keyword Customization</h3>
+                <p>Add specific keywords related to your niche, skills, or interests to ensure your bio includes the terms most relevant to your personal brand and improves discoverability.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3 class="text-lg font-semibold">Tone and Style Options</h3>
+                <p>Choose from various tones like Professional, Casual, Humorous, or Creative to match your personal brand voice and target audience expectations.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3 class="text-lg font-semibold">Character Limit Compliance</h3>
+                <p>Generated bios automatically respect the character limits of each platform, ensuring your bio won't be cut off when published.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3 class="text-lg font-semibold">One-Click Copy</h3>
+                <p>Each generated bio includes a copy button for instant use, making it simple to transfer your new bio to your social media profiles.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3 class="text-lg font-semibold">100% Free</h3>
+                <p>All features are available completely free of charge, with no hidden fees or premium tiers.</p>
+            </div>
+        </section>
+
+        <section id="how-to-use" class="section">
+            <h2 class="text-2xl font-bold mb-4 text-blue-600">How to Use</h2>
+            <p class="mb-6">Creating your perfect social media bio is quick and easy with AI Bio Generator. Just follow these simple steps:</p>
+            
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3 class="font-semibold">Select Your Platform</h3>
+                    <p>Choose which social platform you're creating a bio for (Instagram, LinkedIn, Twitter/X, or Threads) from the dropdown menu.</p>
+                </div>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3 class="font-semibold">Enter Your Profession or Niche</h3>
+                    <p>Specify your profession, industry, or content niche (e.g., "Digital Marketer," "Fitness Coach," "Tech Entrepreneur").</p>
+                </div>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3 class="font-semibold">Add Relevant Keywords</h3>
+                    <p>Enter keywords separated by commas that you want included in your bio. These help optimize your profile for search and reinforce your brand identity.</p>
+                </div>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3 class="font-semibold">Select Tone and Style</h3>
+                    <p>Choose the tone that best matches your personal brand (Professional, Casual, Creative, etc.).</p>
+                </div>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3 class="font-semibold">Toggle Emoji Option</h3>
+                    <p>Enable or disable emojis in your bio based on your preference and platform suitability.</p>
+                </div>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number">6</div>
+                <div class="step-content">
+                    <h3 class="font-semibold">Generate Your Bios</h3>
+                    <p>Click the "Generate Bios" button and wait a few seconds for the AI to work its magic.</p>
+                </div>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number">7</div>
+                <div class="step-content">
+                    <h3 class="font-semibold">Select and Copy</h3>
+                    <p>Review the generated options, select your favorite, and use the copy button to easily transfer it to your social profile.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tech-stack" class="section">
+            <h2 class="text-2xl font-bold mb-4 text-blue-600">Tech Stack</h2>
+            <p class="mb-6">AI Bio Generator is built using modern web technologies focused on performance, reliability, and user experience:</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="tech-stack-item">
+                    <i class="fab fa-html5 tech-stack-icon fa-2x"></i>
+                    <div>
+                        <h3 class="font-semibold">HTML5</h3>
+                        <p>Semantic markup for structure and accessibility</p>
+                    </div>
+                </div>
+                
+                <div class="tech-stack-item">
+                    <i class="fab fa-css3-alt tech-stack-icon fa-2x"></i>
+                    <div>
+                        <h3 class="font-semibold">CSS3</h3>
+                        <p>Modern styling with responsive design principles</p>
+                    </div>
+                </div>
+                
+                <div class="tech-stack-item">
+                    <i class="fab fa-js tech-stack-icon fa-2x"></i>
+                    <div>
+                        <h3 class="font-semibold">JavaScript</h3>
+                        <p>Frontend interaction and bio generation logic</p>
+                    </div>
+                </div>
+                
+                <div class="tech-stack-item">
+                    <i class="fas fa-server tech-stack-icon fa-2x"></i>
+                    <div>
+                        <h3 class="font-semibold">Netlify</h3>
+                        <p>Hosting platform with continuous deployment</p>
+                    </div>
+                </div>
+                
+                <div class="tech-stack-item">
+                    <i class="fas fa-robot tech-stack-icon fa-2x"></i>
+                    <div>
+                        <h3 class="font-semibold">AI Integration</h3>
+                        <p>Backend language model for generating quality bio content</p>
+                    </div>
+                </div>
+                
+                <div class="tech-stack-item">
+                    <i class="fas fa-mobile-alt tech-stack-icon fa-2x"></i>
+                    <div>
+                        <h3 class="font-semibold">Responsive Design</h3>
+                        <p>Optimized for all devices from mobile to desktop</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faqs" class="section">
+            <h2 class="text-2xl font-bold mb-4 text-blue-600">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Is AI Bio Generator free to use?</span>
+                </div>
+                <div class="faq-answer mt-2">
+                    <p>Yes, AI Bio Generator is completely free to use with no hidden costs, premium tiers, or usage limitations. You can generate as many bios as you need without creating an account.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Does AI Bio Generator store my personal data?</span>
+                </div>
+                <div class="faq-answer mt-2">
+                    <p>No, AI Bio Generator does not store any personal information or the bios you generate. The tool processes your inputs purely on the client-side and doesn't save any data after your session ends, ensuring complete privacy.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can I use the generated bios for commercial purposes?</span>
+                </div>
+                <div class="faq-answer mt-2">
+                    <p>Absolutely! You can use the generated bios for any purpose, including personal and commercial social media accounts, business pages, and professional profiles.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How accurate are the character counts for different platforms?</span>
+                </div>
+                <div class="faq-answer mt-2">
+                    <p>The tool strictly adheres to the official character limits for each platform (Instagram: 150 characters, Twitter/X: 160 characters, LinkedIn: 220 characters for headline, Threads: similar to Instagram), ensuring that your bio won't be truncated when posted.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can I edit the generated bios?</span>
+                </div>
+                <div class="faq-answer mt-2">
+                    <p>While the tool doesn't include an editor, you can easily copy the generated bio to your clipboard and paste it into any text editor for further customization before using it on your social profiles.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How often is AI Bio Generator updated?</span>
+                </div>
+                <div class="faq-answer mt-2">
+                    <p>The tool is regularly updated to maintain compatibility with platform changes, improve AI generation quality, and add new features. Check back often for the best experience.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="text-2xl font-bold mb-4 text-blue-600">Try It Now</h2>
+            <p class="mb-4">Ready to create your perfect social media bio? Visit the AI Bio Generator and transform your social profiles in seconds!</p>
+            <div class="text-center">
+                <a href="https://aibiogenerator.netlify.app/" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
+                    Launch AI Bio Generator
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer bg-gray-100">
+        <div class="container mx-auto px-4">
+            <p>Made with ❤️ by Kuldeep Singh</p>
+            <p class="text-gray-600 text-sm mt-2">© 2025 AI Bio Generator. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active state
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
+        });
+        
+        // Track scroll position to update active nav link
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.scrollY;
+            
+            document.querySelectorAll('section[id]').forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
