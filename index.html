@@ -320,8 +320,9 @@
                 <a href="#services" class="nav-link">Services</a>
                 <a href="#skills" class="nav-link">Skills</a>
                 <a href="#contact" class="nav-link">Contact</a>
-                <button onclick="netlifyIdentity.open()">Login / Signup</button>
- 
+                <button onclick="netlifyIdentity.open()" class="quick-links-btn">
+                    <i class="fas fa-user"></i> Login / Signup
+                </button>
             </div>
         </div>
     </nav>
@@ -465,19 +466,21 @@
             </div>
         </div>
     </footer>
+    <!-- Existing content continues here... -->
+
     <!-- Netlify Identity Widget -->
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/dashboard/"; // redirect after login
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.reload(); // Reload page after login
+            });
+          }
         });
       }
-    });
-  }
-</script>
+    </script>
 
 </body>
 </html>
