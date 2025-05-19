@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Mint Documentation - The Complete Guide</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .doc-section {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .doc-section:last-child {
+            border-bottom: none;
+        }
+        
+        .toc-link {
+            display: block;
+            padding: 0.5rem 0;
+            color: #6366F1;
+            text-decoration: none;
+        }
+        
+        .toc-link:hover {
+            color: #4F46E5;
+            text-decoration: underline;
+        }
+        
+        .feature-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .code-block {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: monospace;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            border: 1px solid #e5e7eb;
+            padding: 0.75rem 1rem;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f9fafb;
+        }
+        
+        .sidebar {
+            position: sticky;
+            top: 2rem;
+        }
+        
+        @media print {
+            .no-print {
+                display: none;
+            }
+            
+            .page-break {
+                page-break-before: always;
+            }
+        }
+        
+        .custom-highlight {
+            background-color: #f3f4f6;
+            border-left: 4px solid #6366F1;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Header Section -->
+        <header class="text-center mb-12 pt-4">
+            <h1 class="text-4xl font-bold text-indigo-600 mb-2">QR Mint Documentation</h1>
+            <p class="text-xl text-gray-600">The Complete Guide to Creating Beautiful, Functional QR Codes</p>
+        </header>
+        
+        <!-- Main Content Container -->
+        <div class="flex flex-col md:flex-row gap-8">
+            <!-- Sidebar / Table of Contents -->
+            <div class="md:w-1/4 no-print">
+                <div class="bg-white p-5 rounded-lg shadow-sm sidebar">
+                    <h2 class="text-xl font-bold mb-4 text-gray-800">Table of Contents</h2>
+                    <nav>
+                        <a href="#introduction" class="toc-link">1. Introduction</a>
+                        <a href="#getting-started" class="toc-link">2. Getting Started</a>
+                        <a href="#qr-types" class="toc-link">3. QR Code Types
+                            <div class="pl-4 text-sm">
+                                <a href="#url-qr" class="toc-link">3.1. URL QR Codes</a>
+                                <a href="#vcard-qr" class="toc-link">3.2. vCard QR Codes</a>
+                                <a href="#wifi-qr" class="toc-link">3.3. WiFi QR Codes</a>
+                                <a href="#email-qr" class="toc-link">3.4. Email QR Codes</a>
+                                <a href="#social-qr" class="toc-link">3.5. Social Media QR Codes</a>
+                                <a href="#text-qr" class="toc-link">3.6. Plain Text QR Codes</a>
+                            </div>
+                        </a>
+                        <a href="#customization" class="toc-link">4. Customization Options
+                            <div class="pl-4 text-sm">
+                                <a href="#colors" class="toc-link">4.1. Custom Colors</a>
+                                <a href="#logo" class="toc-link">4.2. Logo Integration</a>
+                                <a href="#size-margin" class="toc-link">4.3. Size & Margin Control</a>
+                                <a href="#style-presets" class="toc-link">4.4. Style Presets</a>
+                            </div>
+                        </a>
+                        <a href="#export" class="toc-link">5. Export Options</a>
+                        <a href="#use-cases" class="toc-link">6. Use Cases</a>
+                        <a href="#account" class="toc-link">7. Account & Premium Features</a>
+                        <a href="#best-practices" class="toc-link">8. Best Practices</a>
+                        <a href="#faq" class="toc-link">9. FAQ</a>
+                        <a href="#troubleshooting" class="toc-link">10. Troubleshooting</a>
+                    </nav>
+                </div>
+            </div>
+            
+            <!-- Main Documentation Content -->
+            <div class="md:w-3/4 bg-white rounded-lg shadow-sm p-6">
+                <!-- Introduction Section -->
+                <section id="introduction" class="doc-section">
+                    <h2 class="text-2xl font-bold mb-4 text-indigo-700">1. Introduction to QR Mint</h2>
+                    <p class="mb-4">
+                        QR Mint is a powerful web-based tool designed to create beautiful, functional QR codes for various purposes. Whether you need QR codes for your business, social media profiles, events, or personal use, QR Mint provides an intuitive interface with extensive customization options.
+                    </p>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-700">Key Features:</h3>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li>Multiple QR code types (URL, vCard, WiFi, Email, Social Media, Text)</li>
+                            <li>Extensive customization options (colors, logo embedding, size adjustments)</li>
+                            <li>High-quality exports in multiple formats (PNG, JPG, PDF)</li>
+                            <li>Easy sharing capabilities</li>
+                            <li>No account required for basic functionality</li>
+                            <li>Premium features for enhanced customization</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-700">Why Choose QR Mint?</h3>
+                        <p class="mb-2">
+                            QR Mint stands out from other QR code generators with its combination of user-friendly interface, extensive customization options, and high-quality output. The tool is designed to be accessible to beginners while offering advanced features for professional applications.
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                            <div class="feature-card">
+                                <h4 class="font-semibold text-indigo-600"><i class="fas fa-magic mr-2"></i>Beautiful Design</h4>
+                                <p class="text-sm text-gray-600">Create visually appealing QR codes that match your brand identity</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4 class="font-semibold text-indigo-600"><i class="fas fa-bolt mr-2"></i>Fast Generation</h4>
+                                <p class="text-sm text-gray-600">Generate QR codes instantly with real-time previews</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4 class="font-semibold text-indigo-600"><i class="fas fa-palette mr-2"></i>Rich Customization</h4>
+                                <p class="text-sm text-gray-600">Extensive options to tailor QR codes to your specific needs</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4 class="font-semibold text-indigo-600"><i class="fas fa-download mr-2"></i>Multiple Export Formats</h4>
+                                <p class="text-sm text-gray-600">Save your QR codes in the format that suits your needs</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Getting Started Section -->
+                <section id="getting-started" class="doc-section">
+                    <h2 class="text-2xl font-bold mb-4 text-indigo-700">2. Getting Started</h2>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-700">Accessing QR Mint</h3>
+                        <p class="mb-4">
+                            QR Mint is a web-based application that can be accessed directly through your browser at <a href="https://tryqrmint.netlify.app/" class="text-indigo-600 hover:underline">https://tryqrmint.netlify.app/</a>. No installation is required to start using the tool.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-700">Basic Workflow</h3>
+                        <ol class="list-decimal pl-5 space-y-3">
+                            <li>
+                                <strong>Select QR Code Type:</strong> Choose from URL, vCard, WiFi, Email, Social Media, or Plain Text depending on your needs
+                            </li>
+                            <li>
+                                <strong>Enter Content:</strong> Input the relevant information for your selected QR code type
+                            </li>
+                            <li>
+                                <strong>Customize Appearance:</strong> Adjust colors, add a logo, and set size parameters
+                            </li>
+                            <li>
+                                <strong>Preview:</strong> View your QR code in real-time as you make changes
+                            </li>
+                            <li>
+                                <strong>Export or Share:</strong> Download your QR code in your preferred format or share it directly
+                            </li>
+                        </ol>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-700">User Interface Overview</h3>
+                        <p class="mb-2">
+                            The QR Mint interface is divided into several key areas:
+                        </p>
+                        <div class="bg-gray-100 p-4 rounded-lg mb-4">
+                            <ul class="list-disc pl-5 space-y-2">
+                                <li><strong>Top Navigation:</strong> Access homepage, QR generator, and account features</li>
+                                <li><strong>QR Type Selector:</strong> Tabs to choose the type of QR code you want to create</li>
+                                <li><strong>Content Input Area:</strong> Fields to enter information based on the selected QR type</li>
+                                <li><strong>Customization Panel:</strong> Options to personalize the appearance of your QR code</li>
+                                <li><strong>Preview Panel:</strong> Real-time display of your QR code as you make changes</li>
+                                <li><strong>Export Options:</strong> Buttons to download or share your finished QR code</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="custom-highlight">
+                            <strong>Note:</strong> While basic QR code generation requires no account, creating an account unlocks premium features such as advanced customization options, saved QR codes, and analytics.
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- QR Code Types Section -->
+                <section id="qr-types" class="doc-section">
+                    <h2 class="text-2xl font-bold mb-4 text-indigo-700">3. QR Code Types</h2>
+                    <p class="mb-4">
+                        QR Mint supports a wide range of QR code types to meet various needs. Each type is optimized for specific information and can be fully customized to match your design requirements.
+                    </p>
+                    
+                    <!-- URL QR Codes -->
+                    <div id="url-qr" class="mb-8">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-700">3.1 URL QR Codes</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="col-span-2">
+                                <p class="mb-3">
+                                    URL QR codes direct scanners to a specific website or web page. These are the most common type of QR codes used for marketing, product information, and general web links.
+                                </p>
+                                <div class="mb-3">
+                                    <strong>Use Cases:</strong>
+                                    <ul class="list-disc pl-5 space-y-1 mt-1">
+                                        <li>Marketing materials directing to landing pages</li>
+                                        <li>Product packaging linking to instructions or registration</li>
+                                        <li>Business cards linking to portfolios or websites</li>
+                                        <li>Print advertisements with calls to action</li>
+                                    </ul>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>How to Create:</strong>
+                                    <ol class="list-decimal pl-5 space-y-1 mt-1">
+                                        <li>Select the "URL" tab from the QR type options</li>
+                                        <li>Enter the complete website URL including "http://" or "https://"</li>
+                                        <li>Customize appearance as desired</li>
+                                        <li>Preview and export</li>
+                                    </ol>
+                                </div>
+                                
+                                <div class="custom-highlight">
+                                    <strong>Pro Tip:</strong> For better tracking and analytics, consider using URL shorteners or campaign tracking parameters before generating your QR code.
+                                </div>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <h4 class="font-medium text-center mb-2">Example Input</h4>
+                                <div class="code-block">
+                                    <p>Website URL:</p>
+                                    <p class="text-indigo-600">https://example.com/landing-page</p>
+                                </div>
+                                <p class="text-center text-sm text-gray-500 mt-3">This URL will open directly when the QR code is scanned</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- vCard QR Codes -->
+                    <div id="vcard-qr" class="mb-8">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-700">3.2 vCard QR Codes</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="col-span-2">
+                                <p class="mb-3">
+                                    vCard QR codes contain contact information that can be instantly saved to a phone's contact list when scanned. This eliminates the need for manual data entry and potential errors.
+                                </p>
+                                <div class="mb-3">
+                                    <strong>Use Cases:</strong>
+                                    <ul class="list-disc pl-5 space-y-1 mt-1">
+                                        <li>Business cards and networking materials</li>
+                                        <li>Email signatures</li>
+                                        <li>Company directories</li>
+                                        <li>Conference badges</li>
+                                    </ul>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>How to Create:</strong>
+                                    <ol class="list-decimal pl-5 space-y-1 mt-1">
+                                        <li>Select the "vCard" tab from the QR type options</li>
+                                        <li>Fill in the contact details fields (Name, Phone, Email, etc.)</li>
+                                        <li>Add optional fields like Company, Title, Website</li>
+                                        <li>Customize appearance as desired</li>
+                                        <li>Preview and export</li>
+                                    </ol>
+                                </div>
+                                
+                                <div class="custom-highlight">
+                                    <strong>Pro Tip:</strong> Include only essential contact information to keep the QR code complexity lower, which improves scan reliability.
+                                </div>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <h4 class="font-medium text-center mb-2">Example Input</h4>
+                                <div class="code-block text-sm">
+                                    <p>Name: John Smith</p>
+                                    <p>Title: Marketing Director</p>
+                                    <p>Company: Acme Inc.</p>
+                                    <p>Phone: +1 (555) 123-4567</p>
+                                    <p>Email: john@example.com</p>
+                                    <p>Website: www.example.com</p>
+                                    <p>Address: 123 Business St, City</p>
+                                </div>
+                                <p class="text-center text-sm text-gray-500 mt-3">This information will be formatted as a vCard that can be instantly saved to contacts</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- WiFi QR Codes -->
+                    <div id="wifi-qr" class="mb-8">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-700">3.3 WiFi QR Codes</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="col-span-2">
+                                <p class="mb-3">
+                                    WiFi QR codes allow users to connect to a wireless network instantly by scanning the code, eliminating the need to manually enter complex passwords.
+                                </p>
+                                <div class="mb-3">
+                                    <strong>Use Cases:</strong>
+                                    <ul class="list-disc pl-5 space-y-1 mt-1">
+                                        <li>Guest WiFi access in offices</li>
+                                        <li>Hotel and hospitality WiFi information</li>
+                                        <li>Cafés and restaurants offering customer WiFi</li>
+                                        <li>Event venues with temporary networks</li>
+                                    </ul>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>How to Create:</strong>
+                                    <ol class="list-decimal pl-5 space-y-1 mt-1">
+                                        <li>Select the "WiFi" tab from the QR type options</li>
+                                        <li>Enter the network name (SSID)</li>
+                                        <li>Select the security type (WPA/WPA2, WEP, or None)</li>
+                                        <li>Enter the password (if applicable)</li>
+                                        <li>Toggle "Hidden Network" if your WiFi SSID is not broadcast</li>
+                                        <li>Customize appearance as desired</li>
+                                        <li>Preview and export</li>
+                                    </ol>
+                                </div>
+                                
+                                <div class="custom-highlight">
+                                    <strong>Security Note:</strong> WiFi QR codes contain your network password in an encrypted format. Only display these in secure locations accessible to intended users.
+                                </div>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <h4 class="font-medium text-center mb-2">Example Input</h4>
+                                <div class="code-block">
+                                    <p>Network Name (SSID): GuestWiFi</p>
+                                    <p>Security Type: WPA/WPA2</p>
+                                    <p>Password: Welcome2023!</p>
+                                    <p>Hidden Network: No</p>
+                                </div>
+                                <p class="text-center text-sm text-gray-500 mt-3">When scanned, this will automatically connect compatible devices to the WiFi network</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Email QR Codes -->
+                    <div id="email-qr" class="mb-8">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-700">3.4 Email QR Codes</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="col-span-2">
+                                <p class="mb-3">
+                                    Email QR codes open a new email message with pre-filled fields when scanned, making it easy for users to contact you without manually typing email addresses or subject lines.
+                                </p>
+                                <div class="mb-3">
+                                    <strong>Use Cases:</strong>
+                                    <ul class="list-disc pl-5 space-y-1 mt-1">
+                                        <li>Customer feedback requests</li>
+                                        <li>Information request forms</li>
+                                        <li>Contact information on printed materials</li>
+                                        <li>Support or inquiry solicitations</li>
+                                    </ul>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>How to Create:</strong>
+                                    <ol class="list-decimal pl-5 space-y-1 mt-1">
+                                        <li>Select the "Email" tab from the QR type options</li>
+                                        <li>Enter the recipient email address</li>
+                                        <li>Add an optional subject line</li>
+                                        <li>Include an optional email body text</li>
+                                        <li>Customize appearance as desired</li>
+                                        <li>Preview and export</li>
+                                    </ol>
+                                </div>
+                                
+                                <div class="custom-highlight">
+                                    <strong>Pro Tip:</strong> Use specific subject lines and brief body text to make it easier for recipients to understand the purpose of the email.
+                                </div>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <h4 class="font-medium text-center mb-2">Example Input</h4>
+                                <div class="code-block">
+                                    <p>To: support@example.com</p>
+                                    <p>Subject: Product Inquiry</p>
+                                    <p>Body: I'm interested in learning more about your services. Please send me information about...</p>
+                                </div>
+                                <p class="text-center text-sm text-gray-500 mt-3">When scanned, this will open an email draft with these fields pre-filled</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Media QR Codes -->
+                    <div id="social-qr" class="mb-8">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-700">3.5 Social Media QR Codes</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="col-span-2">
+                                <p class="mb-3">
+                                    Social Media QR codes direct users to specific social media profiles, making it easier to gain followers and increase your online presence.
+                                </p>
+                                <div class="mb-3">
+                                    <strong>Use Cases:</strong>
+                                    <ul class="list-disc pl-5 space-y-1 mt-1">
+                                        <li>Marketing materials promoting social channels</li>
+                                        <li>Event displays for increasing followers</li>
+                                        <li>Products packaging for brand engagement</li>
+                                        <li>Store signage encouraging social follows</li>
+                                    </ul>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>How to Create:</strong>
+                                    <ol class="list-decimal pl-5 space-y-1 mt-1">
+                                        <li>Select the "Social" tab from the QR type options</li>
+                                        <li>Choose the social media platform (Instagram, Facebook, Twitter, LinkedIn, etc.)</li>
+                                        <li>Enter your username or profile URL</li>
+                                        <li>Customize appearance as desired</li>
+                                        <li>Preview and export</li>
+                                    </ol>
+                                </div>
+                                
+                                <div class="custom-highlight">
+                                    <strong>Pro Tip:</strong> Use platform-specific colors for your QR code to create visual association with the social network (e.g., blue for Facebook, pink/purple gradient for Instagram).
+                                </div>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <h4 class="font-medium text-center mb-2">Example Input</h4>
+                                <div class="code-block">
+                                    <p>Platform: Instagram</p>
+                                    <p>Username: @yourbusiness</p>
+                                </div>
+                                <p class="text-center text-sm text-gray-500 mt-3">When scanned, this will open your Instagram profile page</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Plain Text QR Codes -->
+                    <div id="text-qr" class="mb-8">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-700">3.6 Plain Text QR Codes</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="col-span-2">
+                                <p class="mb-3">
+                                    Plain Text QR codes display a simple text message when scanned. They are versatile and can be used to share short messages, quotes, promotional offers, or instructions.
+                                </p>
+                                <div class="mb-3">
+                                    <strong>Use Cases:</strong>
+                                    <ul class="list-disc pl-5 space-y-1 mt-1">
+                                        <li>Promotional offers and coupon codes</li>
+                                        <li>Event details and schedules</li>
+                                        <li>Product information or instructions</li>
+                                        <li>Inspirational quotes or messages</li>
+                                    </ul>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>How to Create:</strong>
+                                    <ol class="list-decimal pl-5 space-y-1 mt-1">
+                                        <li>Select the "Text" tab from the QR type options</li>
+                                        <li>Enter your message in the text field</li>
+                                        <li>Customize appearance as desired</li>
+                                        <li>Preview and export</li>
+                                    </ol>
+                                </div>
+                                
+                                <div class="custom-highlight">
+                                    <strong>Note:</strong> Keep text concise for better user experience. For longer content, consider using a URL QR code that links to a full webpage instead.
+                                </div>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <h4 class="font-medium text-center mb-2">Example Input</h4>
+                                <div class="code-block">
+                                    <p>Use coupon code "WELCOME20" for 20% off your first purchase at our store!</p>
+                                </div>
+                                <p class="text-center text-sm text-gray-500 mt-3">When scanned, this text will display directly on the user's device</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Customization Options Section -->
+                <section id="customization" class="doc-section">
+                    <h2 class="text-2xl font-bold mb-4 text-indigo-700">4. Customization Options</h2>
+                    <p class="mb-4">
+                        QR Mint offers extensive customization options to make your QR codes visually appealing while maintaining their functionality. These options allow you to create QR codes that align with your brand identity and design requirements.
+                    </p>
+                    
+                    <!-- Custom Colors -->
+                    <div id="colors" class="mb-8">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-700">4.1 Custom Colors</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="col-span-2">
+                                <p class="mb-3">
+                                    QR Mint allows you to customize both the foreground (QR pattern) and background colors to match your brand identity or design preferences.
+                                </p>
+                                <div class="mb-3">
+                                    <strong>Available Options:</strong>
+                                    <ul class="list-disc pl-5 space-y-1 mt-1">
+                                        <li>Foreground color selection (the QR code pattern)</li>
+                                        <li>Background color selection</li>
+                                        <li>Color picker with hex code input</li>
+                                        <li>Preset color combinations (Premium feature)</li>
+                                        <li>Gradient options for foreground (Premium feature)</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="custom-highlight">
+                                    <strong>Best Practices:</strong> Maintain high contrast between foreground and background colors for optimal scanning. Avoid using light colors for the foreground pattern as they may reduce readability for scanners.
+                                </div>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <h4 class="font-medium text-center mb-2">Customization Steps</h4>
+                                <ol class="list-decimal pl-5 space-y-1">
+                                    <li>Click on the "Colors" tab in the customization panel</li>
+                                    <li>Select your desired foreground color</li>
+                                    <li>Choose a complementary background color</li>
+                                    <li>Test scan the QR code to ensure good readability</li>
+                                </ol>
+                                <p class="text-center text-sm text-gray-500 mt-3">Colors update in real-time in the preview panel</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Logo Integration -->
+                    <div id="logo" class="mb-8">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-700">4.2 Logo Integration</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="col-span-2">
+                                <p class="mb-3">
+                                    Add your company logo or any image to the center of your QR code for brand recognition and visual appeal while maintaining scannability.
+                                </p>
+                                <div class="mb-3">
+                                    <strong>Available Options:</strong>
+                                    <ul class="list-disc pl-5 space-y-1 mt-1">
+                                        <li>Upload custom logo/image</li>
+                                        <li>Adjust logo size (percentage of QR code)</li>
+                                        <li>Logo position control (Premium feature)</li>
+                                        <li>Logo shape options (square, circle, rounded) (Premium feature)</li>
+                                        <li>Logo background removal (Premium feature)</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="custom-highlight">
+                                    <strong>Important:</strong> Adding a logo reduces error correction capability. Keep logos small (generally under 30% of QR code size) and ensure the QR code still scans reliably with the logo in place.
+                                </div>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <h4 class="font-medium text-center mb-2">Logo Guidelines</h4>
+                                <ul class="list-disc pl-5 space-y-1">
+                                    <li>Use simple, high-contrast logos</li>
+                                    <li>Recommended formats: PNG or SVG</li>
+                                    <li>Transparent background preferred</li>
+                                    <li>Optimal size: 200px × 200px or larger</li>
+                                    <li>Keep logo under 30% of QR code size</li>
+                                </ul>
+                                <p class="text-center text-sm text-gray-500 mt-3">Always test scan after adding a logo</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Size & Margin Control -->
+                    <div id="size-margin" class="mb-8">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-700">4.3 Size & Margin Control</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="col-span-2">
+                                <p class="mb-3">
+                                    Adjust the size and margins of your QR code to fit perfectly in your designs and ensure optimal scanning.
+                                </p>
+                                <div class="mb-3">
+                                    <strong>Available Options:</strong>
+                                    <ul class="list-disc pl-5 space-y-1 mt-1">
+                                        <li>QR code size adjustment (pixel dimensions)</li>
+                                        <li>Quiet zone/margin control</li>
+                                        <li>Corner style customization (Premium feature)</li>
+                                        <li>Pattern style customization (Premium feature)</li>
+                                        <li>Dot style options (Premium feature)</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="custom-highlight">
+                                    <strong>Best Practices:</strong> Maintain adequate quiet zone (margin) around your QR code—typically at least 4 modules wide. This white space is essential for proper scanning.
+                                </div>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <h4 class="font-medium text-center mb-2">Size Recommendations</h4>
+                                <table class="text-sm">
+                                    <tr>
+                                        <th>Usage</th>
+                                        <th>Min. Size</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Business Cards</td>
+                                        <td>1.2 × 1.2 cm</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Brochures</td>
+                                        <td>2 × 2 cm</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Posters</td>
+                                        <td>6 × 6 cm</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Billboards</td>
+                                        <td>30 × 30 cm</td>
+                                    </tr>
+                                </table>
+                                <p class="text-center text-sm text-gray-500 mt-3">Sizes vary based on scanning distance</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Style Presets -->
+                    <div id="style-presets" class="mb-8">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-700">4.4 Style Presets</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="col-span-2">
+                                <p class="mb-3">
+                                    QR Mint offers pre-designed styles and templates to quickly create eye-catching QR codes without manual customization.
+                                </p>
+                                <div class="mb-3">
+                                    <strong>Available Options:</strong>
+                                    <ul class="list-disc pl-5 space-y-1 mt-1">
+                                        <li>Standard preset (classic QR design)</li>
+                                        <li>Rounded corners preset</li>
+                                        <li>Branded presets with industry-specific designs (Premium)</li>
+                                        <li>Seasonal and special event themes (Premium)</li>
+                                        <li>Animated QR codes (Premium)</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="custom-highlight">
+                                    <strong>Note:</strong> Style presets may have varying levels of compatibility with all QR scanners. Always test your styled QR codes with multiple devices and apps to ensure reliability.
+                                </div>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <h4 class="font-medium text-center mb-2">Using Style Presets</h4>
+                                <ol class="list-decimal pl-5 space-y-1">
+                                    <li>Generate your basic QR code first</li>
+                                    <li>Click the "Style" tab in customization</li>
+                                    <li>Browse available preset options</li>
+                                    <li>Select desired style</li>
+                                    <li>Make additional customizations if needed</li>
+                                    <li>Verify scanning functionality</li>
+                                </ol>
+                                <p class="text-center text-sm text-gray-500 mt-3">Premium account required for advanced styles</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Export Options Section -->
+                <section id="export" class="doc-section">
+                    <h2 class="text-2xl font-bold mb-4 text-indigo-700">5. Export Options</h2>
+                    <p class="mb-4">
+                        QR Mint provides multiple options for saving, sharing, and implementing your QR codes across different platforms and materials.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="feature-card">
+                            <h3 class="text-lg font-semibold mb-2 text-gray-700">Download Formats</h3>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li><strong>PNG:</strong> Best for digital use and general purpose</li>
+                                <li><strong>JPG:</strong> Compressed format suitable for web use</li>
+                                <li><strong>PDF:</strong> Ideal for print materials and vector quality</li>
+                                <li><strong>SVG:</strong> Vector format for scalable, high-quality prints (Premium)</li>
+                                <li><strong>EPS:</strong> Professional print format (Premium)</li>
+                            </ul>
+                            <p class="text-sm text-gray-600 mt-2">
+                                Choose high-resolution formats (PDF, SVG) for print materials to ensure clarity.
+                            </p>
+                        </div>
+                        <div class="feature-card">
+                            <h3 class="text-lg font-semibold mb-2 text-gray-700">Sharing Options</h3>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li><strong>Direct Email:</strong> Send QR code directly via email</li>
+                                <li><strong>Link Sharing:</strong> Generate a shareable link to your QR code</li>
+                                <li><strong>Social Media:</strong> Share directly to platforms (Premium)</li>
+                                <li><strong>HTML Embed:</strong> Code to embed QR code on websites (Premium)</li>
+                                <li><strong>API Access:</strong> Programmatic generation and access (Premium)</li>
+                            </ul>
+                            <p class="text-sm text-gray-600 mt-2">
+                                Use the appropriate sharing method based on your implementation needs.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-700">Best Practices for QR Code Export</h3>
+                        
+                        <table class="w-full border-collapse mb-4">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th>Usage Scenario</th>
+                                    <th>Recommended Format</th>
+                                    <th>Resolution</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Website/Digital Display</td>
+                                    <td>PNG</td>
+                                    <td>300px × 300px</td>
+                                </tr>
+                                <tr>
+                                    <td>Social Media</td>
+                                    <td>PNG/JPG</td>
+                                    <td>1080px × 1080px</td>
+                                </tr>
+                                <tr>
+                                    <td>Business Cards</td>
+                                    <td>PDF/SVG</td>
+                                    <td>300 DPI</td>
+                                </tr>
+                                <tr>
+                                    <td>Large Format Printing</td>
+                                    <td>SVG/EPS</td>
+                                    <td>Vector (scalable)</td>
+                                </tr>
+                                <tr>
+                                    <td>Print Advertising</td>
+                                    <td>PDF/EPS</td>
+                                    <td>300+ DPI</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="custom-highlight">
+                            <strong>Important:</strong> Always test your exported QR codes on multiple devices before final implementation, especially for print materials where corrections would be costly.
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Use Cases Section -->
+                <section id="use-cases" class="doc-section">
+                    <h2 class="text-2xl font-bold mb-4 text-indigo-700">6. Use Cases</h2>
+                    <p class="mb-4">
+                        QR Mint can be used across numerous industries and applications. Here are some common use cases and implementation ideas.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div class="feature-card">
+                            <h3 class="font-semibold text-indigo-600">Marketing & Advertising</h3>
+                            <ul class="list-disc pl-5 text-sm mt-2">
+                                <li>Print ads with trackable links</li>
+                                <li>Product packaging with authentication</li>
+                                <li>Direct mail campaigns</li>
+                                <li>Event promotion materials</li>
+                                <li>Billboard and outdoor advertising</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <h3 class="font-semibold text-indigo-600">Retail & Commerce</h3>
+                            <ul class="list-disc pl-5 text-sm mt-2">
+                                <li>Digital payment integration</li>
+                                <li>Loyalty program enrollment</li>
+                                <li>Product information access</li>
+                                <li>Store wayfinding</li>
+                                <li>Digital receipts and warranties</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <h3 class="font-semibold text-indigo-600">Restaurants & Hospitality</h3>
+                            <ul class="list-disc pl-5 text-sm mt-2">
+                                <li>Digital menus</li>
+                                <li>Contactless ordering</li>
+                                <li>Guest WiFi access</li>
+                                <li>Customer feedback collection</li>
+                                <li>Table reservations</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <h3 class="font-semibold text-indigo-600">Events & Conferences</h3>
+                            <ul class="list-disc pl-5 text-sm mt-2">
+                                <li>Digital tickets and check-in</li>
+                                <li>Session schedules and information</li>
+                                <li>Speaker profiles</li>
+                                <li>Lead collection for exhibitors</li>
+                                <li>Interactive venue maps</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <h3 class="font-semibold text-indigo-600">Education & Training</h3>
+                            <ul class="list-disc pl-5 text-sm mt-2">
+                                <li>Interactive learning materials</li>
+                                <li>Campus maps and guides</li>
+                                <li>Assignment submission portals</li>
+                                <li>Digital library resources</li>
+                                <li>Attendance tracking</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <h3 class="font-semibold text-indigo-600">Personal & Social</h3>
+                            <ul class="list-disc pl-5 text-sm mt-2">
+                                <li>Digital business cards</li>
+                                <li>Social media profile linking</li>
+                                <li>Wedding and event information</li>
+                                <li>Personal contact sharing</li>
+                                <li>Resume/portfolio access</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-700">Implementation Examples</h3>
+                        
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-gray-700">Restaurant Digital Menu</h4>
+                            <ol class="list-decimal pl-5 space-y-1 mt-1">
+                                <li>Create a URL QR code linking to your online menu</li>
+                                <li>Customize with your restaurant's brand colors</li>
+                                <li>Add your logo to the center for brand recognition</li>
+                                <li>Export as high-resolution PDF</li>
+                                <li>Print on table tents or laminated cards</li>
+                                <li>Consider using dynamic QR codes to update menu content without reprinting</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-gray-700">Trade Show Lead Collection</h4>
+                            <ol class="list-decimal pl-5 space-y-1 mt-1">
+                                <li>Create a vCard QR code with your company contact information</li>
+                                <li>Add a URL QR code to your landing page with a contact form</li>
+                                <li>Print both QR codes on business cards or brochures</li>
+                                <li>Display larger versions at your booth</li>
+                                <li>Track scans via analytics to measure booth engagement</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-gray-700">Product Authentication</h4>
+                            <ol class="list-decimal pl-5 space-y-1 mt-1">
+                                <li>Generate unique URL QR codes for each product batch</li>
+                                <li>Link to a verification page on your website</li>
+                                <li>Customize with your brand colors and logo</li>
+                                <li>Export as high-resolution vector files for printing</li>
+                                <li>Apply to product packaging or labels</li>
+                                <li>Set up tracking to monitor scan activity for security</li>
+                            </ol>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Account & Premium Features Section -->
+                <section id="account" class="doc-section">
+                    <h2 class="text-2xl font-bold mb-4 text-indigo-700">7. Account & Premium Features</h2>
+                    <p class="mb-4">
+                        While QR Mint offers powerful free features, creating an account unlocks additional capabilities and premium options for advanced users and businesses.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-3 text-gray-700">Free Features</h3>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Basic QR code generation for all supported types</li>
+                                <li>Standard customization options (basic colors, size)</li>
+                                <li>Simple logo integration</li>
+                                <li>Download as PNG, JPG, and PDF</li>
+                                <li>Basic sharing options</li>
+                                <li>No account required</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-3 text-gray-700">Premium Features</h3>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Dynamic QR codes that can be edited after creation</li>
+                                <li>Advanced customization (gradients, patterns, shapes)</li>
+                                <li>Enhanced logo positioning and styling</li>
+                                <li>SVG and EPS export options</li>
+                                <li>Bulk generation of multiple QR codes</li>
+                                <li>Scan analytics and tracking</li>
+                                <li>API access for integration</li>
+                                <li>Saved QR code library</li>
+                                <li>Team collaboration features</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-700">Account Management</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-2">Creating an Account</h4>
+                                <ol class="list-decimal pl-5 space-y-1">
+                                    <li>Click "Register" in the top navigation bar</li>
+                                    <li>Enter your email address</li>
+                                    <li>Create a secure password</li>
+                                    <li>Verify your email address</li>
+                                    <li>Complete your profile information</li>
+                                </ol>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-2">Managing Your QR Codes</h4>
+                                <ol class="list-decimal pl-5 space-y-1">
+                                    <li>Log in to your account</li>
+                                    <li>Access your QR code library</li>
+                                    <li>View, edit, or delete existing QR codes</li>
+                                    <li>Monitor scan analytics (Premium)</li>
+                                    <li>Organize QR codes into folders (Premium)</li>
+                                    <li>Share QR codes with team members (Premium)</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="custom-highlight mb-6">
+                        <strong>Pro Tip:</strong> Consider upgrading to Premium for critical marketing campaigns or large-scale implementations where tracking and dynamic updating capabilities are valuable.
+                    </div>
+                </section>
+                
+                <!-- Best Practices Section -->
+                <section id="best-practices" class="doc-section">
+                    <h2 class="text-2xl font-bold mb-4 text-indigo-700">8. Best Practices</h2>
+                    <p class="mb-4">
+                        Follow these guidelines to ensure your QR codes are effective, scannable, and provide a good user experience.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="feature-card">
+                            <h3 class="font-semibold text-indigo-600">Design Best Practices</h3>
+                            <ul class="list-disc pl-5 space-y-1 mt-2">
+                                <li>Maintain high contrast between foreground and background</li>
+                                <li>Keep logos small (under 30% of QR code size)</li>
+                                <li>Ensure adequate quiet zone (margin) around the code</li>
+                                <li>Test scan after any customization</li>
+                                <li>Use error correction level appropriate for customization level</li>
+                                <li>Avoid distorting QR code proportions</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <h3 class="font-semibold text-indigo-600">Implementation Best Practices</h3>
+                            <ul class="list-disc pl-5 space-y-1 mt-2">
+                                <li>Size QR codes appropriately for viewing distance</li>
+                                <li>Add a clear call-to-action near the QR code</li>
+                                <li>Place QR codes in accessible, well-lit locations</li>
+                                <li>Avoid placing on curved surfaces when possible</li>
+                                <li>Test with multiple devices and scanning apps</li>
+                                <li>Consider the destination experience (mobile-optimized?)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-700">QR Code Placement Guidelines</h3>
+                        
+                        <table class="w-full border-collapse mb-4">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th>Medium</th>
+                                    <th>Minimum Size</th>
+                                    <th>Placement Considerations</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Business Cards</td>
+                                    <td>1.2 × 1.2 cm</td>
+                                    <td>Back side, lower corner</td>
+                                </tr>
+                                <tr>
+                                    <td>Flyers/Brochures</td>
+                                    <td>2 × 2 cm</td>
+                                    <td>Near contact information or CTA</td>
+                                </tr>
+                                <tr>
+                                    <td>Product Packaging</td>
+                                    <td>2.5 × 2.5 cm</td>
+                                    <td>Flat surface, avoid seams or folds</td>
+                                </tr>
+                                <tr>
+                                    <td>Posters/Signage</td>
+                                    <td>5-10 cm</td>
+                                    <td>Eye level, with clear instructions</td>
+                                </tr>
+                                <tr>
+                                    <td>Window Displays</td>
+                                    <td>10+ cm</td>
+                                    <td>Visible from typical viewing distance</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg mb-6">
+                        <h3 class="font-semibold text-gray-700 mb-2">QR Code Testing Checklist</h3>
+                        <ol class="list-decimal pl-5 space-y-1">
+                            <li>Scan with at least 3 different devices (iOS, Android, etc.)</li>
+                            <li>Test with both built-in camera apps and dedicated QR scanners</li>
+                            <li>Verify scanning works at different distances</li>
+                            <li>Check scanning under different lighting conditions</li>
+                            <li>Test printed QR codes after production</li>
+                            <li>Confirm destination content loads properly on mobile</li>
+                            <li>Verify any tracking or analytics are capturing data</li>
+                        </ol>
+                    </div>
+                </section>
+                
+                <!-- FAQ Section -->
+                <section id="faq" class="doc-section">
+                    <h2 class="text-2xl font-bold mb-4 text-indigo-700">9. Frequently Asked Questions</h2>
+                    
+                    <div class="mb-6 space-y-4">
+                        <div>
+                            <h3 class="font-semibold text-gray-700">Q: How do I ensure my QR code is scannable?</h3>
+                            <p class="pl-4">
+                                A: Maintain high contrast between foreground and background colors, ensure adequate quiet zone (margin) around the code, avoid excessive customization that might compromise scan reliability, and always test your QR code with multiple devices before implementation.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-gray-700">Q: What size should my QR code be?</h3>
+                            <p class="pl-4">
+                                A: The optimal size depends on scanning distance. As a rule of thumb, QR codes should be at least 2 × 2 cm for close scanning (e.g., business cards) and scaled up based on viewing distance. For posters or displays meant to be scanned from 1-2 meters away, aim for at least 10 × 10 cm.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-gray-700">Q: Can I change what my QR code links to after creation?</h3>
+                            <p class="pl-4">
+                                A: Yes, but only with dynamic QR codes, which are a Premium feature. Dynamic QR codes can be edited to point to different content without needing to replace the physical QR code. Static QR codes (included in the free version) cannot be changed after creation.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-gray-700">Q: How do I track QR code scans?</h3>
+                            <p class="pl-4">
+                                A: QR Mint Premium offers built-in scanning analytics. Alternatively, when using URL QR codes, you can create links with UTM parameters for tracking in your web analytics platform, or use URL shorteners that provide click analytics.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-gray-700">Q: Will customizing my QR code affect its scannability?</h3>
+                            <p class="pl-4">
+                                A: Yes, excessive customization can potentially reduce scan reliability. QR codes have built-in error correction, but significant modifications like large logos or low contrast colors can make codes difficult to scan. Always test thoroughly after customization.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-gray-700">Q: Can I print my QR code on dark backgrounds?</h3>
+                            <p class="pl-4">
+                                A: Yes, by inverting the QR code colors. Use a dark background with a light-colored QR code pattern. Ensure there's still sufficient contrast and maintain the quiet zone with appropriate coloring.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-gray-700">Q: What information can be stored in a QR code?</h3>
+                            <p class="pl-4">
+                                A: QR codes can store various types of information including URLs, text (up to about 3000 characters), contact information (vCard), WiFi credentials, email addresses, phone numbers, and more. The amount of data affects the complexity of the QR code pattern.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-gray-700">Q: Are QR codes secure?</h3>
+                            <p class="pl-4">
+                                A: Standard QR codes are not encrypted, so sensitive information should not be encoded directly. For secure applications, use QR codes that link to secure, authenticated websites rather than embedding sensitive data in the code itself.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Troubleshooting Section -->
+                <section id="troubleshooting" class="doc-section">
+                    <h2 class="text-2xl font-bold mb-4 text-indigo-700">10. Troubleshooting</h2>
+                    <p class="mb-4">
+                        If you encounter issues with QR Mint or with the QR codes you've created, use this troubleshooting guide to identify and resolve common problems.
+                    </p>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-700">QR Code Not Scanning</h3>
+                        
+                        <table class="w-full border-collapse mb-4">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th>Problem</th>
+                                    <th>Possible Causes</th>
+                                    <th>Solutions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>QR code doesn't scan at all</td>
+                                    <td>
+                                        <ul class="list-disc pl-5 text-sm">
+                                            <li>Poor contrast</li>
+                                            <li>Insufficient quiet zone</li>
+                                            <li>Excessive customization</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul class="list-disc pl-5 text-sm">
+                                            <li>Increase contrast between colors</li>
+                                            <li>Add larger margin around code</li>
+                                            <li>Reduce logo size or remove it</li>
+                                            <li>Generate a new code with less customization</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>QR code scans inconsistently</td>
+                                    <td>
+                                        <ul class="list-disc pl-5 text-sm">
+                                            <li>Border color issues</li>
+                                            <li>Low resolution output</li>
+                                            <li>Different scanning apps</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul class="list-disc pl-5 text-sm">
+                                            <li>Use higher contrast colors</li>
+                                            <li>Export at higher resolution</li>
+                                            <li>Test with multiple scanning apps</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Printed QR code won't scan</td>
+                                    <td>
+                                        <ul class="list-disc pl-5 text-sm">
+                                            <li>Print quality issues</li>
+                                            <li>Size too small</li>
+                                            <li>Glossy finish reflection</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul class="list-disc pl-5 text-sm">
+                                            <li>Print at higher resolution</li>
+                                            <li>Increase QR code size</li>
+                                            <li>Use matte finish materials</li>
+                                            <li>Avoid curved surfaces</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-700">Technical Issues</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="feature-card">
+                                <h4 class="font-semibold text-indigo-600">Generator Issues</h4>
+                                <ul class="list-disc pl-5 space-y-1 mt-2 text-sm">
+                                    <li><strong>Problem:</strong> QR code preview not loading<br>
+                                    <strong>Solution:</strong> Try refreshing the page, clear browser cache, or use a different browser</li>
+                                    
+                                    <li><strong>Problem:</strong> Unable to customize colors<br>
+                                    <strong>Solution:</strong> Check for browser compatibility, ensure JavaScript is enabled</li>
+                                    
+                                    <li><strong>Problem:</strong> Download button not working<br>
+                                    <strong>Solution:</strong> Check download permissions, try a different browser, or use the share option instead</li>
+                                </ul>
+                            </div>
+                            <div class="feature-card">
+                                <h4 class="font-semibold text-indigo-600">Account Issues</h4>
+                                <ul class="list-disc pl-5 space-y-1 mt-2 text-sm">
+                                    <li><strong>Problem:</strong> Unable to register account<br>
+                                    <strong>Solution:</strong> Check email format, ensure password meets requirements, verify email</li>
+                                    
+                                    <li><strong>Problem:</strong> Can't access Premium features<br>
+                                    <strong>Solution:</strong> Verify subscription status, check payment method, contact support</li>
+                                    
+                                    <li><strong>Problem:</strong> Saved QR codes not appearing<br>
+                                    <strong>Solution:</strong> Refresh the dashboard, check account login status, clear cache</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg mb-6">
+                        <h3 class="font-semibold text-gray-700 mb-2">Before Contacting Support</h3>
+                        <p class="mb-2">Try these general troubleshooting steps:</p>
+                        <ol class="list-decimal pl-5 space-y-1">
+                            <li>Clear your browser cache and cookies</li>
+                            <li>Try using a different web browser</li>
+                            <li>Disable browser extensions that might interfere</li>
+                            <li>Check your internet connection</li>
+                            <li>Verify that JavaScript is enabled in your browser</li>
+                            <li>Try accessing QR Mint from a different device</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="custom-highlight">
+                        <strong>Contact Support:</strong> If you're still experiencing issues after trying the troubleshooting steps above, contact QR Mint support at support@qrmint.com or through the Help section in your account dashboard.
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+        <!-- Footer Section -->
+        <footer class="mt-12 pt-8 border-t border-gray-200 text-center text-gray-600">
+            <p>QR Mint Documentation | © 2023 QR Mint. All rights reserved.</p>
+            <p class="text-sm mt-2">For the latest information, please visit <a href="https://tryqrmint.netlify.app/" class="text-indigo-600 hover:underline">tryqrmint.netlify.app</a></p>
+        </footer>
+    </div>
+</body>
+</html>
