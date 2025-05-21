@@ -468,19 +468,43 @@
     </footer>
     <!-- Existing content continues here... -->
 
-    <!-- Netlify Identity Widget -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <script>
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.reload(); // Reload page after login
-            });
-          }
-        });
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js "></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const userNav = document.getElementById('user-nav');
+
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init', user => {
+        updateUI(user);
+      });
+
+      window.netlifyIdentity.on('login', user => {
+        updateUI(user);
+        netlifyIdentity.close();
+      });
+
+      window.netlifyIdentity.on('logout', () => {
+        updateUI(null);
+      });
+    }
+
+    function updateUI(user) {
+      if (user) {
+        userNav.innerHTML = `
+          <div class="nav-link">
+            Hello, ${user.user_metadata.full_name || 'User'}
+          </div>
+          <a href="#" onclick="netlifyIdentity.open('account')" class="nav-link">Manage Profile</a>
+          <a href="#" onclick="netlifyIdentity.logout()" class="nav-link">Logout</a>
+        `;
+      } else {
+        userNav.innerHTML = `
+          <a href="#" onclick="netlifyIdentity.open()" class="nav-link">Login / Signup</a>
+        `;
       }
-    </script>
+    }
+  });
+</script>
 
 </body>
 </html>
