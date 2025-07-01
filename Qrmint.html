@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Mint Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(110, 142, 251, 0.4);
+        }
+        .section-heading {
+            position: relative;
+        }
+        .section-heading:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #6e8efb, #a777e3);
+        }
+        .custom-shadow {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        @media (max-width: 640px) {
+            .section-heading:after {
+                width: 60px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed w-full z-10">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-300">QRMint</div>
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#features" class="text-gray-600 hover:text-purple-600 transition-colors">Features</a>
+                <a href="#customization" class="text-gray-600 hover:text-purple-600 transition-colors">Customization</a>
+                <a href="#use-cases" class="text-gray-600 hover:text-purple-600 transition-colors">Use Cases</a>
+                <a href="#why-qrmint" class="text-gray-600 hover:text-purple-600 transition-colors">Why QR Mint</a>
+                <a href="https://tryqrmint.netlify.app/qrcodegenerator" target="_blank" class="bg-gradient-to-r from-purple-500 to-pink-400 text-white font-medium px-4 py-2 rounded-lg hover:shadow-lg transition-all">Try QR Mint</a>
+            </div>
+            <div class="md:hidden flex items-center">
+                <button id="mobile-menu-button" class="text-gray-600 hover:text-purple-600 focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-md absolute w-full">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-2">
+                <a href="#features" class="text-gray-600 hover:text-purple-600 py-2 transition-colors">Features</a>
+                <a href="#customization" class="text-gray-600 hover:text-purple-600 py-2 transition-colors">Customization</a>
+                <a href="#use-cases" class="text-gray-600 hover:text-purple-600 py-2 transition-colors">Use Cases</a>
+                <a href="#why-qrmint" class="text-gray-600 hover:text-purple-600 py-2 transition-colors">Why QR Mint</a>
+                <a href="https://tryqrmint.netlify.app/qrcodegenerator" target="_blank" class="bg-gradient-to-r from-purple-500 to-pink-400 text-white text-center font-medium px-4 py-2 rounded-lg hover:shadow-lg transition-all">Try QR Mint</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-28 pb-16 gradient-bg">
+        <div class="container mx-auto px-4 flex flex-col items-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white text-center mb-6">QR Mint Documentation</h1>
+            <p class="text-lg md:text-xl text-white opacity-90 text-center max-w-3xl mb-10">A comprehensive guide to creating beautiful, functional QR codes in seconds with QR Mint - your complete QR code solution.</p>
+            <a href="https://tryqrmint.netlify.app/qrcodegenerator" target="_blank" class="bg-white text-purple-600 font-bold px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all text-lg">
+                <i class="fas fa-qrcode mr-2"></i> Try QR Mint Now
+            </a>
+        </div>
+    </header>
+
+    <!-- Introduction -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 section-heading">Introduction</h2>
+                <p class="text-lg text-gray-700 mb-8 text-center">QRMint provides an easy way to generate customizable QR codes for your business, social media, events, or personal use — with unlimited possibilities. Create professional, functional, and visually appealing QR codes in seconds without any technical expertise.</p>
+                <div class="flex flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-8 mt-10">
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 flex items-center justify-center rounded-full bg-purple-100 text-purple-600 mb-4">
+                            <i class="fas fa-bolt text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-xl">Fast Generation</h3>
+                        <p class="text-center text-gray-600 mt-2">Create QR codes in seconds with real-time preview</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 flex items-center justify-center rounded-full bg-purple-100 text-purple-600 mb-4">
+                            <i class="fas fa-paint-brush text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-xl">Beautiful Design</h3>
+                        <p class="text-center text-gray-600 mt-2">Customize colors, add logos, and create unique styles</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 flex items-center justify-center rounded-full bg-purple-100 text-purple-600 mb-4">
+                            <i class="fas fa-download text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-xl">Multiple Formats</h3>
+                        <p class="text-center text-gray-600 mt-2">Download as PNG, JPG, or PDF for any purpose</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 section-heading">QR Code Types</h2>
+            <p class="text-lg text-gray-700 mb-12 text-center max-w-4xl mx-auto">Generate the perfect QR code for any scenario with our wide range of supported formats</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- URL QR Codes -->
+                <div class="bg-white rounded-xl shadow-md p-6 transition-all duration-300 feature-card custom-shadow">
+                    <div class="text-purple-500 text-3xl mb-4">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">URL QR Codes</h3>
+                    <p class="text-gray-600">Direct customers to your website or any online destination with a simple scan. Ideal for marketing materials, business cards, and product packaging.</p>
+                    <div class="mt-5 pt-4 border-t border-gray-100">
+                        <span class="text-sm text-purple-600 font-medium">Perfect for:</span>
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">Websites</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">Landing Pages</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">Online Stores</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- vCard QR Codes -->
+                <div class="bg-white rounded-xl shadow-md p-6 transition-all duration-300 feature-card custom-shadow">
+                    <div class="text-purple-500 text-3xl mb-4">
+                        <i class="fas fa-address-card"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">vCard QR Codes</h3>
+                    <p class="text-gray-600">Share contact information that can be instantly saved to a phone's contacts. Include name, phone, email, company, and more for easy networking.</p>
+                    <div class="mt-5 pt-4 border-t border-gray-100">
+                        <span class="text-sm text-purple-600 font-medium">Perfect for:</span>
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">Business Cards</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">Email Signatures</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">Name Badges</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WiFi QR Codes -->
+                <div class="bg-white rounded-xl shadow-md p-6 transition-all duration-300 feature-card custom-shadow">
+                    <div class="text-purple-500 text-3xl mb-4">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">WiFi QR Codes</h3>
+                    <p class="text-gray-600">Allow guests to connect to your network without typing passwords. Simply scan the code and connect instantly to any WiFi network.</p>
+                    <div class="mt-5 pt-4 border-t border-gray-100">
+                        <span class="text-sm text-purple-600 font-medium">Perfect for:</span>
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">Cafés</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">Hotels</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">Office Spaces</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email QR Codes -->
+                <div class="bg-white rounded-xl shadow-md p-6 transition-all duration-300 feature-card custom-shadow">
+                    <div class="text-purple-500 text-3xl mb-4">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Email QR Codes</h3>
+                    <p class="text-gray-600">Create QR codes that open a new email composition with pre-filled fields like recipient, subject line, and body text for quick communication.</p>
+                    <div class="mt-5 pt-4 border-t border-gray-100">
+                        <span class="text-sm text-purple-600 font-medium">Perfect for:</span>
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">Contact Forms</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">Feedback Requests</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">Support Inquiries</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Media QR Codes -->
+                <div class="bg-white rounded-xl shadow-md p-6 transition-all duration-300 feature-card custom-shadow">
+                    <div class="text-purple-500 text-3xl mb-4">
+                        <i class="fas fa-hashtag"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Social Media QR Codes</h3>
+                    <p class="text-gray-600">Drive followers to your social media profiles with a quick scan. Connect people directly to your Instagram, Twitter, Facebook, LinkedIn, and more.</p>
+                    <div class="mt-5 pt-4 border-t border-gray-100">
+                        <span class="text-sm text-purple-600 font-medium">Perfect for:</span>
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">Promotions</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">Influencer Marketing</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">Event Materials</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plain Text QR Codes -->
+                <div class="bg-white rounded-xl shadow-md p-6 transition-all duration-300 feature-card custom-shadow">
+                    <div class="text-purple-500 text-3xl mb-4">
+                        <i class="fas fa-font"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Plain Text QR Codes</h3>
+                    <p class="text-gray-600">Embed text messages, quotes, or promotional information directly in a QR code. Perfect for short messages or information that doesn't require a website.</p>
+                    <div class="mt-5 pt-4 border-t border-gray-100">
+                        <span class="text-sm text-purple-600 font-medium">Perfect for:</span>
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">Promotional Messages</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">Event Details</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">Product Information</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customization Options -->
+    <section id="customization" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 section-heading">Powerful Customization</h2>
+            <p class="text-lg text-gray-700 mb-12 text-center max-w-4xl mx-auto">Create QR codes that match your brand identity with our extensive customization options</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-5xl mx-auto">
+                <div>
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-semibold mb-4 flex items-center">
+                            <i class="fas fa-palette text-purple-500 mr-3"></i>
+                            Custom Colors
+                        </h3>
+                        <p class="text-gray-600">Change both the foreground and background colors to match your brand or design needs. Choose from millions of colors using our intuitive color picker or enter specific HEX codes for exact brand matching.</p>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                                <span class="text-gray-600">Foreground color customization</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                                <span class="text-gray-600">Background color customization</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                                <span class="text-gray-600">HEX code input for exact brand matching</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-semibold mb-4 flex items-center">
+                            <i class="fas fa-image text-purple-500 mr-3"></i>
+                            Logo Integration
+                        </h3>
+                        <p class="text-gray-600">Add your company logo or any image to the center of your QR code for instant brand recognition. Adjust logo size and position for optimal scanning reliability.</p>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                                <span class="text-gray-600">Upload custom logo/image</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                                <span class="text-gray-600">Resize and position adjustments</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                                <span class="text-gray-600">Automatic QR code error correction optimization</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-semibold mb-4 flex items-center">
+                            <i class="fas fa-expand-arrows-alt text-purple-500 mr-3"></i>
+                            Size & Margin Control
+                        </h3>
+                        <p class="text-gray-600">Adjust the size and margins of your QR code to fit perfectly in your designs. Control the dimensions to ensure your QR code looks perfect in any medium, from small business cards to large banners.</p>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                                <span class="text-gray-600">Custom pixel dimensions</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                                <span class="text-gray-600">Adjustable quiet zone (white space around QR)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                                <span class="text-gray-600">Preview optimized for different media</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-semibold mb-4 flex items-center">
+                            <i class="fas fa-magic text-purple-500 mr-3"></i>
+                            Style Presets
+                        </h3>
+                        <p class="text-gray-600">Choose from pre-designed styles to quickly create eye-catching QR codes. Our style library includes modern, classic, and branded templates that can be further customized to your needs.</p>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                                <span class="text-gray-600">Multiple design templates</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                                <span class="text-gray-600">Custom corner styles</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                                <span class="text-gray-600">Dot pattern variations</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Export Options -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 section-heading">Multiple Export Options</h2>
+            <p class="text-lg text-gray-700 mb-12 text-center max-w-4xl mx-auto">Save and share your QR codes in various formats to suit any use case</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white rounded-xl shadow-md p-6 transition-all duration-300 feature-card custom-shadow">
+                    <div class="text-purple-500 text-3xl mb-4">
+                        <i class="fas fa-file-image"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Download as PNG, JPG, PDF</h3>
+                    <p class="text-gray-600">Export your QR code in multiple formats for different uses. PNG for transparent backgrounds, JPG for web use, and PDF for print materials.</p>
+                    <ul class="mt-4 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                            <span class="text-gray-600">High-resolution downloads</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                            <span class="text-gray-600">Vector PDF option for scalability</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                            <span class="text-gray-600">One-click download buttons</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md p-6 transition-all duration-300 feature-card custom-shadow">
+                    <div class="text-purple-500 text-3xl mb-4">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Easy Sharing</h3>
+                    <p class="text-gray-600">Share your QR code directly via email or social media. Perfect for sending to team members or clients without downloading first.</p>
+                    <ul class="mt-4 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                            <span class="text-gray-600">Direct email sharing</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                            <span class="text-gray-600">Social media integrations</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                            <span class="text-gray-600">Copy to clipboard functionality</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md p-6 transition-all duration-300 feature-card custom-shadow">
+                    <div class="text-purple-500 text-3xl mb-4">
+                        <i class="fas fa-print"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Print Ready</h3>
+                    <p class="text-gray-600">High-quality exports perfect for printing on marketing materials. Ensure your QR codes scan perfectly every time.</p>
+                    <ul class="mt-4 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                            <span class="text-gray-600">CMYK color optimization</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                            <span class="text-gray-600">Print resolution presets</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                            <span class="text-gray-600">Bleed zone guidance</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section id="use-cases" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 section-heading">QR Codes for Every Need</h2>
+            <p class="text-lg text-gray-700 mb-12 text-center max-w-4xl mx-auto">From business cards to event tickets, QRMint has you covered</p>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                <div class="bg-purple-50 rounded-lg p-5 text-center transition-all hover:bg-purple-100">
+                    <div class="w-12 h-12 mx-auto mb-3 flex items-center justify-center rounded-full bg-purple-100 text-purple-600">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <h3 class="font-semibold">Business Cards</h3>
+                </div>
+
+                <div class="bg-purple-50 rounded-lg p-5 text-center transition-all hover:bg-purple-100">
+                    <div class="w-12 h-12 mx-auto mb-3 flex items-center justify-center rounded-full bg-purple-100 text-purple-600">
+                        <i class="fas fa-ad"></i>
+                    </div>
+                    <h3 class="font-semibold">Marketing Materials</h3>
+                </div>
+
+                <div class="bg-purple-50 rounded-lg p-5 text-center transition-all hover:bg-purple-100">
+                    <div class="w-12 h-12 mx-auto mb-3 flex items-center justify-center rounded-full bg-purple-100 text-purple-600">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <h3 class="font-semibold">Product Packaging</h3>
+                </div>
+
+                <div class="bg-purple-50 rounded-lg p-5 text-center transition-all hover:bg-purple-100">
+                    <div class="w-12 h-12 mx-auto mb-3 flex items-center justify-center rounded-full bg-purple-100 text-purple-600">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <h3 class="font-semibold">Event Tickets</h3>
+                </div>
+
+                <div class="bg-purple-50 rounded-lg p-5 text-center transition-all hover:bg-purple-100">
+                    <div class="w-12 h-12 mx-auto mb-3 flex items-center justify-center rounded-full bg-purple-100 text-purple-600">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3 class="font-semibold">Restaurant Menus</h3>
+                </div>
+
+                <div class="bg-purple-50 rounded-lg p-5 text-center transition-all hover:bg-purple-100">
+                    <div class="w-12 h-12 mx-auto mb-3 flex items-center justify-center rounded-full bg-purple-100 text-purple-600">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3 class="font-semibold">Retail Displays</h3>
+                </div>
+
+                <div class="bg-purple-50 rounded-lg p-5 text-center transition-all hover:bg-purple-100">
+                    <div class="w-12 h-12 mx-auto mb-3 flex items-center justify-center rounded-full bg-purple-100 text-purple-600">
+                        <i class="fas fa-id-badge"></i>
+                    </div>
+                    <h3 class="font-semibold">ID Badges</h3>
+                </div>
+
+                <div class="bg-purple-50 rounded-lg p-5 text-center transition-all hover:bg-purple-100">
+                    <div class="w-12 h-12 mx-auto mb-3 flex items-center justify-center rounded-full bg-purple-100 text-purple-600">
+                        <i class="fas fa-hashtag"></i>
+                    </div>
+                    <h3 class="font-semibold">Social Media</h3>
+                </div>
+            </div>
+
+            <div class="mt-16 max-w-5xl mx-auto">
+                <div class="bg-purple-50 p-6 rounded-xl border border-purple-200">
+                    <h3 class="text-2xl font-semibold mb-4 text-center">How to Use QR Mint for Business Marketing</h3>
+                    <ol class="list-decimal pl-6 space-y-4 text-gray-700">
+                        <li>
+                            <p class="font-medium">Create a QR code for your website, landing page, or promotion</p>
+                            <p class="text-gray-600 mt-1">Use the URL QR code option and enter your desired destination.</p>
+                        </li>
+                        <li>
+                            <p class="font-medium">Customize colors and add your brand logo</p>
+                            <p class="text-gray-600 mt-1">Match your brand colors and add your logo to increase recognition and trust.</p>
+                        </li>
+                        <li>
+                            <p class="font-medium">Download in the appropriate format</p>
+                            <p class="text-gray-600 mt-1">Choose PNG for digital use or PDF for print materials.</p>
+                        </li>
+                        <li>
+                            <p class="font-medium">Add to your marketing materials</p>
+                            <p class="text-gray-600 mt-1">Place on business cards, flyers, posters, product packaging, or digital assets.</p>
+                        </li>
+                        <li>
+                            <p class="font-medium">Track scans and engagement</p>
+                            <p class="text-gray-600 mt-1">Use your website analytics to measure the effectiveness of your QR code campaign.</p>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose QRMint -->
+    <section id="why-qrmint" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 section-heading">Why Choose QRMint?</h2>
+            <p class="text-lg text-gray-700 mb-12 text-center max-w-4xl mx-auto">Our platform offers everything you need to create effective QR codes</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <div class="bg-white rounded-xl shadow-md p-6 custom-shadow flex">
+                    <div class="text-purple-500 text-2xl mr-4">
+                        <i class="fas fa-user-times"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">No Account Required</h3>
+                        <p class="text-gray-600">Generate QR codes instantly without signing up or creating an account. Quick access whenever you need it.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md p-6 custom-shadow flex">
+                    <div class="text-purple-500 text-2xl mr-4">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Unlimited Generation</h3>
+                        <p class="text-gray-600">Create as many QR codes as you need with no restrictions. Perfect for businesses of all sizes.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md p-6 custom-shadow flex">
+                    <div class="text-purple-500 text-2xl mr-4">
+                        <i class="fas fa-file-export"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">High-Quality Exports</h3>
+                        <p class="text-gray-600">Download your QR codes in various formats with excellent quality for both digital and print use.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md p-6 custom-shadow flex">
+                    <div class="text-purple-500 text-2xl mr-4">
+                        <i class="fas fa-th"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Multiple QR Code Types</h3>
+                        <p class="text-gray-600">Create URL, vCard, WiFi, Text, Email, and Social Media QR codes all in one place.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md p-6 custom-shadow flex">
+                    <div class="text-purple-500 text-2xl mr-4">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Advanced Customization</h3>
+                        <p class="text-gray-600">Personalize colors, add logos, adjust sizes, and apply styles to create unique QR codes.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md p-6 custom-shadow flex">
+                    <div class="text-purple-500 text-2xl mr-4">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Real-Time Preview</h3>
+                        <p class="text-gray-600">See your QR code update instantly as you make changes for a seamless design experience.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Getting Started Guide -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 section-heading">Getting Started Guide</h2>
+            <p class="text-lg text-gray-700 mb-12 text-center max-w-4xl mx-auto">Follow these simple steps to create your first QR code with QRMint</p>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 flex items-center justify-center rounded-full bg-purple-500 text-white text-2xl font-bold mb-4">1</div>
+                        <h3 class="text-xl font-semibold mb-2 text-center">Select QR Code Type</h3>
+                        <p class="text-center text-gray-600">Choose from URL, Text, vCard, WiFi, Email, or Social Media QR code options.</p>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 flex items-center justify-center rounded-full bg-purple-500 text-white text-2xl font-bold mb-4">2</div>
+                        <h3 class="text-xl font-semibold mb-2 text-center">Enter Your Content</h3>
+                        <p class="text-center text-gray-600">Fill in the required information for your selected QR code type.</p>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 flex items-center justify-center rounded-full bg-purple-500 text-white text-2xl font-bold mb-4">3</div>
+                        <h3 class="text-xl font-semibold mb-2 text-center">Customize & Download</h3>
+                        <p class="text-center text-gray-600">Personalize your QR code's appearance and download in your preferred format.</p>
+                    </div>
+                </div>
+
+                <div class="mt-16 text-center">
+                    <a href="https://tryqrmint.netlify.app/qrcodegenerator" target="_blank" class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold text-xl px-10 py-5 rounded-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center">
+                        <i class="fas fa-qrcode mr-3"></i> Try QR Mint Now
+                    </a>
+                    <p class="mt-4 text-gray-500">No registration required - start creating QR codes instantly!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specifications -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 section-heading">Technical Specifications</h2>
+            <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-8 custom-shadow">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4">QR Code Standards</h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                                <span class="text-gray-600">ISO/IEC 18004:2015 compliant</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                                <span class="text-gray-600">Supports QR Code versions 1-40</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                                <span class="text-gray-600">Error correction levels: L, M, Q, H</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                                <span class="text-gray-600">UTF-8 character encoding</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                                <span class="text-gray-600">Micro QR code support</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4">Export Specifications</h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                                <span class="text-gray-600">PNG: Up to 2000x2000 pixels, transparent background</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                                <span class="text-gray-600">JPG: Up to 2000x2000 pixels, high quality</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                                <span class="text-gray-600">PDF: Vector format, scalable to any size</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                                <span class="text-gray-600">CMYK color profile for print-ready exports</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                                <span class="text-gray-600">RGB color profile for digital use</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-10 pt-6 border-t border-gray-200">
+                    <h3 class="text-2xl font-semibold mb-4">Browser & Device Support</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <h4 class="font-semibold mb-2">Desktop Browsers</h4>
+                            <ul class="space-y-1 text-gray-600">
+                                <li>Chrome 60+</li>
+                                <li>Firefox 60+</li>
+                                <li>Safari 11+</li>
+                                <li>Edge 79+</li>
+                                <li>Opera 47+</li>
+                            </ul>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <h4 class="font-semibold mb-2">Mobile Browsers</h4>
+                            <ul class="space-y-1 text-gray-600">
+                                <li>iOS Safari 11+</li>
+                                <li>Android Chrome 60+</li>
+                                <li>Android Firefox 60+</li>
+                                <li>Samsung Internet 8.2+</li>
+                            </ul>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <h4 class="font-semibold mb-2">Responsive Design</h4>
+                            <ul class="space-y-1 text-gray-600">
+                                <li>Desktop & laptop</li>
+                                <li>Tablets (all sizes)</li>
+                                <li>Mobile phones</li>
+                                <li>Adaptive UI components</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 section-heading">Frequently Asked Questions</h2>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="space-y-6">
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <h3 class="text-xl font-semibold mb-3">How does QR Mint ensure QR codes are scannable?</h3>
+                        <p class="text-gray-600">QR Mint uses industry-standard error correction and automatically adjusts the code complexity based on content. When adding logos or customizations, the system ensures the QR code maintains proper contrast and structure to remain scannable by all standard QR code readers.</p>
+                    </div>
+
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <h3 class="text-xl font-semibold mb-3">Can I add my logo to the QR code?</h3>
+                        <p class="text-gray-600">Yes, you can upload and add your logo to the center of any QR code. The system automatically adjusts error correction levels to ensure your QR code remains scannable even with a logo added. You can also adjust the size and position of the logo for optimal results.</p>
+                    </div>
+
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <h3 class="text-xl font-semibold mb-3">What file formats can I download my QR code in?</h3>
+                        <p class="text-gray-600">QR Mint supports downloading your QR codes in PNG (with transparency), JPG (high-quality), and PDF (vector format) formats. PNG is recommended for digital use where transparency is needed, JPG for web and social media, and PDF for high-quality print materials.</p>
+                    </div>
+
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <h3 class="text-xl font-semibold mb-3">Do I need to create an account to use QR Mint?</h3>
+                        <p class="text-gray-600">No, QR Mint provides full functionality without requiring account creation or registration. You can generate and customize QR codes instantly. However, creating an optional account allows you to save your QR codes for future access and editing.</p>
+                    </div>
+
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <h3 class="text-xl font-semibold mb-3">Are there any limits to how many QR codes I can generate?</h3>
+                        <p class="text-gray-600">QR Mint offers unlimited QR code generation with no restrictions on the number of codes you can create. This makes it ideal for businesses and individuals who need multiple QR codes for different purposes.</p>
+                    </div>
+
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <h3 class="text-xl font-semibold mb-3">Can I edit my QR code after creating it?</h3>
+                        <p class="text-gray-600">Yes, QR Mint allows you to edit all aspects of your QR code at any time before downloading. You can modify the content, change colors, add or remove logos, adjust size settings, and preview the changes in real-time before finalizing your design.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 gradient-bg">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Create Your QR Code?</h2>
+                <p class="text-xl text-white opacity-90 mb-10">Get started now and generate professional QR codes in seconds - no account required!</p>
+                <a href="https://tryqrmint.netlify.app/qrcodegenerator" target="_blank" class="bg-white text-purple-600 font-bold text-xl px-10 py-5 rounded-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center">
+                    <i class="fas fa-qrcode mr-3"></i> Try QR Mint Now
+                </a>
+                <p class="mt-6 text-white opacity-75">Join thousands of businesses and individuals who trust QR Mint for their QR code needs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="text-3xl font-bold mb-4">QRMint</div>
+                    <p class="text-gray-400">Your complete QR code solution for business and personal use.</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-lg mb-4">Features</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#features" class="hover:text-white transition-colors">QR Code Types</a></li>
+                        <li><a href="#customization" class="hover:text-white transition-colors">Customization</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Export Options</a></li>
+                        <li><a href="#use-cases" class="hover:text-white transition-colors">Use Cases</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-lg mb-4">Resources</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Documentation</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Tutorials</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-lg mb-4">Connect</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Feedback</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-800 text-center text-gray-500">
+                <p>© 2023 QRMint. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const target = document.querySelector(targetId);
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+        // Add scroll animation to elements
+        function checkScroll() {
+            const elements = document.querySelectorAll('.feature-card');
+            elements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const isVisible = (rect.top <= window.innerHeight * 0.8);
+                if (isVisible) {
+                    el.classList.add('opacity-100');
+                    el.classList.add('translate-y-0');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
+    </script>
+</body>
+</html>

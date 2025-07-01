@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickTools | Premium Productivity Suite</title>
+    <meta name="description" content="Professional-grade tools for education, content creation, and workflow optimization. Free instant access with no signup required.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --secondary: #6366F1;
+            --accent: #EC4899;
+            --background: #F8FAFC;
+            --text-primary: #1E293B;
+            --text-secondary: #64748B;
+            --shadow: 0 4px 6px rgba(99, 102, 241, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Enhanced Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            background: rgba(99, 102, 241, 0.05);
+            color: var(--primary);
+        }
+
+        /* Premium Hero Section */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-text {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* Enhanced Tool Cards */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1280px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .tool-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.15);
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tool-card:hover::before {
+            opacity: 1;
+        }
+
+        .tool-icon {
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .tool-card:hover .tool-icon {
+            transform: scale(1.1);
+        }
+
+        .tool-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .tool-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Premium Features Section */
+        .features {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 4rem 2rem;
+            margin: 6rem 0;
+            position: relative;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            backdrop-filter: blur(8px);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-text {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+        }
+
+        /* Enhanced CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3);
+        }
+
+        .copyright {
+            background: var(--text-primary);
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.25rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+        }
+      /* Add these new styles */
+        .metrics {
+            padding: 4rem 2rem;
+            background: var(--background);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .metric-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-title {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">QuickTools</a>
+            <div class="nav-links">
+                <a href="#tools" class="nav-link">Tools</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="Quicklinks.html" class="nav-link">All Tools</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="hero-title">Professional Productivity Suite</h1>
+        <p class="hero-text">Premium tools for education, content creation, and professional workflow optimization</p>
+    </section>
+
+    <!-- Tools Grid -->
+    <section class="tools-grid" id="tools">
+        <a href="Timerjee.html" class="tool-card">
+            <i class="fas fa-hourglass tool-icon"></i>
+            <h3 class="tool-title">JEE 2025 Countdown</h3>
+            <p class="tool-description">Smart preparation tracker with milestone alerts</p>
+        </a>
+
+        <a href="VisionMate.html" class="tool-card">
+            <i class="fas fa-eye tool-icon"></i>
+            <h3 class="tool-title">VisionMate AI</h3>
+            <p class="tool-description">Real-time environmental audio analysis</p>
+        </a>
+
+        <a href="Qrmint.html" class="tool-card">
+            <i class="fas fa-qrcode tool-icon"></i>
+            <h3 class="tool-title">QR Mint</h3>
+            <p class="tool-description">Dynamic QR generation with personalisation. </p>
+        </a>
+        <a href="aibiogenerator.html" class="tool-card">
+            <i class="fas fa-file-lines tool-icon"></i>
+            <h3 class="tool-title">AI Bio Generator</h3>
+            <p class="tool-description">Dynamic Insta/X/LinkedIn Bio Generator </p>
+        </a>
+        <a href="amazingdeals.html" class="tool-card">
+            <i class="fas fa-cart-shopping tool-icon"></i>
+            <h3 class="tool-title">Amazing Deals website</h3>
+            <p class="tool-description">Amazing Deals Live offer website </p>
+        </a>
+        <a href="amazingdealsapp.html" class="tool-card">
+            <i class="fas fa-cart-shopping tool-icon"></i>
+            <h3 class="tool-title">Amazing Deals App</h3>
+            <p class="tool-description">Amazing Deals Live offer App </p>
+        </a>
+        <a href="amazingdealzshortner.html" class="tool-card">
+            <i class="fas fa-link tool-icon"></i>
+            <h3 class="tool-title">Amazing Dealz Shortner</h3>
+            <p class="tool-description">Amazing Dealz FREE Link Shortner!! </p>
+        </a>
+        <a href="thumbifytool.html" class="tool-card">
+            <i class="fas fa-photo-film tool-icon"></i>
+            <h3 class="tool-title">Thumbify</h3>
+            <p class="tool-description">HD YouTube Thumbnail Downloader </p>
+        </a>
+        <a href="https://file2link.netlify.app/" class="tool-card">
+            <i class="fas fa-file-lines tool-icon"></i>
+            <h3 class="tool-title">File to link Tool</h3>
+            <p class="tool-description">Convert video, audio, images to link.</p>
+        </a>
+        <a href="https://encodex.netlify.app/" class="tool-card">
+            <i class="fas fa-shield-alt tool-icon"></i>
+            <h3 class="tool-title">Encodex</h3>
+            <p class="tool-description">Encrypt and Decrypt Text Messages.</p>
+        </a>
+        <a href="https://vaaniai.netlify.app/" class="tool-card">
+            <i class="fas fa-heart tool-icon"></i>
+            <h3 class="tool-title">Vaani AI</h3>
+            <p class="tool-description">Romantic AI Chat bot for fun.</p>
+        </a>
+        <a href="Kerry.html" class="tool-card">
+            <i class="fas fa-robot tool-icon"></i>
+            <h3 class="tool-title">Kerry AI</h3>
+            <p class="tool-description">AI Chatbot For Meaning ful Conversations.</p>
+        </a>
+        
+        <!-- Add remaining tool cards -->
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-bolt feature-icon"></i>
+                <h3 class="feature-title">Instant Access</h3>
+                <p class="feature-text">No signup required, start immediately</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-shield-alt feature-icon"></i>
+                <h3 class="feature-title">Secure & Private</h3>
+                <p class="feature-text">Your data stays with you</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-infinity feature-icon"></i>
+                <h3 class="feature-title">Free Forever</h3>
+                <p class="feature-text">Premium features at no cost</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="metrics">
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-number">15K+</div>
+                <div class="metric-title">Active Users</div>
+                <div class="metric-description">Trusted by students & professionals</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number">98%</div>
+                <div class="metric-title">Satisfaction Rate</div>
+                <div class="metric-description">Positive user feedback</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number">24/7</div>
+                <div class="metric-title">Support</div>
+                <div class="metric-description">Quick response time</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number">20+</div>
+                <div class="metric-title">Tools Available</div>
+                <div class="metric-description">Growing collection</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Users Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">“</div>
+                        <p>QuickTools revolutionized how I prepare for competitive exams. The countdown timer keeps me motivated!</p>
+                        <div class="user-info">
+                            <div class="user-name">Rahul Sharma</div>
+                            <div class="user-role">WordPress developer</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more testimonials -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Copyright -->
+    <div class="copyright">
+        © 2023 QuickTools. All rights reserved.<br>
+        Crafted with ❤️ for seamless productivity
+    </div>
+</body>
+</html>

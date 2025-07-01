@@ -1,216 +1,470 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>
-</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kuldeep Singh | AI Engineer & Educator</title>
+    <meta name="description" content="Professional AI Engineer specializing in NLP and educational tools development. Offering premium services in app development, web solutions, and academic resources.">
+    <meta name="keywords" content="AI Development, NLP Expert, IIT Guidance, Educational Resources, Python Programming, Web Development">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --secondary: #6366F1;
+            --accent: #EC4899;
+            --background: #F8FAFC;
+            --text-primary: #1E293B;
+            --text-secondary: #64748B;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
 
+        body {
+            background: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: var(--primary);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            color: white;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-text {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .quick-links-btn {
+            background: white;
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .quick-links-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .hero-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Sections Common Styles */
+        .section {
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .skill-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-bar {
+            height: 10px;
+            background: #E2E8F0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.5s ease;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .team-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .team-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Form */
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #E2E8F0;
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        button[type="submit"] {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background: var(--secondary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 4rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-item {
+            text-align: center;
+        }
+
+        .footer-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-<table border="0" width="100%" cellspacing="0" bgcolor="#673de6">
-<tr><td>
-<table border="0" align="center" width="85%" cellpadding="15">
-<tr>
-<td><font face="Opensans" size="5" color="black"><b>Kuldeep Singh</b></font></td>
-<td width="20%"></td>
-<td><a href="#Home" ><font color="#fff">Home</font></a></td>
-<td><a href="#Services" ><font color="#fff">Services</font></a></td>
-<td><a href="#Skills" ><font color="#fff">Skills</font></a></td>
-<td><a href="#Team" ><font color="#fff">Team</font></a></td>
-<td><a href="#Contact us" ><font color="#fff">Contact Us</font></a></td>
-</table>
-</td>
-</tr>
-</table>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Kuldeep Singh</a>
+              <div class="nav-links">
+    <a href="#home" class="nav-link">Home</a>
+    <a href="#services" class="nav-link">Services</a>
+    <a href="#skills" class="nav-link">Skills</a>
+    <a href="#contact" class="nav-link">Contact</a>
+    
+              </div>
+        </div>
+    </nav>
 
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">AI Engineer & Educational Innovator</h1>
+                <p class="hero-text">Specializing in Natural Language Processing and educational tools development. Committed to creating impactful solutions for better learning experiences.</p>
+                <a href="Quicklinks.html" class="quick-links-btn">
+                    <i class="fas fa-rocket"></i>
+                    Explore Tools
+                </a>
+                <a href="Portfolio.html" class="quick-links-btn">
+                    <i class="fas fa-rocket"></i>
+                    AI Portfolio
+                </a>
+            </div>
+            <img src="KuldeepNewP.jpg" alt="Kuldeep Singh" class="hero-image" height="400">
+        </div>
+    </section>
 
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-mobile-alt service-icon"></i>
+                <h3>AI App Development</h3>
+                <p>Custom NLP solutions and intelligent applications development</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-chart-line service-icon"></i>
+                <h3>Educational Solutions</h3>
+                <p>Innovative learning tools and academic resource development</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-code service-icon"></i>
+                <h3>Web Development</h3>
+                <p>Modern web applications with cutting-edge technologies</p>
+            </div>
+        </div>
+    </section>
 
-<!---Home--->
-<a name="Home" >
-<table>
-<tr><td>
-<table width="85%" border="0" align="center" cellpadding="15px">
-<tr>
-<td>
-       
-       <h1><font face="Opensans" size="7">Hi,</font></h1>
-       <h1><font face="Opensans" size="6">I'm Awesome</font></h1>
-       <font size="3">This side Kuldeep Singh (Future IITIAN)
-       Currently in class 10th. Soon I will be an IITIAN and the world will see a devasting change.</font>
-<hr>
-<a href="https://www.yatharthgeeta.com/select-country/order-free-book/" ><button style="background-color:cyan; font-size:15; font-family:"Times New Roman",Serif; font-size:30pt; text-transform:uppercase;">Free Geeta</button></a><br><br><br>
-<a href="https://api.whatsapp.com/send?phone=+917905985400" ><button style="background-color:lime; font-size:15; text-transform:uppercase;">Hire me</button></a><br><br><br><br>
-<a href="Bombay.html" ><button style="background-color:yellow; font-size:15; text-transform:uppercase;">Computer Project</button></a>
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+        <h2 class="section-title">Technical Expertise</h2>
+        <div class="skills-container">
+            <div class="skill-item">
+                <div class="skill-label">
+                    <span>HTML5/CSS3</span>
+                    <span>95%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 95%"></div>
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-label">
+                    <span>Python</span>
+                    <span>97%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 97%"></div>
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-label">
+                    <span>Machine Learning</span>
+                    <span>90%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 90%"></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-</td>
-<td>
+    <!-- Team Section -->
+    <section class="section" id="team">
+        <h2 class="section-title">Our Team</h2>
+        <div class="team-grid">
+            <div class="team-card">
+                <img src="KuldeepNewP.jpg" alt="Kuldeep" class="team-image">
+                <h3>Kuldeep Singh</h3>
+                <p>Lead Developer & AI Engineer</p>
+            </div>
+            <div class="team-card">
+                <img src="Kerry.jpg" alt="Kerry" class="team-image">
+                <h3>Kerry AI</h3>
+                <p>AI Assistant & Support</p>
+            </div>
+            <div class="team-card">
+                <img src="freebottleco.jpg" alt="Marketing Team" class="team-image">
+                <h3>Marketing Team</h3>
+                <p>Brand Strategy & Outreach</p>
+            </div>
+        </div>
+    </section>
 
-        <img src="https://i.ibb.co/kctVggW/IMG-20220812-234757.jpg" height="300" width="330">
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-container">
+            <form action="https://getform.io/f/769c5976-a8ed-4a87-ab05-81881d9f4623" method="POST">
+                <div class="form-group">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="Mobile number" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="file" name="fileUpload" required>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
 
-</td>
-</tr>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-item">
+                <i class="fas fa-phone footer-icon"></i>
+                <h4>Phone</h4>
+                <p>+91XX</p>
+            </div>
+            <div class="footer-item">
+                <i class="fas fa-envelope footer-icon"></i>
+                <h4>Email</h4>
+                <p>Technicalgurusir@gmail.com</p>
+            </div>
+            <div class="footer-item">
+                <i class="fas fa-map-marker-alt footer-icon"></i>
+                <h4>Location</h4>
+                <p>India</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Existing content continues here... -->
 
-
-</table>
-</td></tr>
-</table></a>
-
-<!---End Home--->
-
-<!---Services--->
-<a name="Services" >
-<table bgcolor="#fafbff" width="100%">
-<tr><td>
-<br><br><br><br>
-<table align="center" cellpadding="15" border="0" width="85%">
-<tr align="center" cellpadding="15px">
-<td colspan="3">
-       <font size="6" face="Opensans">Services</font><br><br>
-       <hr align="center" width="25%">
-       <font size="2" face="Opensans">These are our Services</font><br><br>
-</td><br>
-</tr align="center">
-<tr>
-<td>
-      <img src="">
-      <font size="5">App Development</font><br>
-      <font size="3">Are you excited and curious about my owners new AI project.Please tell me it will help me To recognise weather it is true or false</font>
-
-</td><br>
-<td>  <img src="">
-      <font size="5">Marketing</font><br>
-      <font size="3">Are you excited and curious about my owners new AI project.Please tell me it will help me To recognise weather it is true or false</font>
-</td><br>
-<td>  <img src="">
-      <font size="5">Web Development</font><br>
-      <font size="3">Are you excited and curious about my owners new AI project.Please tell me it will help me To recognise weather it is true or false</font>
-      
-</td><br>
-
-</tr>
-</table>
-<br><br><br><br>
-</td>
-</tr>
-</table></a>
-<!---End Services--->
-
-<!---Skills--->
-<a name="Skills" >
-<table width="100%" bgcolor="#25282f">
-<tr>
-<td>
-<br><br><br><br>
-        <table border="0" width="85%" align="center" cellpadding="15px">
-        <tr align="center"><td colspan="2"><font size="6" color="white" face="Opensans">Skills</font>
-         <hr align="center" width="10%">     </td></tr>
-        <tr>
-        <td><label><font size="5" color="#fff">HTML5</font></label><br><progress value="95" max="100">95%</progress></td>
-        <td><label><font size="5" color="#fff">Python</font></label><br><progress value="97" max="100">97%</progress></td>
-        </tr>
-        
-        <tr>
-        <td><label><font size="5" color="#fff">Science</font></label><br><progress value="95" max="100">95%</progress></td>
-        <td><label><font size="5" color="#fff">Maths</font></label><br><progress value="95" max="100">95%</progress></td>
-        </tr>
-        </table>
-        <br><br><br><br>
-
-
-</td>
-</tr>
-</table></a>
-<!---End Skills--->
-
-<!---Team--->
-<a name="Team" >
-<table>
-<tr>
-<td>
-<br><br><br><br>
-       <table align="center" width="85%" border="0" cellpadding="15">
-       <tr align="center">
-       <td><font color="" size="">MEET THE TEAM</font>
-       </td>
-       </tr>
-       <tr align="center">
-       <td><img src="https://i.ibb.co/kctVggW/IMG-20220812-234757.jpg" width="150" height="150"><br><font size="6">Kuldeep</font><br><font size="4">Web Developer</font></td>
-       
-       
-       <td><img src="https://i.ibb.co/kctVggW/IMG-20220812-234757.jpg" width="150" height="150"><br><font size="6">Kuldeep</font><br><font size="4">Web Developer</font></td>
-       
-       <td><img src="https://i.ibb.co/kctVggW/IMG-20220812-234757.jpg" width="150" height="150"><br><font size="6">Kuldeep</font><br><font size="4">Web Developer</font></td>
-       
-       </tr>
-       </table>
-       <br><br><br><br>
-
-</td>
-</tr>
-</table></a>
-<!---End Team--->
-
-<!---Contact Us--->
-<a name="Contact us" >
-<form action="https://formspree.io/f/myyverlz" method="POST">
-<table width="100%" bgcolor="#673de6">
-<tr><td>
-<br><br><br><br>
-<table align="center" border="0" width="30%" cellpadding="15">
-<tr align="center">
-<td colspan="2"><font color="#25282f" size="6">Contact Us</font><br><hr align="center" width="50%"></td>
-</tr>
-<tr>
-<td><font color="#fff">Name:</font></td>
-<td><input type="text" name="Name" placeholder="Enter Name"></td>
-</tr>
-
-<tr>
-<td><font color="#fff">Mobile:</font></td>
-<td><input type="number" name="Mobile number" placeholder="10-Digit ph.no"></td>
-</tr>
-
-<tr>
-<td><font color="#fff">Mesaage:</font></td>
-<td><textarea cols="20" rows="6"></textarea></td>
-</tr>
-<tr align="center">
-<td colspan="2"><input type="submit">
-</td>
-</tr>
-</table>
-<br><br><br><br>
-</td>
-</tr>
-</table>
-</form></a>
-<!---End Contact Us--->
-
-<!---Footer--->
-<table width="100%">
-<tr align="center"><td>
-      <table border="1" width="85%" align="center" cellpadding="15">
-      <tr>
-      <td>
-      <img height="180" width="180" src="http://filestreamdkbot.herokuapp.com/download/404861">
-      <font size="6">Phone No.</font>
-      <font size="5">+917905985400</font>
-      </td>
-      
-      <td>
-      <img height="200" width="200" src="http://filestreamdkbot.herokuapp.com/download/404869"><br>
-      <font size="6">Mail</font>
-      <font size="5">Technicalgurusir@gmail.com</font>
-      </td>
-      
-      <td>
-      <img height="130" width="130"src="http://filestreamdkbot.herokuapp.com/download/404871">
-      <font size="6">Location</font>
-      <font size="5">Uttar Pradesh</font>
-      </td>
-      </tr>
-      </table>
-</td></td>
-</table>
-<!---End Footer--->
 </body>
 </html>

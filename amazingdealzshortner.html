@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazing Dealz Documentation - URL Shortener Guide</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --brand-yellow: #FFD700;
+            --text-color: #333;
+        }
+        
+        body {
+            background-color: var(--brand-yellow);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: var(--brand-yellow);
+        }
+        
+        .logo-container {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .sparkle {
+            position: absolute;
+            color: #FFF;
+            text-shadow: 0 0 10px rgba(255,255,255,0.8);
+            animation: twinkle 2s infinite;
+        }
+        
+        .sparkle:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 40%; left: 70%; animation-delay: 0.4s; }
+        .sparkle:nth-child(3) { top: 20%; left: 80%; animation-delay: 0.8s; }
+        .sparkle:nth-child(4) { top: 60%; left: 30%; animation-delay: 1.2s; }
+        .sparkle:nth-child(5) { top: 50%; left: 10%; animation-delay: 1.6s; }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        h1, h2, h3 {
+            font-weight: bold;
+            color: black;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            text-align: center;
+            text-shadow: 2px 2px 0px rgba(255,255,255,0.5);
+            margin-bottom: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            border-bottom: 3px solid rgba(0,0,0,0.2);
+            padding-bottom: 0.5rem;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-left: 6px solid #000;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--brand-yellow);
+            background: #000;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+        }
+        
+        .step-container {
+            counter-reset: step-counter;
+        }
+        
+        .step {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 2rem;
+        }
+        
+        .step:before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #000;
+            color: var(--brand-yellow);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .code-block {
+            background: #2d2d2d;
+            color: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            overflow: auto;
+            position: relative;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .ui-mockup {
+            border: 2px solid #000;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            background: white;
+        }
+        
+        .ui-mockup .input {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 0.5rem;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        
+        .ui-mockup .button {
+            background: var(--brand-yellow);
+            color: black;
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .contact-card {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            color: #000;
+        }
+        
+        .glow-box {
+            background: linear-gradient(145deg, #FFD700, #FFC400);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+            box-shadow: 
+                0 0 20px rgba(255, 215, 0, 0.7),
+                0 0 40px rgba(255, 215, 0, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            color: black;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <span class="sparkle"><i class="fas fa-sparkles"></i></span>
+            <span class="sparkle"><i class="fas fa-sparkles"></i></span>
+            <span class="sparkle"><i class="fas fa-sparkles"></i></span>
+            <span class="sparkle"><i class="fas fa-sparkles"></i></span>
+            <span class="sparkle"><i class="fas fa-sparkles"></i></span>
+            
+            <!-- Logo would go here -->
+            <div class="text-center mb-4">
+                <div class="inline-block relative">
+                    <div class="bg-black text-yellow-400 font-bold text-4xl px-6 py-3 rounded-lg shadow-lg inline-flex items-center">
+                        <i class="fas fa-tag mr-3"></i>
+                        Amazing Dealz
+                        <div class="absolute -right-2 -top-2 text-white text-xl">
+                            <i class="fas fa-sparkles"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h1>Amazing Dealz URL Shortener</h1>
+        
+        <div class="section">
+            <h2><i class="fas fa-hands-clapping mr-2"></i> Welcome to Amazing Dealz</h2>
+            <p class="text-lg">Your one-stop free tool for shortening and sharing amazing shopping deals! We've created this simple yet powerful URL shortener specifically designed for deal hunters and Telegram channel owners who want to share offers quickly and efficiently.</p>
+            <p class="text-lg">With Amazing Dealz URL Shortener, those lengthy product URLs transform into clean, professional links that are easy to share and track.</p>
+            <div class="glow-box mt-6">
+                <p class="font-bold text-2xl">🎉 NOW LAUNCHED! 🎉</p>
+                <p class="text-lg">Start shortening your deal links today at <a href="https://amazingdealz.netlify.app/" class="underline font-bold">amazingdealz.netlify.app</a></p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-star mr-2"></i> Key Features</h2>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <h3>🔗 URL Shortening</h3>
+                    <p>Transform long, complex URLs into neat, memorable links that are perfect for sharing across platforms.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-pen"></i>
+                    </div>
+                    <h3>✍️ Custom Slugs</h3>
+                    <p>Personalize your shortened URLs with custom endings that reflect your brand or the product being shared.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-copy"></i>
+                    </div>
+                    <h3>📋 One-Click Copy</h3>
+                    <p>Copy your newly shortened URLs with just a single click, making sharing faster than ever before.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>🪄 Beautiful UI</h3>
+                    <p>Enjoy our minimal, deal-focused interface designed specifically for deal hunters and Telegram channel owners.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-book-open mr-2"></i> How to Use</h2>
+            <div class="step-container">
+                <div class="step">
+                    <h3>Paste Your URL</h3>
+                    <p>Copy your long product or deal URL from any shopping website and paste it into the input field on our homepage.</p>
+                </div>
+                
+                <div class="step">
+                    <h3>(Optional) Add a Custom Slug</h3>
+                    <p>Want to personalize your link? Enter your preferred custom ending in the dedicated field. For example: "amazingdealz.netlify.app/summer-sale" instead of random characters.</p>
+                </div>
+                
+                <div class="step">
+                    <h3>Click "Shorten" and Share!</h3>
+                    <p>Hit the "Shorten" button and your new, clean URL is ready! Use the copy button to instantly copy it to your clipboard for sharing.</p>
+                </div>
+            </div>
+            
+            <div class="ui-mockup mt-8">
+                <h4 class="font-bold mb-3">URL Shortener Interface</h4>
+                <div class="input">https://www.example-shopping-site.com/products/category/electronics/smartphones/latest-model/deal-of-the-day?ref=homepage&campaign=summer-special&discount=15percent</div>
+                <div class="input" style="width: 50%">custom-slug (Optional)</div>
+                <button class="button">✨ Shorten URL</button>
+                <div class="mt-4 p-3 bg-gray-100 rounded flex justify-between">
+                    <span>amazingdealz.netlify.app/custom-slug</span>
+                    <button class="bg-black text-yellow-400 px-3 py-1 rounded">Copy</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-lightbulb mr-2"></i> Why We Built This</h2>
+            <p class="text-lg">Amazing Dealz URL Shortener was born from a real need in the deal-sharing community. As Telegram channel operators ourselves, we faced several challenges:</p>
+            
+            <div class="bg-white p-4 rounded-lg mt-4 mb-6">
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Product URLs from shopping sites are extremely long and unattractive</li>
+                    <li>Long URLs break the flow of messages and look unprofessional</li>
+                    <li>Standard URL shorteners don't offer customization options for deal descriptors</li>
+                    <li>We needed something that matched our deal-focused branding</li>
+                </ul>
+            </div>
+            
+            <p class="text-lg">Our tool is specifically designed for deal hunters who want to quickly share discounts, offers, and special finds with their audience on Telegram channels, WhatsApp groups, or social media platforms.</p>
+            
+            <div class="bg-black text-white p-4 rounded-lg mt-4">
+                <h3 class="text-yellow-400">💡 Perfect Use Case:</h3>
+                <p>When you find an amazing flash sale with 70% off on headphones, you can quickly create a link like "amazingdealz.netlify.app/headphones-sale" instead of sharing a lengthy URL with random parameters. Your audience will appreciate the clean, professional look!</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-award mr-2"></i> Credits & Attribution</h2>
+            <p>Amazing Dealz URL Shortener was designed and launched by our dedicated team of deal enthusiasts who wanted to create the perfect tool for the deal-sharing community.</p>
+            
+            <div class="mt-6">
+                <h3>Design Inspiration:</h3>
+                <ul class="list-disc pl-6">
+                    <li>Logo inspired by shopping sparkles and surprise box aesthetics</li>
+                    <li>Color scheme based on classic "deal tag" visuals</li>
+                    <li>Interface designed for maximum simplicity and efficiency</li>
+                </ul>
+            </div>
+            
+            <div class="mt-6">
+                <h3>Technologies Used:</h3>
+                <div class="flex flex-wrap gap-2 mt-2">
+                    <span class="bg-gray-800 text-white px-3 py-1 rounded">HTML5</span>
+                    <span class="bg-gray-800 text-white px-3 py-1 rounded">CSS3</span>
+                    <span class="bg-gray-800 text-white px-3 py-1 rounded">JavaScript</span>
+                    <span class="bg-gray-800 text-white px-3 py-1 rounded">Netlify</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-headset mr-2"></i> Contact & Support</h2>
+            <p class="mb-4">Have questions about Amazing Dealz URL Shortener? Want to report an issue or suggest a feature? Reach out to us through any of these channels:</p>
+            
+            <div class="space-y-4">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-telegram"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold">Amazing Dealz Telegram</h4>
+                        <p>Join our Telegram channel for daily deals and updates</p>
+                        <a href="https://t.me/amazing_Deals_Loots_Flipkart" class="text-blue-600 underline">amazingdealz</a>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold">GitHub Repository</h4>
+                        <p>Check out our code or contribute to the project</p>
+                        <a href="#" class="text-blue-600 underline">github.com/amazingdealz/url-shortener</a>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold">Email Support</h4>
+                        <p>For partnership inquiries or technical assistance</p>
+                        <a href="mailto:Mailtokuldeepiit@gmail.com" class="text-blue-600 underline">Mailtokuldeepiit@gmail.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="glow-box">
+            <h2 class="text-3xl font-bold mb-4">Ready to Start Shortening?</h2>
+            <p class="text-xl mb-6">Visit <a href="https://amazingdealz.netlify.app/" class="underline font-bold">amazingdealz.netlify.app</a> and transform your shopping links today!</p>
+            <div class="bg-black text-white inline-block px-6 py-3 rounded-lg font-bold text-xl">
+                🚀 Get Started Now
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 Amazing Dealz URL Shortener. All rights reserved.</p>
+            <p>Made with ❤️ by Kuldeep Singh </p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazing Deals App - Documentation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --yellow-bg: #ffeb3b;
+            --yellow-light: #ffff72;
+            --yellow-dark: #c8b900;
+            --orange-accent: #ff9800;
+            --orange-dark: #c66900;
+            --orange-light: #ffc947;
+        }
+        
+        body {
+            background-color: var(--yellow-bg);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #000;
+        }
+        
+        .brand-name {
+            font-weight: 700;
+        }
+        
+        .brand-dealz {
+            color: var(--orange-accent);
+        }
+        
+        .btn-primary {
+            background-color: var(--orange-accent);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--orange-dark);
+        }
+        
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--orange-accent);
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            background-color: var(--orange-accent);
+            bottom: -10px;
+            left: 25%;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-left: 5px solid var(--orange-accent);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .faq-card {
+            background-color: white;
+            border-left: 5px solid var(--orange-accent);
+            margin-bottom: 1rem;
+        }
+        
+        .faq-header {
+            cursor: pointer;
+        }
+        
+        .faq-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-body.active {
+            max-height: 500px;
+        }
+        
+        .icon-rotate {
+            transition: transform 0.3s ease;
+        }
+        
+        .rotate-icon {
+            transform: rotate(180deg);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--orange-accent);
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+        }
+        
+        @media print {
+            .back-to-top {
+                display: none;
+            }
+        }
+        
+        .step-card {
+            background-color: white;
+            border-left: 5px solid var(--orange-accent);
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            border: 2px solid #eee;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--orange-accent);
+            outline: none;
+        }
+        
+        .hero-bg {
+            background-color: var(--yellow-light);
+            background-image: linear-gradient(135deg, var(--yellow-bg) 0%, var(--yellow-light) 100%);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <h1 class="text-3xl brand-name">Amazing <span class="brand-dealz">Dealz</span></h1>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:block">
+                <ul class="flex space-x-6">
+                    <li><a href="#features" class="nav-link font-medium">Features</a></li>
+                    <li><a href="#installation" class="nav-link font-medium">Installation</a></li>
+                    <li><a href="#usage" class="nav-link font-medium">Usage</a></li>
+                    <li><a href="#faq" class="nav-link font-medium">FAQs</a></li>
+                    <li><a href="#contact" class="nav-link font-medium">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <nav id="mobile-menu" class="hidden bg-white md:hidden">
+            <ul class="py-2 px-4 space-y-3">
+                <li><a href="#features" class="nav-link block py-2">Features</a></li>
+                <li><a href="#installation" class="nav-link block py-2">Installation</a></li>
+                <li><a href="#usage" class="nav-link block py-2">Usage</a></li>
+                <li><a href="#faq" class="nav-link block py-2">FAQ</a></li>
+                <li><a href="#contact" class="nav-link block py-2">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg py-16 md:py-24">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Amazing Dealz App</h1>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">Your pocket companion for discovering the best deals across Amazon, Flipkart, Myntra, and more. Never miss an incredible offer again!</p>
+            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4">
+                <a href="https://amazingdealz.netlify.app/App" target="_blank" class="btn-primary px-8 py-3 rounded-full font-semibold text-lg flex items-center justify-center">
+                    <i class="fab fa-android mr-2"></i> Download for Android
+                </a>
+                <a href="#features" class="bg-white text-black px-8 py-3 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center section-title">Key Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+                <!-- Feature 1 -->
+                <div class="feature-card p-6 rounded shadow-md">
+                    <div class="mb-4 text-3xl text-center" style="color: var(--orange-accent);">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Seamless Website Integration</h3>
+                    <p>The app perfectly mirrors our website content, ensuring consistency across platforms. Enjoy the same great deals wherever you are.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card p-6 rounded shadow-md">
+                    <div class="mb-4 text-3xl text-center" style="color: var(--orange-accent);">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">User-Friendly Interface</h3>
+                    <p>Navigate with ease through our intuitive design. Find deals by category, search for specific items, and save your favorites with just a few taps.</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card p-6 rounded shadow-md">
+                    <div class="mb-4 text-3xl text-center" style="color: var(--orange-accent);">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Regular Updates</h3>
+                    <p>Stay informed with real-time notifications about the latest offers. Our app continuously refreshes to ensure you never miss out on time-limited deals.</p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="feature-card p-6 rounded shadow-md">
+                    <div class="mb-4 text-3xl text-center" style="color: var(--orange-accent);">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Lightweight & Fast</h3>
+                    <p>Our app is optimized for speed and performance. It loads quickly, uses minimal resources, and won't slow down your device or drain your battery.</p>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="feature-card p-6 rounded shadow-md">
+                    <div class="mb-4 text-3xl text-center" style="color: var(--orange-accent);">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Secure & Safe</h3>
+                    <p>Your security is our priority. The app doesn't collect unnecessary personal data and features secure browsing to protect your information.</p>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="feature-card p-6 rounded shadow-md">
+                    <div class="mb-4 text-3xl text-center" style="color: var(--orange-accent);">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Multiple Store Support</h3>
+                    <p>Browse deals from Amazon, Flipkart, Myntra, and more - all in one place. Filter by store to quickly find offers from your favorite retailers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation Guide -->
+    <section id="installation" class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center section-title">Installation Guide</h2>
+            <div class="max-w-4xl mx-auto mt-12">
+                <div class="bg-white rounded-lg p-8 shadow-md">
+                    <h3 class="text-2xl font-semibold mb-6">How to Install the Amazing Dealz App</h3>
+                    
+                    <div class="space-y-8">
+                        <!-- Step 1 -->
+                        <div class="step-card p-5 rounded flex flex-col md:flex-row md:items-start gap-6">
+                            <div class="flex-shrink-0 bg-gray-100 rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl" style="color: var(--orange-accent);">1</div>
+                            <div>
+                                <h4 class="text-xl font-medium mb-2">Download the APK</h4>
+                                <p class="mb-3">Visit <a href="https://amazingdealz.netlify.app/App" class="text-blue-600 underline" target="_blank">https://amazingdealz.netlify.app/App</a> on your Android device and tap the download button.</p>
+                                <p class="text-sm text-gray-600">Note: Make sure you're using a reliable browser like Chrome or Firefox.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 2 -->
+                        <div class="step-card p-5 rounded flex flex-col md:flex-row md:items-start gap-6">
+                            <div class="flex-shrink-0 bg-gray-100 rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl" style="color: var(--orange-accent);">2</div>
+                            <div>
+                                <h4 class="text-xl font-medium mb-2">Enable Unknown Sources</h4>
+                                <p class="mb-3">Before installation, you need to allow your device to install apps from unknown sources:</p>
+                                <ol class="list-decimal pl-5 space-y-2 mb-3">
+                                    <li>Go to <strong>Settings</strong> on your device</li>
+                                    <li>Navigate to <strong>Security</strong> or <strong>Privacy</strong></li>
+                                    <li>Enable <strong>Unknown Sources</strong> or <strong>Install Unknown Apps</strong></li>
+                                    <li>Select the browser you downloaded the APK with and toggle <strong>Allow from this source</strong></li>
+                                </ol>
+                                <p class="text-sm text-gray-600">Note: This step may vary slightly depending on your Android version and device manufacturer.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 3 -->
+                        <div class="step-card p-5 rounded flex flex-col md:flex-row md:items-start gap-6">
+                            <div class="flex-shrink-0 bg-gray-100 rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl" style="color: var(--orange-accent);">3</div>
+                            <div>
+                                <h4 class="text-xl font-medium mb-2">Install the App</h4>
+                                <p class="mb-3">Locate the downloaded APK file in your Downloads folder or notification panel and tap on it to start installation.</p>
+                                <p class="mb-3">Review the permissions and tap <strong>Install</strong> to proceed.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 4 -->
+                        <div class="step-card p-5 rounded flex flex-col md:flex-row md:items-start gap-6">
+                            <div class="flex-shrink-0 bg-gray-100 rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl" style="color: var(--orange-accent);">4</div>
+                            <div>
+                                <h4 class="text-xl font-medium mb-2">Open and Enjoy</h4>
+                                <p class="mb-3">Once installation is complete, tap <strong>Open</strong> to launch the Amazing Dealz app. You can now start browsing for the best deals!</p>
+                                <p class="text-sm text-gray-600">For security reasons, you may want to disable the Unknown Sources setting after installation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Usage Instructions -->
+    <section id="usage" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center section-title">Usage Instructions</h2>
+            <div class="max-w-4xl mx-auto mt-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Navigation Section -->
+                    <div class="p-6 bg-gray-50 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold mb-4" style="color: var(--orange-accent);">
+                            <i class="fas fa-compass mr-2"></i> Navigating the App
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="flex">
+                                <i class="fas fa-check-circle mr-3 mt-1" style="color: var(--orange-accent);"></i>
+                                <span><strong>Home Screen:</strong> View all current deals sorted by recency. Pull down to refresh for the latest updates.</span>
+                            </li>
+                            <li class="flex">
+                                <i class="fas fa-check-circle mr-3 mt-1" style="color: var(--orange-accent);"></i>
+                                <span><strong>Filter Bar:</strong> Use the filter options at the top to view deals from specific stores like Amazon, Flipkart, or Myntra.</span>
+                            </li>
+                            <li class="flex">
+                                <i class="fas fa-check-circle mr-3 mt-1" style="color: var(--orange-accent);"></i>
+                                <span><strong>Deal Cards:</strong> Tap on any deal card to see full details and visit the store to purchase.</span>
+                            </li>
+                            <li class="flex">
+                                <i class="fas fa-check-circle mr-3 mt-1" style="color: var(--orange-accent);"></i>
+                                <span><strong>Refresh:</strong> Use the refresh button in the top right to manually update the deals list.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Deal Categories -->
+                    <div class="p-6 bg-gray-50 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold mb-4" style="color: var(--orange-accent);">
+                            <i class="fas fa-th-large mr-2"></i> Accessing Deal Categories
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="flex">
+                                <i class="fas fa-check-circle mr-3 mt-1" style="color: var(--orange-accent);"></i>
+                                <span><strong>Store Filters:</strong> Tap on Amazon, Flipkart, Myntra, or Other to see store-specific deals.</span>
+                            </li>
+                            <li class="flex">
+                                <i class="fas fa-check-circle mr-3 mt-1" style="color: var(--orange-accent);"></i>
+                                <span><strong>All Deals:</strong> Select "All" to view deals from every store in one feed.</span>
+                            </li>
+                            <li class="flex">
+                                <i class="fas fa-check-circle mr-3 mt-1" style="color: var(--orange-accent);"></i>
+                                <span><strong>Deal Status:</strong> Each deal shows current status (Active or Expired) and when it was last updated.</span>
+                            </li>
+                            <li class="flex">
+                                <i class="fas fa-check-circle mr-3 mt-1" style="color: var(--orange-accent);"></i>
+                                <span><strong>Time Filter:</strong> The app automatically shows deals from the past 15 hours by default.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Tips for Savings -->
+                    <div class="p-6 bg-gray-50 rounded-lg shadow-md md:col-span-2">
+                        <h3 class="text-xl font-semibold mb-4" style="color: var(--orange-accent);">
+                            <i class="fas fa-piggy-bank mr-2"></i> Tips for Maximizing Savings
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="flex">
+                                <i class="fas fa-star mr-3 mt-1" style="color: var(--orange-accent);"></i>
+                                <span><strong>Enable Notifications:</strong> Don't miss out on limited-time deals by keeping app notifications enabled.</span>
+                            </div>
+                            <div class="flex">
+                                <i class="fas fa-star mr-3 mt-1" style="color: var(--orange-accent);"></i>
+                                <span><strong>Check Regularly:</strong> The best deals often sell out quickly, so check the app multiple times daily.</span>
+                            </div>
+                            <div class="flex">
+                                <i class="fas fa-star mr-3 mt-1" style="color: var(--orange-accent);"></i>
+                                <span><strong>Act Fast:</strong> When you see a great deal, don't hesitate—they can expire or sell out rapidly.</span>
+                            </div>
+                            <div class="flex">
+                                <i class="fas fa-star mr-3 mt-1" style="color: var(--orange-accent);"></i>
+                                <span><strong>Compare Prices:</strong> Even with deals, compare across different stores for the best possible price.</span>
+                            </div>
+                            <div class="flex">
+                                <i class="fas fa-star mr-3 mt-1" style="color: var(--orange-accent);"></i>
+                                <span><strong>Check Deal Time:</strong> Look at when the deal was posted to gauge how long it might remain available.</span>
+                            </div>
+                            <div class="flex">
+                                <i class="fas fa-star mr-3 mt-1" style="color: var(--orange-accent);"></i>
+                                <span><strong>Use Refresh:</strong> The refresh button ensures you're seeing the most current available deals.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section id="faq" class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center section-title">Frequently Asked Questions</h2>
+            <div class="max-w-3xl mx-auto mt-12">
+                <!-- FAQ Item 1 -->
+                <div class="faq-card rounded overflow-hidden mb-4">
+                    <div class="faq-header flex justify-between items-center p-4 bg-gray-50">
+                        <h3 class="font-semibold text-lg">Is the Amazing Dealz app free to use?</h3>
+                        <i class="fas fa-chevron-down icon-rotate"></i>
+                    </div>
+                    <div class="faq-body bg-white">
+                        <p class="p-4">Yes, the Amazing Dealz app is completely free to download and use. We don't charge any fees or have any in-app purchases. Our goal is to help you find the best deals without any cost to you!</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="faq-card rounded overflow-hidden mb-4">
+                    <div class="faq-header flex justify-between items-center p-4 bg-gray-50">
+                        <h3 class="font-semibold text-lg">Is it safe to install an APK file from your website?</h3>
+                        <i class="fas fa-chevron-down icon-rotate"></i>
+                    </div>
+                    <div class="faq-body bg-white">
+                        <p class="p-4">Yes, our APK is completely safe to install. We regularly scan it for malware and viruses to ensure security. The app only requires minimal permissions to function and doesn't collect unnecessary personal data. However, as with any APK installation, make sure you're downloading directly from our official website at amazingdealz.netlify.app/App.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="faq-card rounded overflow-hidden mb-4">
+                    <div class="faq-header flex justify-between items-center p-4 bg-gray-50">
+                        <h3 class="font-semibold text-lg">How often are new deals added to the app?</h3>
+                        <i class="fas fa-chevron-down icon-rotate"></i>
+                    </div>
+                    <div class="faq-body bg-white">
+                        <p class="p-4">We update the app with new deals multiple times throughout the day. The app shows deals from the past 15 hours by default, and you can manually refresh anytime to see the latest additions. Our team works continuously to find and add the best deals across all supported stores.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="faq-card rounded overflow-hidden mb-4">
+                    <div class="faq-header flex justify-between items-center p-4 bg-gray-50">
+                        <h3 class="font-semibold text-lg">Why does the app need permission to install from unknown sources?</h3>
+                        <i class="fas fa-chevron-down icon-rotate"></i>
+                    </div>
+                    <div class="faq-body bg-white">
+                        <p class="p-4">Since our app isn't distributed through the Google Play Store, Android requires this permission for security reasons. This is standard for any app installed via APK file. You can disable the "unknown sources" permission after installation for added security. We're working on adding the app to official app stores in the future.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 5 -->
+                <div class="faq-card rounded overflow-hidden mb-4">
+                    <div class="faq-header flex justify-between items-center p-4 bg-gray-50">
+                        <h3 class="font-semibold text-lg">How do I report a deal that's no longer available?</h3>
+                        <i class="fas fa-chevron-down icon-rotate"></i>
+                    </div>
+                    <div class="faq-body bg-white">
+                        <p class="p-4">If you find a deal that's expired or no longer available, you can report it through the contact form in the app or on our website. Please include the deal name and when you found it unavailable. We appreciate users helping us maintain accurate information!</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 6 -->
+                <div class="faq-card rounded overflow-hidden mb-4">
+                    <div class="faq-header flex justify-between items-center p-4 bg-gray-50">
+                        <h3 class="font-semibold text-lg">Will there be an iOS version of the app?</h3>
+                        <i class="fas fa-chevron-down icon-rotate"></i>
+                    </div>
+                    <div class="faq-body bg-white">
+                        <p class="p-4">We're currently focusing on our Android app, but an iOS version is in our development roadmap. If you're an iOS user, you can still access all our deals through our mobile-friendly website at amazingdealslive.netlify.app. We'll announce on our website when the iOS app becomes available.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center section-title">Contact Us</h2>
+            <div class="max-w-4xl mx-auto mt-12">
+                <div class="bg-gray-50 rounded-lg p-8 shadow-md">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Contact Form -->
+                        <div>
+                            <h3 class="text-2xl font-semibold mb-6">Send us a message</h3>
+                            <form class="contact-form space-y-4">
+                                <div>
+                                    <label for="name" class="block mb-2 font-medium">Name</label>
+                                    <input type="text" id="name" class="w-full px-4 py-2 rounded" placeholder="Your name" required>
+                                </div>
+                                <div>
+                                    <label for="email" class="block mb-2 font-medium">Email</label>
+                                    <input type="email" id="email" class="w-full px-4 py-2 rounded" placeholder="Your email address" required>
+                                </div>
+                                <div>
+                                    <label for="subject" class="block mb-2 font-medium">Subject</label>
+                                    <input type="text" id="subject" class="w-full px-4 py-2 rounded" placeholder="Subject of your message" required>
+                                </div>
+                                <div>
+                                    <label for="message" class="block mb-2 font-medium">Message</label>
+                                    <textarea id="message" rows="5" class="w-full px-4 py-2 rounded" placeholder="Your message" required></textarea>
+                                </div>
+                                <button type="submit" class="btn-primary px-6 py-2 rounded font-medium">Send Message</button>
+                            </form>
+                        </div>
+                        
+                        <!-- Contact Information -->
+                        <div class="flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
+                                <ul class="space-y-4">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-envelope mt-1 mr-3" style="color: var(--orange-accent);"></i>
+                                        <span>Mailtokuldeepiit@gmail.com</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-globe mt-1 mr-3" style="color: var(--orange-accent);"></i>
+                                        <span>https://amazingdealslive.netlify.app</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-clock mt-1 mr-3" style="color: var(--orange-accent);"></i>
+                                        <span>Support Hours: Monday to Friday, 9 AM - 6 PM</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="mt-8 md:mt-0">
+                                <h4 class="font-semibold mb-3">Follow us</h4>
+                                <div class="flex space-x-4">
+                                    <a href="#" class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center hover:bg-gray-300 transition-all">
+                                        <i class="fab fa-facebook-f" style="color: var(--orange-accent);"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center hover:bg-gray-300 transition-all">
+                                        <i class="fab fa-twitter" style="color: var(--orange-accent);"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center hover:bg-gray-300 transition-all">
+                                        <i class="fab fa-instagram" style="color: var(--orange-accent);"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 text-center border-t border-gray-200">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-4">Amazing <span class="brand-dealz">Dealz</span></h2>
+            <p class="mb-6">Daily alerts on incredible deals and offers</p>
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#installation" class="nav-link">Installation</a>
+                <a href="#usage" class="nav-link">Usage</a>
+                <a href="#faq" class="nav-link">FAQs</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <p class="text-sm text-gray-600">© 2025 Amazing Dealz. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" id="back-to-top" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // FAQ Accordion
+        const faqHeaders = document.querySelectorAll('.faq-header');
+        
+        faqHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const body = header.nextElementSibling;
+                const icon = header.querySelector('.icon-rotate');
+                
+                // Toggle current FAQ body
+                body.classList.toggle('active');
+                icon.classList.toggle('rotate-icon');
+                
+                // Close other FAQs
+                faqHeaders.forEach(otherHeader => {
+                    if (otherHeader !== header) {
+                        const otherBody = otherHeader.nextElementSibling;
+                        const otherIcon = otherHeader.querySelector('.icon-rotate');
+                        
+                        otherBody.classList.remove('active');
+                        otherIcon.classList.remove('rotate-icon');
+                    }
+                });
+            });
+        });
+        
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Form Submission (Prevent default for demo)
+        document.querySelector('.contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! In a real implementation, this form would submit your inquiry.');
+        });
+    </script>
+</body>
+</html>

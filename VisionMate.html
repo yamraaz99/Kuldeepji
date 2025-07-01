@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisionMate AI - Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #1e40af;
+            --accent-color: #93c5fd;
+            --text-color: #1f2937;
+            --light-bg: #f3f4f6;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section {
+            scroll-margin-top: 80px;
+        }
+        
+        /* Accessibility enhancements */
+        .focus-visible:focus {
+            outline: 3px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+        
+        @media print {
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="sticky top-0 bg-white shadow-md z-50 no-print" aria-label="Main Navigation">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <span class="text-blue-600 text-3xl"><i class="fas fa-eye"></i></span>
+                <span class="font-bold text-2xl text-blue-700">VisionMate AI</span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#overview" class="font-medium text-gray-700 hover:text-blue-600 focus-visible">Overview</a>
+                <a href="#features" class="font-medium text-gray-700 hover:text-blue-600 focus-visible">Features</a>
+                <a href="#audience" class="font-medium text-gray-700 hover:text-blue-600 focus-visible">Audience</a>
+                <a href="#requirements" class="font-medium text-gray-700 hover:text-blue-600 focus-visible">Requirements</a>
+                <a href="#technology" class="font-medium text-gray-700 hover:text-blue-600 focus-visible">Technology</a>
+                <a href="#get-started" class="font-medium text-gray-700 hover:text-blue-600 focus-visible">Get Started</a>
+            </div>
+            <a href="https://visionmateai.netlify.app/" target="_blank" rel="noopener noreferrer" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full font-medium focus-visible transition duration-300" aria-label="Try VisionMate AI now">Try Now</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="gradient-bg text-white py-20">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">VisionMate AI</h1>
+                    <p class="text-xl md:text-2xl mb-6">Seeing the world through sound</p>
+                    <p class="text-lg mb-8">An accessibility-focused web application that helps visually impaired individuals navigate the world by converting visual information into audio descriptions.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://visionmateai.netlify.app/" target="_blank" rel="noopener noreferrer" class="bg-white text-blue-700 px-6 py-3 rounded-full font-medium hover:bg-gray-100 transition duration-300 focus-visible">Launch App</a>
+                        <a href="#get-started" class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-full font-medium hover:bg-white hover:bg-opacity-10 transition duration-300 focus-visible">Learn More</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <a href="https://visionmateai.netlify.app/" target="_blank" rel="noopener noreferrer"><div class="bg-white rounded-2xl p-6 shadow-2xl w-80 h-96 flex flex-col items-center justify-center">
+                        <div class="text-blue-600 text-7xl mb-6"><i class="fas fa-camera"></i></div>
+                        <div class="bg-blue-600 w-20 h-20 rounded-full flex items-center justify-center cursor-pointer hover:bg-blue-700 transition duration-300">
+                            <i class="fas fa-microphone text-white text-3xl"></i>
+                        </div>
+                        <p class="text-gray-700 mt-8 text-center text-lg">Tap to describe what's around you</p>
+                    </div>
+                </div></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12 md:px-8">
+        <!-- Overview Section -->
+        <section id="overview" class="mb-20 section">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold mb-6 text-blue-700">Overview</h2>
+                <p class="text-lg mb-6">VisionMate AI is an accessibility-focused web application designed to assist individuals with visual impairments. Its core purpose is to describe the user's surroundings through their smartphone or computer camera by using AI-powered image understanding and converting it into audio descriptions.</p>
+                <p class="text-lg mb-6">With just a single tap, users can "see" through sound, getting real-time descriptions of what's in front of them. This simple but powerful concept bridges the gap between visual and auditory perception.</p>
+                <div class="bg-blue-50 p-6 rounded-xl border border-blue-100 mt-8">
+                    <div class="flex items-start">
+                        <div class="text-blue-600 mr-4 mt-1"><i class="fas fa-lightbulb text-2xl"></i></div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-2">Our Mission</h3>
+                            <p class="text-gray-700">To make visual information accessible to everyone, regardless of their visual abilities, through intuitive and free technology that respects privacy and works anywhere.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="mb-20 section">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-3xl font-bold mb-6 text-blue-700">Key Features</h2>
+                <p class="text-lg mb-10">VisionMate AI offers a range of features designed for simplicity and inclusivity:</p>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Feature 1 -->
+                    <div class="feature-card bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                        <div class="text-blue-600 text-3xl mb-4"><i class="fas fa-hand-pointer"></i></div>
+                        <h3 class="font-bold text-xl mb-3">One-tap Camera Capture</h3>
+                        <p class="text-gray-700">A large, accessible button to capture images instantly with minimal effort. Designed for users with limited vision.</p>
+                    </div>
+                    
+                    <!-- Feature 2 -->
+                    <div class="feature-card bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                        <div class="text-blue-600 text-3xl mb-4"><i class="fas fa-brain"></i></div>
+                        <h3 class="font-bold text-xl mb-3">AI-powered Image Recognition</h3>
+                        <p class="text-gray-700">The app analyzes visual input locally using lightweight machine learning models that understand context and detail.</p>
+                    </div>
+                    
+                    <!-- Feature 3 -->
+                    <div class="feature-card bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                        <div class="text-blue-600 text-3xl mb-4"><i class="fas fa-volume-up"></i></div>
+                        <h3 class="font-bold text-xl mb-3">Text-to-Speech Output</h3>
+                        <p class="text-gray-700">Descriptions are read aloud using the browser's Web Speech API, with clear pronunciation and natural intonation.</p>
+                    </div>
+                    
+                    <!-- Feature 4 -->
+                    <div class="feature-card bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                        <div class="text-blue-600 text-3xl mb-4"><i class="fas fa-wifi-slash"></i></div>
+                        <h3 class="font-bold text-xl mb-3">No Internet Required</h3>
+                        <p class="text-gray-700">Works offline with no external APIs needed, ensuring privacy and free usage even in areas with poor connectivity.</p>
+                    </div>
+                    
+                    <!-- Feature 5 -->
+                    <div class="feature-card bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                        <div class="text-blue-600 text-3xl mb-4"><i class="fas fa-universal-access"></i></div>
+                        <h3 class="font-bold text-xl mb-3">Accessible UI</h3>
+                        <p class="text-gray-700">High-contrast visuals, screen reader support, and tactile-friendly controls make the app usable for everyone.</p>
+                    </div>
+                    
+                    <!-- Feature 6 -->
+                    <div class="feature-card bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                        <div class="text-blue-600 text-3xl mb-4"><i class="fas fa-mobile-alt"></i></div>
+                        <h3 class="font-bold text-xl mb-3">Haptic Feedback (Coming Soon)</h3>
+                        <p class="text-gray-700">Device vibration on tap to help blind users confirm interaction, enhancing the tactile experience.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Target Audience Section -->
+        <section id="audience" class="mb-20 section">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold mb-6 text-blue-700">Target Audience</h2>
+                <p class="text-lg mb-8">VisionMate AI is designed for a range of users who benefit from audio descriptions of visual content:</p>
+                
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex">
+                        <div class="text-blue-600 text-3xl mr-6"><i class="fas fa-low-vision"></i></div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-2">Individuals with Visual Impairments</h3>
+                            <p class="text-gray-700">People who are blind or have low vision can use VisionMate AI to understand their surroundings, read text, and identify objects.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex">
+                        <div class="text-blue-600 text-3xl mr-6"><i class="fas fa-user-friends"></i></div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-2">Elderly Users</h3>
+                            <p class="text-gray-700">Seniors seeking easier interaction with visual content, particularly those experiencing age-related vision decline.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex">
+                        <div class="text-blue-600 text-3xl mr-6"><i class="fas fa-code"></i></div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-2">Developers & NGOs</h3>
+                            <p class="text-gray-700">Professionals working in accessibility and assistive technology who need a reliable, free solution for their communities.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex">
+                        <div class="text-blue-600 text-3xl mr-6"><i class="fas fa-users"></i></div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-2">General Public</h3>
+                            <p class="text-gray-700">Anyone looking for a free, browser-based image-to-speech tool without complex setup or technical knowledge requirements.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Requirements Section -->
+        <section id="requirements" class="mb-20 section">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold mb-6 text-blue-700">Technical Requirements</h2>
+                <p class="text-lg mb-8">VisionMate AI is designed to be extremely lightweight. Here's what you need to use it effectively:</p>
+                
+                <div class="bg-white p-8 rounded-xl shadow border border-gray-100">
+                    <div class="grid md:grid-cols-2 gap-x-10 gap-y-6">
+                        <div class="flex items-start">
+                            <div class="text-green-500 mr-3 mt-1"><i class="fas fa-check-circle text-xl"></i></div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-1">Modern Web Browser</h3>
+                                <p class="text-gray-700">Chrome, Safari, Edge, or Firefox (latest versions recommended)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-green-500 mr-3 mt-1"><i class="fas fa-check-circle text-xl"></i></div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-1">Camera Access</h3>
+                                <p class="text-gray-700">Permission to use your device's camera must be granted</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-green-500 mr-3 mt-1"><i class="fas fa-check-circle text-xl"></i></div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-1">Audio Output</h3>
+                                <p class="text-gray-700">Working speakers or headphones for text-to-speech functionality</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-green-500 mr-3 mt-1"><i class="fas fa-check-circle text-xl"></i></div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-1">Device Type</h3>
+                                <p class="text-gray-700">Mobile devices recommended for portability, though desktop works too</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 bg-blue-50 p-4 rounded-lg">
+                        <p class="text-blue-700 font-medium">No installations, downloads, or logins are necessary. VisionMate AI works right in your browser.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Section -->
+        <section id="technology" class="mb-20 section">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold mb-6 text-blue-700">How It Works</h2>
+                <p class="text-lg mb-10">VisionMate AI runs entirely in your browser, using modern web technologies to deliver a seamless experience:</p>
+                
+                <div class="bg-gray-50 p-8 rounded-xl border border-gray-200">
+                    <div class="mb-10">
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800">Technology Stack</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-white p-5 rounded-lg shadow-sm">
+                                <div class="flex items-center mb-3">
+                                    <div class="text-blue-600 mr-3"><i class="fab fa-js text-2xl"></i></div>
+                                    <h4 class="font-bold text-lg">JavaScript & HTML</h4>
+                                </div>
+                                <p class="text-gray-700">Powers the core interface and application logic with responsive design principles.</p>
+                            </div>
+                            
+                            <div class="bg-white p-5 rounded-lg shadow-sm">
+                                <div class="flex items-center mb-3">
+                                    <div class="text-blue-600 mr-3"><i class="fas fa-robot text-2xl"></i></div>
+                                    <h4 class="font-bold text-lg">Hugging Face Models</h4>
+                                </div>
+                                <p class="text-gray-700">Lightweight transformer models interpret images with high accuracy.</p>
+                            </div>
+                            
+                            <div class="bg-white p-5 rounded-lg shadow-sm">
+                                <div class="flex items-center mb-3">
+                                    <div class="text-blue-600 mr-3"><i class="fas fa-comment-alt text-2xl"></i></div>
+                                    <h4 class="font-bold text-lg">Web Speech API</h4>
+                                </div>
+                                <p class="text-gray-700">Converts text descriptions into natural-sounding speech in real-time.</p>
+                            </div>
+                            
+                            <div class="bg-white p-5 rounded-lg shadow-sm">
+                                <div class="flex items-center mb-3">
+                                    <div class="text-blue-600 mr-3"><i class="fas fa-mobile-alt text-2xl"></i></div>
+                                    <h4 class="font-bold text-lg">Responsive Design</h4>
+                                </div>
+                                <p class="text-gray-700">Adapts seamlessly between mobile and desktop devices for universal access.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800">How The Process Works</h3>
+                        <div class="relative">
+                            <!-- Process Steps -->
+                            <div class="ml-8 border-l-4 border-blue-200 pl-8 pb-1">
+                                <div class="relative mb-10">
+                                    <div class="absolute -left-12 bg-blue-600 rounded-full w-8 h-8 flex items-center justify-center text-white font-bold">1</div>
+                                    <h4 class="font-bold text-xl mb-2">Image Capture</h4>
+                                    <p class="text-gray-700">The user taps the main button to activate their device's camera and capture an image of their surroundings.</p>
+                                </div>
+                                
+                                <div class="relative mb-10">
+                                    <div class="absolute -left-12 bg-blue-600 rounded-full w-8 h-8 flex items-center justify-center text-white font-bold">2</div>
+                                    <h4 class="font-bold text-xl mb-2">AI Analysis</h4>
+                                    <p class="text-gray-700">The image is processed by on-device AI models that identify objects, people, text, and context within the frame.</p>
+                                </div>
+                                
+                                <div class="relative mb-10">
+                                    <div class="absolute -left-12 bg-blue-600 rounded-full w-8 h-8 flex items-center justify-center text-white font-bold">3</div>
+                                    <h4 class="font-bold text-xl mb-2">Text Generation</h4>
+                                    <p class="text-gray-700">A human-friendly description is generated based on the AI analysis, highlighting the most important elements.</p>
+                                </div>
+                                
+                                <div class="relative">
+                                    <div class="absolute -left-12 bg-blue-600 rounded-full w-8 h-8 flex items-center justify-center text-white font-bold">4</div>
+                                    <h4 class="font-bold text-xl mb-2">Audio Delivery</h4>
+                                    <p class="text-gray-700">The description is automatically converted to speech and played through the device's speakers.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 bg-blue-50 p-6 rounded-xl border border-blue-100">
+                    <div class="flex items-start">
+                        <div class="text-blue-600 text-2xl mr-4 mt-1"><i class="fas fa-shield-alt"></i></div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-2">Privacy & Security</h3>
+                            <p class="text-gray-700">All computation happens locally – nothing is sent to external servers. This ensures complete privacy protection and zero cost while using VisionMate AI.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="mb-20 section">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold mb-6 text-blue-700">Pricing</h2>
+                <div class="bg-white p-8 rounded-xl shadow border border-gray-100 text-center">
+                    <h3 class="text-3xl font-bold mb-4">Completely Free</h3>
+                    <p class="text-xl text-gray-700 mb-8">VisionMate AI is a passion project committed to open accessibility.</p>
+                    
+                    <div class="flex justify-center space-x-8 mb-10">
+                        <div class="flex items-center">
+                            <div class="text-red-500 mr-2"><i class="fas fa-times-circle text-xl"></i></div>
+                            <p class="text-lg font-medium">No Subscriptions</p>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="text-red-500 mr-2"><i class="fas fa-times-circle text-xl"></i></div>
+                            <p class="text-lg font-medium">No API Charges</p>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="text-red-500 mr-2"><i class="fas fa-times-circle text-xl"></i></div>
+                            <p class="text-lg font-medium">No Ads or Upsells</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 bg-gray-50 p-4 rounded-lg inline-block">
+                        <p class="text-gray-700">May be open-sourced in the future depending on interest and community involvement.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Getting Started Section -->
+        <section id="get-started" class="mb-20 section">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold mb-6 text-blue-700">Getting Started</h2>
+                <p class="text-lg mb-10">Using VisionMate AI is incredibly simple. Follow these steps to start exploring the world through audio:</p>
+                
+                <div class="bg-white p-8 rounded-xl shadow border border-gray-100">
+                    <div class="space-y-8">
+                        <div class="flex">
+                            <div class="bg-blue-600 rounded-full w-10 h-10 flex-shrink-0 flex items-center justify-center text-white font-bold mr-4">1</div>
+                            <div>
+                                <h3 class="font-bold text-xl mb-2">Visit the VisionMate AI Website</h3>
+                                <p class="text-gray-700 mb-2">Go to <a href="https://visionmateai.netlify.app/" class="text-blue-600 hover:underline font-medium">https://visionmateai.netlify.app/</a> in any modern web browser.</p>
+                                <p class="text-gray-700">No download or installation is required.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="bg-blue-600 rounded-full w-10 h-10 flex-shrink-0 flex items-center justify-center text-white font-bold mr-4">2</div>
+                            <div>
+                                <h3 class="font-bold text-xl mb-2">Grant Camera Access</h3>
+                                <p class="text-gray-700 mb-2">When prompted, allow the browser to access your device's camera.</p>
+                                <p class="text-gray-700">This permission is required for VisionMate AI to capture and analyze images.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="bg-blue-600 rounded-full w-10 h-10 flex-shrink-0 flex items-center justify-center text-white font-bold mr-4">3</div>
+                            <div>
+                                <h3 class="font-bold text-xl mb-2">Tap the Button</h3>
+                                <p class="text-gray-700 mb-2">Touch the large central button to capture an image of your surroundings.</p>
+                                <p class="text-gray-700">The button is designed to be easy to find and interact with for users with limited vision.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="bg-blue-600 rounded-full w-10 h-10 flex-shrink-0 flex items-center justify-center text-white font-bold mr-4">4</div>
+                            <div>
+                                <h3 class="font-bold text-xl mb-2">Listen to the Description</h3>
+                                <p class="text-gray-700 mb-2">VisionMate AI will analyze the image and automatically read out a detailed description.</p>
+                                <p class="text-gray-700">The description will focus on the most relevant elements in the scene.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="bg-blue-600 rounded-full w-10 h-10 flex-shrink-0 flex items-center justify-center text-white font-bold mr-4">5</div>
+                            <div>
+                                <h3 class="font-bold text-xl mb-2">Repeat as Needed</h3>
+                                <p class="text-gray-700 mb-2">Tap the button again whenever you need to understand what's around you.</p>
+                                <p class="text-gray-700">VisionMate AI works continuously as long as your browser remains open.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-10 bg-yellow-50 border border-yellow-100 p-5 rounded-lg flex">
+                        <div class="text-yellow-600 mr-4 text-2xl"><i class="fas fa-lightbulb"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-1">Pro Tip</h4>
+                            <p class="text-gray-700">For the best experience, ensure good lighting and hold your device steady when capturing images. This helps the AI provide more accurate descriptions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="mb-20">
+            <div class="max-w-5xl mx-auto">
+                <div class="gradient-bg text-white p-10 rounded-2xl text-center">
+                    <h2 class="text-3xl font-bold mb-4">Ready to Experience VisionMate AI?</h2>
+                    <p class="text-xl mb-8">Start exploring the world through sound today. No account, no downloads, no cost.</p>
+                    <a href="https://visionmateai.netlify.app/" target="_blank" rel="noopener noreferrer" class="bg-white text-blue-700 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition duration-300 focus-visible inline-block">Launch VisionMate AI</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- FAQ Section -->
+        <section class="mb-20 section">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold mb-6 text-blue-700">Frequently Asked Questions</h2>
+                
+                <div class="bg-white rounded-xl shadow border border-gray-100 overflow-hidden">
+                    <div class="divide-y divide-gray-200">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-3">Does VisionMate AI work offline?</h3>
+                            <p class="text-gray-700">Yes! Once the page has loaded, VisionMate AI works completely offline. All processing happens on your device, with no need for an internet connection.</p>
+                        </div>
+                        
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-3">Is my privacy protected when using VisionMate AI?</h3>
+                            <p class="text-gray-700">Absolutely. VisionMate AI processes all images locally on your device. No photos or data are sent to any external servers, ensuring complete privacy protection.</p>
+                        </div>
+                        
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-3">Can I use VisionMate AI on any device?</h3>
+                            <p class="text-gray-700">VisionMate AI works on any device with a camera and a modern web browser. This includes smartphones, tablets, and computers with webcams. Mobile devices are recommended for greater portability.</p>
+                        </div>
+                        
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-3">How accurate are the descriptions?</h3>
+                            <p class="text-gray-700">VisionMate AI uses advanced AI models to provide highly accurate descriptions in most situations. However, like all AI systems, accuracy may vary depending on lighting conditions, image clarity, and complexity of the scene.</p>
+                        </div>
+                        
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-3">Will VisionMate AI remain free in the future?</h3>
+                            <p class="text-gray-700">Yes. VisionMate AI was created as an accessibility project and will remain completely free to use. There are no plans to introduce paid features or subscriptions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-10">
+                <div class="flex items-center mb-6 md:mb-0">
+                    <span class="text-blue-400 text-3xl mr-3"><i class="fas fa-eye"></i></span>
+                    <span class="font-bold text-2xl">VisionMate AI</span>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-300 hover:text-white transition duration-300">
+                        <i class="fab fa-github text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-300 hover:text-white transition duration-300">
+                        <i class="fab fa-twitter text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-300 hover:text-white transition duration-300">
+                        <i class="fab fa-linkedin text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 pb-4">
+                <div class="flex flex-col md:flex-row justify-between">
+                    <p class="text-gray-400 mb-4 md:mb-0">© 2023 VisionMate AI. All rights reserved.</p>
+                    <div class="flex flex-wrap gap-x-8 gap-y-2">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">Contact</a>
+                    </div>
+                </div>
+                <p class="text-gray-500 mt-6 text-sm">VisionMate AI is created to improve accessibility for visually impaired individuals. This is a non-commercial project dedicated to making technology more inclusive.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

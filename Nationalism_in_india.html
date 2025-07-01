@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nationalism in India - Interactive Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Styles - Inherited and slightly adjusted */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        /* Color Psychology & General Styling */
+        .content-card { background-color: white; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: box-shadow 0.3s ease; }
+        .content-card:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+
+        .fact-date { background-color: #e0f2fe; color: #0c4a6e; border-left: 4px solid #38bdf8; padding: 0.75rem; border-radius: 4px; margin-bottom: 0.5rem;}
+        .revolution-event { background-color: #fffbeb; color: #b45309; border-left: 4px solid #f59e0b; padding: 0.75rem; border-radius: 4px; margin-bottom: 0.5rem;}
+        .ideology-concept { background-color: #f0fdf4; color: #15803d; border-left: 4px solid #4ade80; padding: 0.75rem; border-radius: 4px; margin-bottom: 0.5rem;}
+        .key-term { background-color: #fdf2f8; color: #be185d; border-left: 4px solid #f472b6; padding: 2px 0.5rem; border-radius: 4px; display: inline-block; line-height: 1.4; margin: 0 2px; }
+        p span.key-term, li span.key-term, dd span.key-term { margin-bottom: 0; }
+        .nation-building { background-color: #fee2e2; color: #b91c1c; border-left: 4px solid #ef4444; padding: 0.75rem; border-radius: 4px; margin-bottom: 0.5rem;}
+
+        /* Timeline Styling */
+        .timeline-item { position: relative; padding-left: 2.5rem; padding-bottom: 1.5rem; border-left: 2px solid #cbd5e1; }
+        .timeline-item:last-child { border-left: none; padding-bottom: 0; }
+        .timeline-icon { position: absolute; left: -0.75rem; top: 0; width: 1.5rem; height: 1.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; }
+        .icon-fact { background-color: #38bdf8; }
+        .icon-movement { background-color: #f59e0b; }
+        .icon-person { background-color: #8b5cf6; }
+        .icon-policy { background-color: #ef4444; }
+        .icon-concept { background-color: #4ade80; }
+        /* Added style for clickable timeline events */
+        .timeline-event-link { cursor: pointer; transition: background-color 0.2s ease; display: block; padding: 0.5rem; border-radius: 4px; margin-left: -0.5rem; margin-right: -0.5rem;}
+        .timeline-event-link:hover { background-color: #f1f5f9; } /* Light gray hover */
+
+
+        /* Modal Styling */
+        .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); padding-top: 60px; }
+        .modal-content { background-color: #ffffff; margin: 5% auto; padding: 25px; border: 1px solid #888; width: 80%; max-width: 600px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; }
+        .close-button { color: #aaa; position: absolute; top: 10px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; }
+        .close-button:hover, .close-button:focus { color: black; text-decoration: none; }
+
+        /* Location Explorer Styling */
+        .location-container { position: relative; width: 100%; max-width: 700px; margin: auto; background-color: #dbeafe; padding: 20px; border-radius: 8px; border: 1px solid #bfdbfe; }
+        .location-item { background-color: #93c5fd; border: 1px solid #60a5fa; padding: 10px 15px; margin: 5px; border-radius: 6px; cursor: pointer; transition: background-color 0.3s ease; text-align: center; font-weight: 600; color: #1e3a8a; }
+        .location-item:hover { background-color: #60a5fa; }
+        .location-info-panel { margin-top: 15px; padding: 15px; background-color: #eff6ff; border-radius: 6px; border: 1px solid #dbeafe; min-height: 50px; }
+
+        /* Headings */
+        h1, h2, h3, h4 { font-weight: 700; color: #1e3a8a; margin-bottom: 0.75rem; }
+        h1 { font-size: 2.25rem; line-height: 2.5rem; margin-bottom: 1.5rem; text-align: center; }
+        h2 { font-size: 1.875rem; line-height: 2.25rem; border-bottom: 2px solid #93c5fd; padding-bottom: 0.5rem; margin-top: 2rem; }
+        h3 { font-size: 1.25rem; line-height: 1.75rem; color: #1d4ed8; }
+        h4 { font-size: 1.1rem; line-height: 1.5rem; color: #1e40af; margin-bottom: 0.5rem; }
+
+        /* Clickable character names */
+        .character-link { color: #7c3aed; font-weight: 600; cursor: pointer; text-decoration: underline; text-decoration-color: #a78bfa; }
+        .character-link:hover { color: #5b21b6; }
+
+        /* Image styling */
+        img.chapter-image { max-width: 100%; height: auto; border-radius: 8px; margin: 1rem auto; display: block; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .character-img { width: 100px; height: 100px; border-radius: 50%; margin: 1rem auto; display: block; object-fit: cover; border: 2px solid #ddd; }
+
+        /* Definition lists */
+        dl dt { font-weight: 600; color: #1e3a8a; margin-top: 0.5rem; }
+        dl dd { margin-left: 1rem; margin-bottom: 0.5rem; }
+
+    </style>
+</head>
+<body class="bg-gray-100 p-4 md:p-8">
+
+    <div class="container mx-auto max-w-5xl bg-white rounded-lg shadow-xl p-6 md:p-10">
+
+        <h1>Nationalism in India: An Interactive Journey</h1>
+
+        <section id="introduction" class="content-card">
+            <h2>Introduction: Nationalism and Anti-Colonialism</h2>
+            <p class="mb-4 nation-building">In India, as in many colonies, the growth of modern nationalism is closely linked to the anti-colonial movement. The shared experience of oppression under colonialism forged bonds of unity among different groups. However, experiences varied, and notions of freedom differed. The Congress under <span class="character-link" data-charid="gandhi">Mahatma Gandhi</span> sought to unite these groups, though not without conflict.</p>
+            <p class="fact-date">This chapter covers the story from the 1920s, focusing on the Non-Cooperation and Civil Disobedience Movements, participation of various social groups, and how nationalism captured people's imagination.</p>
+             <img src="https://placehold.co/600x300/cccccc/333333?text=National+Movement+Procession+(Placeholder)" alt="Placeholder for National Movement Procession" class="chapter-image" onerror="this.src='https://placehold.co/600x300/cccccc/333333?text=Image+Not+Found'">
+        </section>
+
+        <section id="wwi-ncm" class="content-card">
+            <h2>1. The First World War, Khilafat and Non-Cooperation</h2>
+            <h4 class="mt-4">Impact of World War I (Post-1919):</h4>
+            <ul class="list-disc list-inside space-y-1 fact-date">
+                <li>New economic/political situation: Huge increase in defence spending (financed by war loans, taxes).</li>
+                <li>Price rises (doubled 1913-18) caused extreme hardship.</li>
+                <li>Villages supplied soldiers; <span class="key-term rounded">forced recruitment</span> caused anger.</li>
+                <li>Crop failures (1918-19, 1920-21) led to food shortages.</li>
+                <li>Influenza epidemic killed millions (12-13 million perished from famines/epidemic per 1921 census).</li>
+                <li>Hardships continued after the war.</li>
+            </ul>
+            <h4 class="mt-4">The Idea of Satyagraha:</h4>
+             <div class="ideology-concept">
+                <p><span class="character-link" data-charid="gandhi">Mahatma Gandhi</span> returned from South Africa (Jan 1915) with the novel method of mass agitation: <span class="key-term rounded">Satyagraha</span>.</p>
+                <h4 class="font-semibold mt-2">Core Principles:</h4>
+                 <ul class="list-disc list-inside ml-4">
+                    <li>Emphasised power of truth, need to search for truth.</li>
+                    <li>If cause is true (against injustice), physical force is unnecessary.</li>
+                    <li>Win through non-violence by appealing to oppressor's conscience.</li>
+                    <li>Persuade, don't force acceptance of truth.</li>
+                    <li>No ill-will; pure soul-force.</li>
+                 </ul>
+                 <h4 class="font-semibold mt-2">Early Satyagraha Movements:</h4>
+                 <ul class="list-disc list-inside ml-4">
+                     <li>1917: Champaran (Bihar) - Against oppressive plantation system.</li>
+                     <li>1917: Kheda (Gujarat) - Supported peasants affected by crop failure/plague, demanding revenue relaxation.</li>
+                     <li>1918: Ahmedabad (Gujarat) - Organised movement amongst cotton mill workers.</li>
+                 </ul>
+            </div>
+             <h4 class="mt-4">The Rowlatt Act (1919):</h4>
+             <div class="revolution-event">
+                 <p>Act hurriedly passed despite Indian opposition. Gave govt enormous power to repress political activities, allowed detention without trial for 2 years.</p>
+                 <p><span class="character-link" data-charid="gandhi">Gandhiji</span> called for non-violent civil disobedience starting with a <span class="key-term rounded">hartal</span> (strike) on April 6.</p>
+                 <p>Rallies, strikes, shop closures occurred. British clamped down; local leaders arrested; Gandhi barred from Delhi.</p>
+                 <p><strong>April 10:</strong> Police fired on peaceful procession in Amritsar.</p>
+                 <p><strong>April 13: Jallianwala Bagh Massacre.</strong> Crowd gathered (protest/Baisakhi fair). <span class="character-link" data-charid="dyer">General Dyer</span> blocked exit, ordered firing, killing hundreds. Aim: 'produce a moral effect' (terror).</p>
+                 <p>Aftermath: Strikes, clashes, attacks on govt buildings. Govt responded with brutal repression (forced crawling, floggings, bombing villages). Gandhi called off the movement due to spreading violence.</p>
+             </div>
+              <img src="https://placehold.co/600x300/fcd34d/92400e?text=Jallianwala+Bagh+(Placeholder)" alt="Placeholder for Jallianwala Bagh" class="chapter-image" onerror="this.src='https://placehold.co/600x300/cccccc/333333?text=Image+Not+Found'">
+             <h4 class="mt-4">Khilafat and Non-Cooperation:</h4>
+             <div class="ideology-concept">
+                 <p>Gandhi sought broader movement, needing Hindu-Muslim unity. Took up Khilafat issue: Defending temporal powers of Ottoman emperor (Khalifa) after WWI defeat.</p>
+                 <p>Khilafat Committee formed (Bombay, March 1919). Leaders like <span class="character-link" data-charid="ali_brothers">Muhammad Ali</span> and <span class="character-link" data-charid="ali_brothers">Shaukat Ali</span> discussed united action with Gandhi.</p>
+                 <p>Calcutta Congress (Sep 1920): Gandhi convinced leaders to start Non-Cooperation Movement for Khilafat and <span class="key-term rounded">Swaraj</span> (self-rule).</p>
+                 <h4 class="font-semibold mt-2">Why Non-Cooperation? (Gandhi's Hind Swaraj, 1909):</h4>
+                 <p>British rule established/survived due to Indian cooperation. Refusal to cooperate -> British rule would collapse.</p>
+                 <h4 class="font-semibold mt-2">Proposed Stages:</h4>
+                  <ul class="list-disc list-inside ml-4">
+                      <li>Surrender govt titles.</li>
+                      <li><span class="key-term rounded">Boycott</span> civil services, army, police, courts, councils, schools, foreign goods.</li>
+                      <li>If repressed, launch full civil disobedience.</li>
+                  </ul>
+                 <p>Nagpur Congress (Dec 1920): Non-Cooperation programme adopted after internal debate.</p>
+             </div>
+        </section>
+
+        <section id="differing-strands" class="content-card">
+            <h2>2. Differing Strands within the Movement (Jan 1921 onwards)</h2>
+             <p class="fact-date">Various social groups participated, responding to call of Swaraj but interpreting it differently.</p>
+            <h4 class="mt-4">Movement in Towns:</h4>
+            <ul class="list-disc list-inside space-y-1 revolution-event">
+                <li>Middle-class participation: Students left govt schools/colleges, teachers/headmasters resigned, lawyers gave up practice.</li>
+                <li>Council elections boycotted (except Madras - Justice Party).</li>
+                <li>Economic effects: Foreign goods boycotted, liquor shops <span class="key-term rounded">picketed</span>, foreign cloth burnt. Imports halved (1921-22). Indian textile production increased.</li>
+                <li>Slowdown reasons: Khadi expensive, lack of alternative Indian institutions (schools, courts). People trickled back.</li>
+            </ul>
+            <h4 class="mt-4">Rebellion in the Countryside:</h4>
+            <div class="revolution-event mb-4">
+                <h4 class="font-semibold">Awadh Peasants:</h4>
+                <p>Led by <span class="character-link" data-charid="ramchandra">Baba Ramchandra</span> (ex-indentured labourer). Against talukdars/landlords demanding high rents, cesses, <span class="key-term rounded">begar</span> (forced labour without pay).</p>
+                <p>Demands: Reduce revenue, abolish begar, social boycott landlords. Nai-dhobi bandhs organised.</p>
+                <p><span class="character-link" data-charid="nehru">Jawaharlal Nehru</span> involved; Oudh Kisan Sabha set up (Oct 1920).</p>
+                <p>Movement turned violent (1921): Houses attacked, bazaars looted. Local leaders invoked Gandhi's name for actions Congress disapproved of.</p>
+            </div>
+             <div class="revolution-event">
+                 <h4 class="font-semibold">Gudem Hills Tribals (Andhra Pradesh):</h4>
+                 <p>Militant guerrilla movement (early 1920s). Against forest laws preventing entry for grazing/collecting fuel/fruits, and forced begar for road building.</p>
+                 <p>Led by <span class="character-link" data-charid="raju">Alluri Sitaram Raju</span> (claimed special powers, seen as incarnation of God). Inspired by NCM, persuaded wearing Khadi/giving up drinking BUT asserted force needed for liberation.</p>
+                 <p>Rebels attacked police stations, attempted killing officials. Raju captured/executed (1924), became folk hero.</p>
+             </div>
+             <h4 class="mt-4">Swaraj in the Plantations (Assam):</h4>
+             <div class="revolution-event">
+                 <p>Workers interpreted Swaraj as right to move freely (restricted by Inland Emigration Act 1859) and retain link with village.</p>
+                 <p>Hearing of NCM, thousands defied authorities, left plantations heading home (believing Gandhi Raj coming, land in villages).</p>
+                 <p>Caught due to strikes, brutally beaten.</p>
+             </div>
+             <p class="mt-4 ideology-concept">Vision of movements often differed from Congress programme. People interpreted Swaraj in own ways, but related emotionally to all-India agitation by invoking Gandhi's name.</p>
+        </section>
+
+        <section id="towards-cdm" class="content-card">
+             <h2>3. Towards Civil Disobedience</h2>
+             <p class="fact-date">Feb 1922: Gandhi withdrew NCM after Chauri Chaura incident (violent clash).</p>
+              <img src="https://placehold.co/600x300/fcd34d/92400e?text=Chauri+Chaura+Scene+(Placeholder)" alt="Placeholder for Chauri Chaura" class="chapter-image" onerror="this.src='https://placehold.co/600x300/cccccc/333333?text=Image+Not+Found'">
+             <h4 class="mt-4">Internal Debates & Factors Shaping Politics (late 1920s):</h4>
+             <ul class="list-disc list-inside space-y-1 ideology-concept">
+                 <li>Some leaders (e.g., <span class="character-link" data-charid="crdas">C. R. Das</span>, <span class="character-link" data-charid="motilal">Motilal Nehru</span>) tired of mass struggle, formed Swaraj Party to enter councils, oppose British policies from within.</li>
+                 <li>Younger leaders (<span class="character-link" data-charid="nehru">Nehru</span>, <span class="character-link" data-charid="bose">Subhas Chandra Bose</span>) pressed for radical mass agitation, full independence.</li>
+                 <li>Worldwide economic depression effect: Agricultural prices fell (from 1926, collapsed post-1930). Peasants struggled to sell harvests/pay revenue. Countryside in turmoil.</li>
+                 <li>Simon Commission (under <span class="character-link" data-charid="simon">Sir John Simon</span>): Constituted by Tory govt (Britain) to look into constitutional system. No Indian members -> widespread protests ('Go back Simon') when arrived (1928).</li>
+             </ul>
+             <h4 class="mt-4">Towards Purna Swaraj:</h4>
+             <ul class="list-disc list-inside space-y-1 revolution-event">
+                 <li>Lord Irwin's vague offer (Oct 1929) of '<span class="key-term rounded">dominion status</span>' and Round Table Conference didn't satisfy Congress.</li>
+                 <li>Lahore Congress (Dec 1929): Under <span class="character-link" data-charid="nehru">Nehru</span>'s presidency, formalised demand for <span class="key-term rounded">'Purna Swaraj'</span> (full independence). Declared Jan 26, 1930 as Independence Day (pledge taken).</li>
+             </ul>
+             <h4 class="mt-4">The Salt March and Civil Disobedience Movement (CDM):</h4>
+             <div class="revolution-event">
+                 <p>Gandhi found powerful symbol in salt tax (affected rich/poor). Sent letter to Irwin (Jan 31, 1930) with 11 demands (general/specific, including abolishing salt tax). Ultimatum: launch CDM if demands not met by March 11.</p>
+                 <p>Irwin unwilling to negotiate.</p>
+                 <p><strong>Salt March (Dandi March):</strong> Started March 12, 1930. Gandhi + 78 volunteers walked 240 miles (Sabarmati to Dandi). Reached Dandi April 6, violated salt law by making salt.</p>
+                 <p>Marked beginning of <span class="key-term rounded">Civil Disobedience Movement</span>: People asked to break colonial laws (unlike NCM's refusal to cooperate). Salt law broken nationwide, foreign cloth boycotted, liquor shops picketed, peasants refused revenue/chaukidari taxes, village officials resigned, forest laws violated.</p>
+                 <p>Govt arrested leaders (<span class="character-link" data-charid="gaffar">Abdul Ghaffar Khan</span>, Gandhi). Led to violent clashes (Peshawar, Sholapur). Brutal repression: satyagrahis attacked, women/children beaten, ~100,000 arrested.</p>
+                 <p>Gandhi called off movement, entered Gandhi-Irwin Pact (March 5, 1931): Agreed to participate in Second Round Table Conference (London), govt agreed release political prisoners.</p>
+                 <p>Gandhi went to London (Dec 1931), negotiations broke down. Returned to find new repression cycle (Ghaffar Khan, Nehru jailed, Congress illegal).</p>
+                 <p>Relaunched CDM. Continued over a year, lost momentum by 1934.</p>
+             </div>
+              <img src="https://placehold.co/600x300/fcd34d/92400e?text=Salt+March+(Placeholder)" alt="Placeholder for Salt March" class="chapter-image" onerror="this.src='https://placehold.co/600x300/cccccc/333333?text=Image+Not+Found'">
+        </section>
+
+         <section id="participants-limits" class="content-card">
+             <h2>4. How Participants Saw the Movement & Limits of CDM</h2>
+             <h4 class="mt-4">Varied Participation & Ideals:</h4>
+             <dl>
+                 <dt class="revolution-event p-2 rounded">Rich Peasants (e.g., Patidars of Gujarat, Jats of UP):</dt>
+                 <dd class="ml-4 mb-2">Active supporters. Hard hit by depression/falling prices. Swaraj = struggle against high revenues. Disappointed when CDM called off (1931) without revenue revision; reluctant to rejoin (1932).</dd>
+                 <dt class="revolution-event p-2 rounded">Poor Peasants:</dt>
+                 <dd class="ml-4 mb-2">Wanted lower revenue + unpaid rent remitted. Joined radical movements (Socialist/Communist led). Congress unwilling to support 'no rent' campaigns (feared alienating rich peasants/landlords). Relationship uncertain.</dd>
+                 <dt class="fact-date p-2 rounded">Business Classes (e.g., <span class="character-link" data-charid="thakurdas">Purshottamdas Thakurdas</span>, <span class="character-link" data-charid="birla">G. D. Birla</span>):</dt>
+                 <dd class="ml-4 mb-2">Reacted against colonial policies restricting business. Wanted protection against imports, favourable rupee-sterling ratio. Formed FICCI (1927). Supported CDM initially (financial aid, refused import trade). Swaraj = end of colonial restrictions. Enthusiasm waned after RTC failure (feared militant activities, socialism).</dd>
+                 <dt class="fact-date p-2 rounded">Industrial Working Classes:</dt>
+                 <dd class="ml-4 mb-2">Did not participate in large numbers (except Nagpur). Stayed aloof as industrialists came closer to Congress. Some participated selectively (boycott, strikes against low wages/poor conditions). Congress reluctant to include worker demands (feared alienating industrialists).</dd>
+                 <dt class="revolution-event p-2 rounded">Women:</dt>
+                 <dd class="ml-4 mb-2">Large-scale participation (salt march, protests, manufactured salt, picketed shops, went to jail). From high-caste urban & rich peasant rural families. Saw service to nation as sacred duty. BUT increased public role didn't mean radical change in position; Congress reluctant to give authority positions.</dd>
+             </dl>
+             <h4 class="mt-4">Limits of Civil Disobedience:</h4>
+             <div class="ideology-concept mb-4">
+                 <h4 class="font-semibold">Dalits ('Untouchables' / Harijans):</h4>
+                 <p>Congress ignored dalits initially (fear of offending sanatanis). Gandhi declared Swaraj impossible without eliminating untouchability, called them '<span class="key-term rounded">harijan</span>' (children of God), organised satyagraha for temple entry/access to wells etc.</p>
+                 <p>Dalit leaders (<span class="character-link" data-charid="ambedkar">Dr B.R. Ambedkar</span>) sought different political solution: reserved seats, <span class="key-term rounded">separate electorates</span>. Clashed with Gandhi at 2nd RTC.</p>
+                 <p>Gandhi fasted against separate electorates (believed would slow integration).</p>
+                 <p><strong>Poona Pact (Sep 1932):</strong> Reserved seats for Depressed Classes (Scheduled Castes) in provincial/central councils, but voted by general electorate. Dalit participation in CDM limited; remained apprehensive of Congress.</p>
+             </div>
+              <div class="ideology-concept">
+                  <h4 class="font-semibold">Muslims:</h4>
+                  <p>Lukewarm response from some political organisations. Felt alienated from Congress after decline of NCM-Khilafat movement. Congress seemed more associated with Hindu groups (Hindu Mahasabha) from mid-1920s.</p>
+                  <p>Worsening Hindu-Muslim relations; riots deepened distance.</p>
+                  <p>Efforts to renegotiate alliance (1927) failed over representation issue. <span class="character-link" data-charid="jinnah">Muhammad Ali Jinnah</span> (Muslim League) willing to give up separate electorates IF reserved seats in Central Assembly & proportional representation in Muslim-majority provinces assured. Hopes disappeared when Hindu Mahasabha (<span class="character-link" data-charid="jayakar">M.R. Jayakar</span>) opposed compromise.</p>
+                  <p>Atmosphere of suspicion/distrust during CDM. Many Muslims couldn't respond to united struggle call. Feared minority culture/identity submerged under Hindu majority. <span class="character-link" data-charid="iqbal">Sir Muhammad Iqbal</span> (1930) reiterated importance of separate electorates for Muslim minority interests.</p>
+              </div>
+        </section>
+
+        <section id="collective-belonging" class="content-card">
+            <h2>5. The Sense of Collective Belonging</h2>
+            <p class="nation-building">Nationalism spreads when people believe they are part of same nation, discover unity. Came partly through united struggles, but also cultural processes capturing imagination.</p>
+            <h4 class="mt-4">Icons and Symbols:</h4>
+             <div class="nation-building">
+                <h4 class="font-semibold">Bharat Mata Image:</h4>
+                <p>Identity of India visually associated with image of <span class="key-term rounded">Bharat Mata</span> (Mother India) from 20th C.</p>
+                <p>First created by <span class="character-link" data-charid="bankim">Bankim Chandra Chattopadhyay</span> (wrote '<span class="key-term rounded">Vande Mataram</span>' hymn in 1870s, included in Anandamath).</p>
+                <p><span class="character-link" data-charid="abanindranath">Abanindranath Tagore</span> painted famous image (1905) during Swadeshi movement (ascetic figure: calm, divine, spiritual).</p>
+                <p>Image acquired different forms, circulated in popular prints. Devotion seen as proof of nationalism.</p>
+                 <img src="https://placehold.co/300x400/fee2e2/991b1b?text=Bharat+Mata+(Placeholder)" alt="Placeholder for Bharat Mata" class="chapter-image w-1/2" onerror="this.src='https://placehold.co/300x400/cccccc/333333?text=Image+Not+Found'">
+             </div>
+             <div class="nation-building mt-2">
+                 <h4 class="font-semibold">Flags:</h4>
+                 <ul class="list-disc list-inside ml-4">
+                     <li>Swadeshi movement (Bengal): Tricolour (red, green, yellow) designed. 8 lotuses (8 provinces), crescent moon (Hindus/Muslims).</li>
+                     <li>By 1921: Gandhiji designed Swaraj flag (tricolour: red, green, white) with spinning wheel in centre (Gandhian ideal of self-help). Carrying flag became symbol of defiance.</li>
+                 </ul>
+                 <img src="https://placehold.co/300x150/fee2e2/991b1b?text=Swaraj+Flag+(Placeholder)" alt="Placeholder for Swaraj Flag" class="chapter-image w-1/2" onerror="this.src='https://placehold.co/300x150/cccccc/333333?text=Image+Not+Found'">
+             </div>
+            <h4 class="mt-4">Folklore Revival:</h4>
+            <div class="ideology-concept">
+                <p>Late 19th C: Nationalists recorded folk tales/songs sung by bards, toured villages. Believed these gave true picture of traditional culture corrupted by outside forces. Essential to preserve folk tradition to discover national identity, restore pride.</p>
+                <p>Bengal: <span class="character-link" data-charid="rabindranath">Rabindranath Tagore</span> collected ballads, nursery rhymes, myths.</p>
+                <p>Madras: <span class="character-link" data-charid="sastri">Natesa Sastri</span> published Tamil folk tales ('The Folklore of Southern India'). Believed folklore was national literature.</p>
+            </div>
+            <h4 class="mt-4">Reinterpretation of History:</h4>
+             <div class="ideology-concept">
+                <p>Late 19th C: Indians felt need to reinterpret history to instill pride. British saw Indians as backward/primitive. Indians looked to past glorious achievements (art, architecture, science, maths, religion, culture, law, philosophy, trade). This glorious time seen as followed by decline under colonisation. Urged readers take pride in past, struggle against miserable present.</p>
+                <p>Problem: Glorifying Hindu past / using Hindu iconography could leave other communities feeling left out.</p>
+            </div>
+        </section>
+
+         <section id="conclusion" class="content-card fact-date">
+            <h2>Conclusion</h2>
+            <p>Growing anger against colonial government brought diverse groups into common struggle for freedom. Congress under Gandhi tried channeling grievances into organised movements, forging national unity.</p>
+            <p>BUT diverse groups participated with varied aspirations; freedom meant different things. Congress attempted resolving differences, but unity often broke down (phases of disunity/inner conflict).</p>
+            <p class="nation-building font-semibold">Result: A nation emerging with many voices wanting freedom from colonial rule.</p>
+            <div class="revolution-event mt-4 p-4 rounded-lg">
+                <h4 class="font-semibold text-lg mb-2">Quit India Movement (1942)</h4>
+                <p>Launched by Gandhi after failure of Cripps Mission amid WWII discontent. Called for complete British withdrawal ('Do or Die'). Mass movement involving students, workers, peasants. Leaders like Jayprakash Narayan, Aruna Asaf Ali, Ram Manohar Lohia active. Women like Matangini Hazra (Bengal), Kanaklata Barua (Assam), Rama Devi (Odisha) participated. British responded with force, took over a year to suppress.</p>
+                <img src="https://placehold.co/600x300/fcd34d/92400e?text=Quit+India+Movement+(Placeholder)" alt="Placeholder for Quit India Movement" class="chapter-image" onerror="this.src='https://placehold.co/600x300/cccccc/333333?text=Image+Not+Found'">
+            </div>
+        </section>
+
+         <section id="location-explorer" class="content-card">
+            <h2>6. Key Locations Explorer (Clickable)</h2>
+            <p class="mb-4">Click on a location below to see its significance in the Nationalist Movement (based on Chapter 2).</p>
+            <div class="location-container">
+                <div class="flex flex-wrap justify-center">
+                    <div class="location-item" data-locid="champaran">Champaran</div>
+                    <div class="location-item" data-locid="kheda">Kheda</div>
+                    <div class="location-item" data-locid="ahmedabad">Ahmedabad</div>
+                    <div class="location-item" data-locid="amritsar">Amritsar</div>
+                    <div class="location-item" data-locid="chauri_chaura">Chauri Chaura</div>
+                    <div class="location-item" data-locid="lahore">Lahore</div>
+                    <div class="location-item" data-locid="dandi">Dandi</div>
+                    <div class="location-item" data-locid="bombay">Bombay (Mumbai)</div>
+                    <div class="location-item" data-locid="calcutta">Calcutta (Kolkata)</div>
+                    <div class="location-item" data-locid="bardoli">Bardoli</div>
+                </div>
+                <div id="location-info-panel" class="location-info-panel">
+                    Select a location to learn more.
+                </div>
+            </div>
+        </section>
+
+        <section id="timeline-detailed" class="content-card">
+            <h2>7. Detailed Timeline (Click Events for Details)</h2>
+            <div class="relative mt-6">
+                 <div class="timeline-item">
+                    <div class="timeline-icon icon-person">P</div>
+                    <div class="timeline-event-link" data-eventid="event-1915">
+                        <h3 class="font-semibold text-lg mb-1">1915: Gandhi Returns</h3>
+                        <p class="fact-date p-2 rounded">Mahatma Gandhi returns to India from South Africa.</p>
+                    </div>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-icon icon-movement">M</div>
+                     <div class="timeline-event-link" data-eventid="event-1917">
+                        <h3 class="font-semibold text-lg mb-1">1917: Early Satyagrahas</h3>
+                        <p class="revolution-event p-2 rounded">Gandhi leads Satyagraha in Champaran (Bihar) and Kheda (Gujarat).</p>
+                    </div>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-icon icon-movement">M</div>
+                     <div class="timeline-event-link" data-eventid="event-1918">
+                        <h3 class="font-semibold text-lg mb-1">1918: Ahmedabad Mill Strike</h3>
+                        <p class="revolution-event p-2 rounded">Gandhi leads Satyagraha for mill workers in Ahmedabad.</p>
+                    </div>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-icon icon-policy">P</div>
+                     <div class="timeline-event-link" data-eventid="event-1919">
+                        <h3 class="font-semibold text-lg mb-1">1919: Repression & Resistance</h3>
+                        <p class="fact-date p-2 rounded">Rowlatt Act passed. Jallianwala Bagh massacre (April 13). Khilafat Committee formed.</p>
+                    </div>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-icon icon-movement">M</div>
+                     <div class="timeline-event-link" data-eventid="event-1920">
+                        <h3 class="font-semibold text-lg mb-1">1920: Non-Cooperation Adopted</h3>
+                        <p class="ideology-concept p-2 rounded">Nagpur Congress adopts Non-Cooperation programme.</p>
+                    </div>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-icon icon-movement">M</div>
+                     <div class="timeline-event-link" data-eventid="event-1921">
+                        <h3 class="font-semibold text-lg mb-1">1921: NCM Launched</h3>
+                        <p class="revolution-event p-2 rounded">Non-Cooperation-Khilafat Movement launched.</p>
+                    </div>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-icon icon-movement">M</div>
+                     <div class="timeline-event-link" data-eventid="event-1922">
+                        <h3 class="font-semibold text-lg mb-1">1922: Chauri Chaura & NCM Withdrawal</h3>
+                        <p class="revolution-event p-2 rounded">Chauri Chaura incident; Gandhi withdraws Non-Cooperation Movement.</p>
+                    </div>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-icon icon-person">P</div>
+                     <div class="timeline-event-link" data-eventid="event-1924">
+                        <h3 class="font-semibold text-lg mb-1">1924: Raju Arrested</h3>
+                        <p class="fact-date p-2 rounded">Alluri Sitarama Raju arrested, ending tribal struggle in Gudem Hills.</p>
+                    </div>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-icon icon-fact">F</div>
+                     <div class="timeline-event-link" data-eventid="event-1927">
+                        <h3 class="font-semibold text-lg mb-1">1927: FICCI Formed</h3>
+                        <p class="fact-date p-2 rounded">Federation of the Indian Chamber of Commerce and Industries (FICCI) formed.</p>
+                    </div>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-icon icon-policy">P</div>
+                     <div class="timeline-event-link" data-eventid="event-1928">
+                        <h3 class="font-semibold text-lg mb-1">1928: Simon Commission & Bardoli</h3>
+                        <p class="fact-date p-2 rounded">Simon Commission arrives in India; widespread protests. Bardoli Satyagraha.</p>
+                    </div>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-icon icon-policy">P</div>
+                     <div class="timeline-event-link" data-eventid="event-1929">
+                        <h3 class="font-semibold text-lg mb-1">1929: Purna Swaraj Demand</h3>
+                        <p class="ideology-concept p-2 rounded">Lahore Congress adopts 'Purna Swaraj' demand (Dec). Lord Irwin offers 'dominion status'.</p>
+                    </div>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-icon icon-movement">M</div>
+                     <div class="timeline-event-link" data-eventid="event-1930">
+                        <h3 class="font-semibold text-lg mb-1">1930: Salt March & CDM Begins</h3>
+                        <p class="revolution-event p-2 rounded">Salt March begins (March 12); Civil Disobedience Movement launched (April 6). Ambedkar establishes Depressed Classes Association.</p>
+                    </div>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-icon icon-policy">P</div>
+                     <div class="timeline-event-link" data-eventid="event-1931">
+                        <h3 class="font-semibold text-lg mb-1">1931: Gandhi-Irwin Pact & RTC</h3>
+                        <p class="fact-date p-2 rounded">Gandhi-Irwin Pact (March 5); Gandhi ends CDM temporarily. Second Round Table Conference (Dec).</p>
+                    </div>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-icon icon-movement">M</div>
+                     <div class="timeline-event-link" data-eventid="event-1932">
+                        <h3 class="font-semibold text-lg mb-1">1932: CDM Relaunched & Poona Pact</h3>
+                        <p class="revolution-event p-2 rounded">Civil Disobedience Movement re-launched. Poona Pact signed (Sep).</p>
+                    </div>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-icon icon-movement">M</div>
+                     <div class="timeline-event-link" data-eventid="event-1934">
+                        <h3 class="font-semibold text-lg mb-1">1934: CDM Loses Momentum</h3>
+                        <p class="fact-date p-2 rounded">Civil Disobedience Movement loses momentum.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon icon-movement">M</div>
+                    <div class="timeline-event-link" data-eventid="event-1942">
+                        <h3 class="font-semibold text-lg mb-1">1942: Quit India Movement</h3>
+                        <p class="revolution-event p-2 rounded">Quit India Movement launched (August).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div> <div id="gandhi-modal" class="modal"> <div class="modal-content"> <span class="close-button" data-closeid="gandhi">&times;</span> <h3>Mahatma Gandhi</h3> <p class="ideology-concept p-2 rounded">Leader of the Indian independence movement. Returned to India 1915. Developed Satyagraha (truth force/non-violent resistance). Led Champaran, Kheda, Ahmedabad movements. Initiated Non-Cooperation, Civil Disobedience, Quit India movements. Advocated Hindu-Muslim unity and abolition of untouchability ('Harijan').</p> <img src="https://placehold.co/100x100/8b5cf6/ffffff?text=Gandhi" alt="Gandhi Placeholder" class="character-img" onerror="this.src='https://placehold.co/100x100/cccccc/333333?text=X'"> </div> </div>
+     <div id="dyer-modal" class="modal"> <div class="modal-content"> <span class="close-button" data-closeid="dyer">&times;</span> <h3>General Dyer</h3> <p class="fact-date p-2 rounded">British military commander responsible for the Jallianwala Bagh massacre in Amritsar on April 13, 1919. He ordered troops to fire on an unarmed crowd, aiming to 'produce a moral effect'.</p> <img src="https://placehold.co/100x100/8b5cf6/ffffff?text=Dyer" alt="Dyer Placeholder" class="character-img" onerror="this.src='https://placehold.co/100x100/cccccc/333333?text=X'"> </div> </div>
+     <div id="ali_brothers-modal" class="modal"> <div class="modal-content"> <span class="close-button" data-closeid="ali_brothers">&times;</span> <h3>Muhammad Ali & Shaukat Ali</h3> <p class="ideology-concept p-2 rounded">Muslim leaders prominent in the Khilafat Movement after WWI. They discussed possibilities of united mass action with Gandhi, leading to the Non-Cooperation-Khilafat movement.</p> <img src="https://placehold.co/100x100/8b5cf6/ffffff?text=Ali+Bros" alt="Ali Brothers Placeholder" class="character-img" onerror="this.src='https://placehold.co/100x100/cccccc/333333?text=X'"> </div> </div>
+     <div id="ramchandra-modal" class="modal"> <div class="modal-content"> <span class="close-button" data-closeid="ramchandra">&times;</span> <h3>Baba Ramchandra</h3> <p class="revolution-event p-2 rounded">A sanyasi and former indentured labourer from Fiji. Led peasant movement in Awadh against talukdars and landlords, demanding reduction of revenue, abolition of begar, and social boycott.</p> <img src="https://placehold.co/100x100/8b5cf6/ffffff?text=Ramchandra" alt="Ramchandra Placeholder" class="character-img" onerror="this.src='https://placehold.co/100x100/cccccc/333333?text=X'"> </div> </div>
+     <div id="nehru-modal" class="modal"> <div class="modal-content"> <span class="close-button" data-closeid="nehru">&times;</span> <h3>Jawaharlal Nehru</h3> <p class="ideology-concept p-2 rounded">Prominent Congress leader, later India's first Prime Minister. Involved with Awadh peasant movement. Along with Bose, pressed for more radical mass agitation and Purna Swaraj. President of Lahore Congress (1929).</p> <img src="https://placehold.co/100x100/8b5cf6/ffffff?text=Nehru" alt="Nehru Placeholder" class="character-img" onerror="this.src='https://placehold.co/100x100/cccccc/333333?text=X'"> </div> </div>
+     <div id="raju-modal" class="modal"> <div class="modal-content"> <span class="close-button" data-closeid="raju">&times;</span> <h3>Alluri Sitaram Raju</h3> <p class="revolution-event p-2 rounded">Led militant guerrilla movement of tribal peasants in Gudem Hills (Andhra) in early 1920s. Claimed special powers. Inspired by Gandhi but believed force necessary for liberation. Executed 1924, became folk hero.</p> <img src="https://placehold.co/100x100/8b5cf6/ffffff?text=Raju" alt="Raju Placeholder" class="character-img" onerror="this.src='https://placehold.co/100x100/cccccc/333333?text=X'"> </div> </div>
+     <div id="ambedkar-modal" class="modal"> <div class="modal-content"> <span class="close-button" data-closeid="ambedkar">&times;</span> <h3>Dr. B.R. Ambedkar</h3> <p class="ideology-concept p-2 rounded">Leader of the Dalits. Organised Depressed Classes Association (1930). Advocated separate electorates for Dalits to ensure political empowerment. Clashed with Gandhi over this issue. Agreed to Poona Pact (1932) securing reserved seats instead.</p> <img src="https://placehold.co/100x100/8b5cf6/ffffff?text=Ambedkar" alt="Ambedkar Placeholder" class="character-img" onerror="this.src='https://placehold.co/100x100/cccccc/333333?text=X'"> </div> </div>
+     <div id="jinnah-modal" class="modal"> <div class="modal-content"> <span class="close-button" data-closeid="jinnah">&times;</span> <h3>Muhammad Ali Jinnah</h3> <p class="ideology-concept p-2 rounded">Leader of the Muslim League. Initially involved in efforts for Hindu-Muslim unity but later became a strong advocate for separate electorates and Muslim political safeguards, fearing domination by Hindu majority. Key figure in the demand for Pakistan.</p> <img src="https://placehold.co/100x100/8b5cf6/ffffff?text=Jinnah" alt="Jinnah Placeholder" class="character-img" onerror="this.src='https://placehold.co/100x100/cccccc/333333?text=X'"> </div> </div>
+     <div id="bankim-modal" class="modal"> <div class="modal-content"> <span class="close-button" data-closeid="bankim">&times;</span> <h3>Bankim Chandra Chattopadhyay</h3> <p class="nation-building p-2 rounded">Bengali writer. First created the image/concept of Bharat Mata. Wrote the hymn 'Vande Mataram' in the 1870s, later included in his novel Anandamath.</p> <img src="https://placehold.co/100x100/8b5cf6/ffffff?text=Bankim" alt="Bankim Placeholder" class="character-img" onerror="this.src='https://placehold.co/100x100/cccccc/333333?text=X'"> </div> </div>
+     <div id="abanindranath-modal" class="modal"> <div class="modal-content"> <span class="close-button" data-closeid="abanindranath">&times;</span> <h3>Abanindranath Tagore</h3> <p class="nation-building p-2 rounded">Artist who painted the famous image of Bharat Mata in 1905, portraying her as an ascetic, calm, divine figure, inspired by the Swadeshi movement.</p> <img src="https://placehold.co/100x100/8b5cf6/ffffff?text=A.Tagore" alt="Abanindranath Tagore Placeholder" class="character-img" onerror="this.src='https://placehold.co/100x100/cccccc/333333?text=X'"> </div> </div>
+    <div id="event-1915-modal" class="modal"> <div class="modal-content"> <span class="close-button" data-closeid="event-1915">&times;</span> <h3>1915: Gandhi Returns</h3> <p class="fact-date p-2 rounded">Mahatma Gandhi returned to India in January 1915 after years in South Africa where he had successfully fought the racist regime using his novel method of mass agitation, Satyagraha. His return marked a new phase in India's struggle for independence.</p> </div> </div>
+    <div id="event-1917-modal" class="modal"> <div class="modal-content"> <span class="close-button" data-closeid="event-1917">&times;</span> <h3>1917: Champaran & Kheda Satyagrahas</h3> <p class="revolution-event p-2 rounded">Gandhi travelled to Champaran, Bihar, to inspire peasants against the oppressive indigo plantation system. Later that year, he organised a satyagraha in Kheda, Gujarat, to support peasants affected by crop failure and plague, who couldn't pay revenue and demanded collection be relaxed. These were his first major applications of Satyagraha in India.</p> </div> </div>
+    <div id="event-1918-modal" class="modal"> <div class="modal-content"> <span class="close-button" data-closeid="event-1918">&times;</span> <h3>1918: Ahmedabad Mill Satyagraha</h3> <p class="revolution-event p-2 rounded">Mahatma Gandhi went to Ahmedabad to organise a satyagraha movement among cotton mill workers, intervening in a dispute between workers and mill owners over wages.</p> </div> </div>
+    <div id="event-1919-modal" class="modal"> <div class="modal-content"> <span class="close-button" data-closeid="event-1919">&times;</span> <h3>1919: Rowlatt Act & Jallianwala Bagh</h3> <p class="fact-date p-2 rounded">The Anarchical and Revolutionary Crimes Act (Rowlatt Act) was passed, allowing detention without trial. Gandhi called for a hartal. Protests led to violence and repression. On April 13, General Dyer ordered troops to fire on a peaceful gathering in Jallianwala Bagh, Amritsar, killing hundreds. The Khilafat Committee was also formed in Bombay (March) to defend the Ottoman Caliph's position.</p> </div> </div>
+    <div id="event-1920-modal" class="modal"> <div class="modal-content"> <span class="close-button" data-closeid="event-1920">&times;</span> <h3>1920: Non-Cooperation Adopted</h3> <p class="ideology-concept p-2 rounded">At the Congress session in Nagpur (December 1920), after much debate, the Non-Cooperation programme was adopted. This followed Gandhi convincing leaders at the Calcutta session (September) of the need to support Khilafat and demand Swaraj through non-cooperation.</p> </div> </div>
+    <div id="event-1921-modal" class="modal"> <div class="modal-content"> <span class="close-button" data-closeid="event-1921">&times;</span> <h3>1921: NCM Launched</h3> <p class="revolution-event p-2 rounded">The Non-Cooperation-Khilafat Movement began in January 1921. It saw widespread participation from various social groups across India, involving boycotts of schools, courts, councils, and foreign goods, although interpretations of Swaraj varied.</p> </div> </div>
+    <div id="event-1922-modal" class="modal"> <div class="modal-content"> <span class="close-button" data-closeid="event-1922">&times;</span> <h3>1922: Chauri Chaura & NCM Withdrawal</h3> <p class="revolution-event p-2 rounded">In February 1922, at Chauri Chaura in Gorakhpur, UP, a peaceful demonstration turned violent, clashing with police. Hearing of the incident, Mahatma Gandhi decided to withdraw the Non-Cooperation Movement, feeling it was turning violent and satyagrahis needed more training for mass struggles.</p> </div> </div>
+    <div id="event-1924-modal" class="modal"> <div class="modal-content"> <span class="close-button" data-closeid="event-1924">&times;</span> <h3>1924: Raju Arrested</h3> <p class="fact-date p-2 rounded">Alluri Sitaram Raju, who led the militant tribal uprising in the Gudem Hills of Andhra Pradesh, was captured and executed by the British. His arrest marked the end of this two-year armed struggle, though he became a folk hero.</p> </div> </div>
+    <div id="event-1927-modal" class="modal"> <div class="modal-content"> <span class="close-button" data-closeid="event-1927">&times;</span> <h3>1927: FICCI Formed</h3> <p class="fact-date p-2 rounded">To organise business interests and react against colonial policies restricting trade, prominent industrialists like Purshottamdas Thakurdas and G.D. Birla formed the Federation of the Indian Chamber of Commerce and Industries (FICCI).</p> </div> </div>
+    <div id="event-1928-modal" class="modal"> <div class="modal-content"> <span class="close-button" data-closeid="event-1928">&times;</span> <h3>1928: Simon Commission & Bardoli</h3> <p class="fact-date p-2 rounded">The all-British Statutory Commission under Sir John Simon arrived in India to review the constitutional system, met with widespread protests ('Go back Simon'). In Bardoli, Gujarat, Vallabhbhai Patel led a successful peasant satyagraha against enhancement of land revenue.</p> </div> </div>
+    <div id="event-1929-modal" class="modal"> <div class="modal-content"> <span class="close-button" data-closeid="event-1929">&times;</span> <h3>1929: Purna Swaraj Demand</h3> <p class="ideology-concept p-2 rounded">In October, Viceroy Lord Irwin made a vague offer of 'dominion status'. Unsatisfied, the Congress session in Lahore (December), under Jawaharlal Nehru's presidency, formalised the demand for 'Purna Swaraj' or complete independence. January 26, 1930 was declared as Independence Day.</p> </div> </div>
+    <div id="event-1930-modal" class="modal"> <div class="modal-content"> <span class="close-button" data-closeid="event-1930">&times;</span> <h3>1930: Salt March & CDM Begins</h3> <p class="revolution-event p-2 rounded">After Irwin ignored Gandhi's 11 demands (including abolishing the salt tax), Gandhi began the Salt March from Sabarmati to Dandi (March 12 - April 6). Violating the salt law at Dandi launched the Civil Disobedience Movement. Dr B.R. Ambedkar also established the Depressed Classes Association this year.</p> </div> </div>
+    <div id="event-1931-modal" class="modal"> <div class="modal-content"> <span class="close-button" data-closeid="event-1931">&times;</span> <h3>1931: Gandhi-Irwin Pact & RTC</h3> <p class="fact-date p-2 rounded">On March 5, the Gandhi-Irwin Pact was signed. Gandhi agreed to suspend the Civil Disobedience Movement and participate in the Second Round Table Conference in London; the government agreed to release political prisoners. Gandhi attended the conference in December, but negotiations failed.</p> </div> </div>
+    <div id="event-1932-modal" class="modal"> <div class="modal-content"> <span class="close-button" data-closeid="event-1932">&times;</span> <h3>1932: CDM Relaunched & Poona Pact</h3> <p class="revolution-event p-2 rounded">Returning from London to find renewed repression, Gandhi relaunched the Civil Disobedience Movement. In September, after Gandhi's fast against separate electorates for Dalits, the Poona Pact was signed between Gandhi and Ambedkar, reserving seats for the Depressed Classes within the general electorate.</p> </div> </div>
+    <div id="event-1934-modal" class="modal"> <div class="modal-content"> <span class="close-button" data-closeid="event-1934">&times;</span> <h3>1934: CDM Loses Momentum</h3> <p class="fact-date p-2 rounded">After being relaunched in 1932, the Civil Disobedience Movement continued for over a year but gradually lost its momentum and effectively ended by 1934.</p> </div> </div>
+    <div id="event-1942-modal" class="modal"> <div class="modal-content"> <span class="close-button" data-closeid="event-1942">&times;</span> <h3>1942: Quit India Movement</h3> <p class="revolution-event p-2 rounded">Launched in August after the failure of the Cripps Mission, Gandhi gave the call 'Do or Die', demanding immediate British withdrawal. It became a mass movement involving widespread hartals, demonstrations, and attacks on state machinery, met with severe repression.</p> </div> </div>
+    <script>
+        // Wait for the HTML document to be fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Modal Handling (Characters & Events) ---
+            const characterLinks = document.querySelectorAll('.character-link');
+            const eventLinks = document.querySelectorAll('.timeline-event-link'); // Select clickable timeline events
+            const closeButtons = document.querySelectorAll('.close-button');
+            const modals = document.querySelectorAll('.modal');
+
+            // Function to show modal
+            const showModal = (modalId) => {
+                 const modal = document.getElementById(modalId);
+                 if (modal) {
+                    modal.style.display = 'block';
+                 } else {
+                    console.error('Modal not found for ID:', modalId);
+                 }
+            };
+
+            // Function to close modal
+            const closeModal = (modalId) => {
+                 const modal = document.getElementById(modalId);
+                 if (modal) {
+                    modal.style.display = 'none';
+                 }
+            };
+
+            // Add click listener to character links
+            characterLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    const characterId = link.getAttribute('data-charid');
+                    showModal(characterId + '-modal');
+                });
+            });
+
+            // Add click listener to timeline event links
+            eventLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    const eventId = link.getAttribute('data-eventid');
+                    showModal(eventId + '-modal');
+                });
+            });
+
+            // Add click listener to close buttons
+            closeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                     const closeId = button.getAttribute('data-closeid');
+                     // Determine if it's a character or event modal based on prefix
+                     if (document.getElementById(closeId + '-modal')) {
+                         closeModal(closeId + '-modal');
+                     } else if (document.getElementById('event-' + closeId + '-modal')) {
+                         closeModal('event-' + closeId + '-modal'); // Assuming event IDs might just be year/keyword
+                     } else {
+                         // Fallback/General close based on parent modal (less specific)
+                         button.closest('.modal').style.display = 'none';
+                     }
+                });
+            });
+
+             // Add click listener to close modal when clicking outside the content
+             window.addEventListener('click', (event) => {
+                modals.forEach(modal => {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                });
+            });
+
+            // --- Location Info Handling ---
+            const locationItems = document.querySelectorAll('.location-item');
+            const locationInfoPanel = document.getElementById('location-info-panel');
+
+            locationItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const locId = item.getAttribute('data-locid');
+                    let infoText = '';
+
+                    // Content based on Chapter 2
+                    switch (locId) {
+                        case 'champaran': infoText = '<h4 class="font-semibold mb-1 text-blue-700">Champaran (Bihar):</h4> Site of Gandhi\'s first Satyagraha in India (1917) against oppressive indigo plantation system.'; break;
+                        case 'kheda': infoText = '<h4 class="font-semibold mb-1 text-blue-700">Kheda (Gujarat):</h4> Site of Gandhi\'s 1917 Satyagraha supporting peasants affected by crop failure, demanding revenue relaxation.'; break;
+                        case 'ahmedabad': infoText = '<h4 class="font-semibold mb-1 text-blue-700">Ahmedabad (Gujarat):</h4> Site of Gandhi\'s 1918 Satyagraha movement among cotton mill workers.'; break;
+                        case 'amritsar': infoText = '<h4 class="font-semibold mb-1 text-blue-700">Amritsar (Punjab):</h4> Location of the Jallianwala Bagh massacre on April 13, 1919, a turning point in the national movement.'; break;
+                        case 'chauri_chaura': infoText = '<h4 class="font-semibold mb-1 text-blue-700">Chauri Chaura (Gorakhpur, UP):</h4> Location of violent incident in Feb 1922 where protesters clashed with police, leading Gandhi to withdraw the Non-Cooperation Movement.'; break;
+                        case 'lahore': infoText = '<h4 class="font-semibold mb-1 text-blue-700">Lahore (Now Pakistan):</h4> Site of the crucial Congress session in December 1929 where the demand for \'Purna Swaraj\' (Complete Independence) was formalised.'; break;
+                        case 'dandi': infoText = '<h4 class="font-semibold mb-1 text-blue-700">Dandi (Gujarat Coast):</h4> Destination of Gandhi\'s Salt March (March-April 1930). Site where Gandhi violated the salt law, launching the Civil Disobedience Movement.'; break;
+                        case 'bombay': infoText = '<h4 class="font-semibold mb-1 text-blue-700">Bombay (Mumbai):</h4> Major centre of political activity, trade, and industry. Site of Khilafat Committee formation (1919) and launch of Quit India Movement (1942).'; break;
+                        case 'calcutta': infoText = '<h4 class="font-semibold mb-1 text-blue-700">Calcutta (Kolkata):</h4> Important political and intellectual hub. Site of Congress session (Sep 1920) where Non-Cooperation for Khilafat/Swaraj was decided.'; break;
+                        case 'bardoli': infoText = '<h4 class="font-semibold mb-1 text-blue-700">Bardoli (Gujarat):</h4> Site of successful peasant satyagraha against land revenue enhancement led by Vallabhbhai Patel in 1928.'; break;
+                        default: infoText = 'Select a location to learn more.';
+                    }
+                    locationInfoPanel.innerHTML = infoText;
+                });
+            });
+
+        }); // End DOMContentLoaded listener
+    </script>
+
+</body>
+</html>
