@@ -320,10 +320,7 @@
     <a href="#services" class="nav-link">Services</a>
     <a href="#skills" class="nav-link">Skills</a>
     <a href="#contact" class="nav-link">Contact</a>
-    <div id="user-nav">
-        <!-- User info will be inserted here -->
-        <a href="#" onclick="netlifyIdentity.open()" class="nav-link">Login / Signup</a>
-    </div>
+    
               </div>
         </div>
     </nav>
@@ -408,7 +405,7 @@
         <h2 class="section-title">Our Team</h2>
         <div class="team-grid">
             <div class="team-card">
-                <img src="KuldeepNew.jpg" alt="Kuldeep" class="team-image">
+                <img src="KuldeepNewP.jpg" alt="Kuldeep" class="team-image">
                 <h3>Kuldeep Singh</h3>
                 <p>Lead Developer & AI Engineer</p>
             </div>
@@ -453,7 +450,7 @@
             <div class="footer-item">
                 <i class="fas fa-phone footer-icon"></i>
                 <h4>Phone</h4>
-                <p>+91 79059 85400</p>
+                <p>+91XX</p>
             </div>
             <div class="footer-item">
                 <i class="fas fa-envelope footer-icon"></i>
@@ -463,49 +460,11 @@
             <div class="footer-item">
                 <i class="fas fa-map-marker-alt footer-icon"></i>
                 <h4>Location</h4>
-                <p>Uttar Pradesh, India</p>
+                <p>India</p>
             </div>
         </div>
     </footer>
     <!-- Existing content continues here... -->
-
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js "></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const userNav = document.getElementById('user-nav');
-
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on('init', user => {
-        updateUI(user);
-      });
-
-      window.netlifyIdentity.on('login', user => {
-        updateUI(user);
-        netlifyIdentity.close();
-      });
-
-      window.netlifyIdentity.on('logout', () => {
-        updateUI(null);
-      });
-    }
-
-    function updateUI(user) {
-      if (user) {
-        userNav.innerHTML = `
-          <div class="nav-link">
-            Hello, ${user.user_metadata.full_name || 'User'}
-          </div>
-          <a href="#" onclick="netlifyIdentity.open('account')" class="nav-link">Manage Profile</a>
-          <a href="#" onclick="netlifyIdentity.logout()" class="nav-link">Logout</a>
-        `;
-      } else {
-        userNav.innerHTML = `
-          <a href="#" onclick="netlifyIdentity.open()" class="nav-link">Login / Signup</a>
-        `;
-      }
-    }
-  });
-</script>
 
 </body>
 </html>
